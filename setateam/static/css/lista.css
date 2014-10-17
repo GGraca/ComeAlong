@@ -1,0 +1,367 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+ 
+.pelouros .member {
+	margin-bottom: 30px;
+}
+
+.pelouros .member .circle {
+	width: 120px;
+	height: 120px;
+	-webkit-border-radius: 60px;
+	-moz-border-radius: 60px;
+	border-radius: 60px;
+}
+
+.pelouros .img-responsive {
+	width: 100%;
+	filter: gray; /* IE6-9 */
+	-webkit-filter: grayscale(40%);
+}
+
+.pelouros .img-responsive:hover {
+	-webkit-filter: grayscale(0%);
+	/*outline: 10px solid #D59787;*/
+}
+
+.pelouros .label {
+	background-color: #000;
+	position: absolute;
+	bottom: 3px;
+}
+/*
+.pelouros .member .photo, .pelouros .member .photo:hover {
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}*/
+
+.pelouros .member .photo#aluno {
+	border: #fff solid 1px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing: border-box; 
+
+	background: url('../img/photos/eu.png') no-repeat;
+	background-size: contain;
+
+	-webkit-transition: border 0.2s ease-in-out;
+	-moz-transition: border 0.2s ease-in-out;
+	-o-transition: border 0.2s ease-in-out;
+	transition: border 0.2s ease-in-out;
+}
+
+.pelouros .member .photo#aluno:hover {
+	border: #46c3db solid 5px;
+}
+
+.pelouros .member .photo#joaoclaro {
+	background: url('../img/photos/joaoclaro2.jpg') no-repeat;
+	background-size: contain;
+}
+/*
+.pelouros .member .photo#joaoclaro:hover {
+	background: url('../img/heroes/professorx.jpg') no-repeat;
+	background-size: contain;
+}*/
+
+.pelouros .member .photo#joaosa {
+	background: url('../img/photos/joaosa.jpg') no-repeat;
+	background-size: contain;
+}
+
+/*
+.pelouros .member .photo#joaosa:hover {
+	background: url('../img/heroes/riddler.jpg') no-repeat;
+	background-size: contain;
+}*/
+
+.pelouros .member .photo#filipeassuncao {
+	background: url('../img/photos/filipeassuncao.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#sarajoao {
+	background: url('../img/photos/sarajoao.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#joaoribeiro {
+	background: url('../img/photos/joaoribeiro.jpg') no-repeat;
+	background-size: contain;
+}
+
+/*
+.pelouros .member .photo#joaoribeiro:hover {
+	background: url('../img/heroes/penguin.jpg') no-repeat;
+	background-size: contain;
+}
+*/
+.pelouros .member .photo#joaomarques {
+	background: url('../img/photos/joaomarques.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#analopes {
+	background: url('../img/photos/analopes.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#taniaoliveira {
+	background: url('../img/photos/taniaoliveira.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#davidcardoso {
+	background: url('../img/photos/davidcardoso.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#joaocerveira {
+	background: url('../img/photos/joaocerveira.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#adrianovinhas {
+	background: url('../img/photos/adrianovinhas.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#taniaoliveira2 {
+	background: url('../img/photos/taniaoliveira2.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#joanapatricia {
+	background: url('../img/photos/joanapatricia.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#saramalva {
+	background: url('../img/photos/saramalva.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#alexandrejesus {
+	background: url('../img/photos/alexandrejesus.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#bernardomarques {
+	background: url('../img/photos/bernardomarques.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#joaovalenca {
+	background: url('../img/photos/joaovalenca.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#carlosferreira {
+	background: url('../img/photos/carlosferreira.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#miguelcarepa {
+	background: url('../img/photos/miguelcarepa.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#eloisesimoes {
+	background: url('../img/photos/eloisesimoes.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#pedroneves {
+	background: url('../img/photos/pedroneves.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#samuelnunes {
+	background: url('../img/photos/samuelnunes2.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#beatrizcosta {
+	background: url('../img/photos/beatrizcosta.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#andremonteiro {
+	background: url('../img/photos/andremonteiro.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#andrelizardo {
+	background: url('../img/photos/andrelizardo.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#eduardosilva {
+	background: url('../img/photos/eduardosilva.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#marianacerveira {
+	background: url('../img/photos/marianacerveira.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#joaogirao {
+	background: url('../img/photos/joaogirao.jpg') no-repeat;
+	background-size: contain;
+}
+
+
+.pelouros .member .photo#dianaumbelino {
+	background: url('../img/photos/dianaumbelino.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#joanaoliveira {
+	background: url('../img/photos/joanaoliveira.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#edmarbarros {
+	background: url('../img/photos/edmarbarros.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#antoniomarques {
+	background: url('../img/photos/antoniomarques.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#danielbarbosa {
+	background: url('../img/photos/danielbarbosa.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#andremaximino {
+	background: url('../img/photos/andremaximino.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#tiagomateus {
+	background: url('../img/photos/tiagomateus.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#afonsomorais {
+	background: url('../img/photos/afonsomorais.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#andrefigueiredo {
+	background: url('../img/photos/andrefigueiredo.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#henriquecabral {
+	background: url('../img/photos/henriquecabral.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#sofiagomes {
+	background: url('../img/photos/sofiagomes.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#tomascarvalho {
+	background: url('../img/photos/tomascarvalho.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#fredericocardoso{
+	background: url('../img/photos/fredericocardoso.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo#inessimoes {
+	background: url('../img/photos/inessimoes.jpg') no-repeat;
+	background-size: contain;
+}
+
+.pelouros .member .photo {
+	background-size: contain;
+}
+
+.pelouros h4{
+	margin-bottom: 2px;
+}
+
+.pelouros h5.title {
+	margin: 2px 0;
+}
+
+.activity h1 {
+	text-align: center;
+	font-size: 16px;
+	text-transform: none;
+	color: #808080;
+}
+
+.activity:hover h1 {
+	color: #46c3db;
+}
+
+.activity p {
+	padding: 0 40px;
+	text-align: left;
+	margin-top: 16px;
+	font-family: 'Lato', sans-serif;
+	font-size: 14px;
+	text-transform: none;
+	color: #a8a8a8;
+	line-height: 24px;
+}
+
+.activity:hover p {
+	color: #888888;
+}
+
+.activity:hover span {
+	color: #46c3db;
+}
+
+.sidebar-header {
+	color: #fff;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 4px 4px 0px 0px;
+	border-radius: 4px 4px 0px 0px; 
+}
+
+.contacts {
+	margin-bottom: 30px;
+}
+
+.contacts a, .contacts a:hover, .contacts a:focus {
+	color: #333;
+}
+
+.contacts .sidebar-header {
+	padding: 30px 20px;
+	background-color: #a0d468;
+}
+
+.location .sidebar-header {
+	height: 200px;
+	background: url('../img/nei_room.jpg') no-repeat;
+	background-size: cover;
+}
+
+.sidebar-content {
+	padding: 30px 20px;
+	background-color: #fff;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px 0px 4px 4px;
+	border-radius: 0px 0px 4px 4px; 
+}
+
+.location a.room {
+	width: 100%;
+	margin-top: 20px;
+}

@@ -1,0 +1,124 @@
+.header-fixed {
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.headroom {
+    padding-top: 2px;
+    padding-bottom: 0px;
+    transition: all .5s ease-in-out;
+}
+
+.headroom--pinned {
+    padding-top: 2px;
+    padding-bottom: 0px;
+}
+
+.headroom--unpinned {
+    top: -132px;
+}
+
+.navbar {
+    background-color: #58B9C9;
+    border-radius: 0;
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+    text-decoration: none;
+    background-color: inherit;
+}
+
+.navbar-inverse {
+    border: 0;
+}
+
+.navbar-inverse a {
+    color: #fff;
+}
+
+.navbar-nav>li>a {
+    padding: 8px 10px;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    background-color: #4E4E4E;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 72px;
+}
+
+.navbar-right {
+    text-align: center;
+}
+
+.navbar-inverse .navbar-right li a {
+    font-size: 3.6rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-right li .title {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.brand-title {
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+.brand-name {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+@media (min-width: 768px){
+
+    .navbar.small {
+        padding-top: 2px;
+        padding-bottom: 0px;
+        -webkit-transition: all .5s ease-in-out;  
+        -moz-transition: all .5s ease-in-out;  
+        -o-transition: all .5s ease-in-out;  
+        transition: all .5s ease-in-out;
+    }
+
+    .navbar.small .navbar-right li .title, .navbar.small .navbar-header {
+        display: none;
+    }
+
+    .navbar-inverse.small .navbar-right li a {
+        padding:5px 5px 2px 5px;
+        font-size: 3rem;
+        -webkit-transition: all .5s ease-in-out;  
+        -moz-transition: all .5s ease-in-out;  
+        -o-transition: all .5s ease-in-out;  
+        transition: all .5s ease-in-out;
+    }
+
+    .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+@media (min-width: 992px) {
+    .brand-title {
+        font-size: 2.4rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .brand-title {
+        font-size: 3rem;
+    }
+}

@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+	<link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet" >
+	<link href="{% static 'css/main.css' %}" rel="stylesheet" >
+</head>
+
+<body>
+	{% if user.is_authenticated%}
+		oi
+	{% else %}
+		<a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}" class="btn btn-primary">F</a>
+	{%endif%}
+</body>
+</html>
