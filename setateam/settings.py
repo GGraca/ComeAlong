@@ -95,6 +95,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "setateam/static"),
 )
 
+#Media
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+
 #AUTH
 AUTH_USER_MODEL = 'my_user.MyUser'
 
@@ -107,8 +111,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '319722258210926'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'f9ebe185832caedda5a2c3df34fd0f37'
+SOCIAL_AUTH_FACEBOOK_KEY = '872629912761605'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'fd1cab6f8911fb9e86a424d080226643'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'publish_actions']
 
 
