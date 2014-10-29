@@ -1,5 +1,5 @@
 """
-Django settings for setateam project.
+Django settings for comealong project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -57,9 +57,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 
-ROOT_URLCONF = 'setateam.urls'
+ROOT_URLCONF = 'comealong.urls'
 
-WSGI_APPLICATION = 'setateam.wsgi.application'
+WSGI_APPLICATION = 'comealong.wsgi.application'
 
 
 # Database
@@ -92,7 +92,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "setateam/static"),
+    os.path.join(BASE_DIR, "comealong/static"),
 )
 
 #Media
