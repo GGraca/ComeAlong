@@ -2,7 +2,7 @@
 
 {% block body_block %}
 	{% if user.is_authenticated%}
-		Logged in as {{ user.nickname }}
+		Logged in as {{ user.username }}
 		<a href="{% url 'auth:logout' %}?next={% url 'index' %}" class="btn btn-danger	">Logout</a>
 	{% else %}
 		<a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}" class="btn btn-primary">Login with Facebook</a>

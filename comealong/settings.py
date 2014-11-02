@@ -87,9 +87,9 @@ USE_L10N = True
 USE_TZ = True
 
 
+#-----------------------------------------------------------------------------------
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = (
@@ -99,6 +99,12 @@ STATICFILES_DIRS = (
 #Media
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+
+#Templates
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, "templates"),
+)
+#-----------------------------------------------------------------------------------
 
 #AUTH
 AUTH_USER_MODEL = 'my_user.MyUser'
@@ -115,8 +121,3 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_FACEBOOK_KEY = '872629912761605'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'fd1cab6f8911fb9e86a424d080226643'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'publish_actions']
-
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "templates"),
-)
