@@ -2,9 +2,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class MyUser(AbstractUser):
-	nickname = models.CharField(max_length=200)
-	birthday = models.DateField('birthday', auto_now_add=True , blank=True)
-	#avatar = models.ImageField(upload_to = 'img/')
+	#Relations
+	"""projects_owned"""
+	"""projects_participated"""
+	"""applications"""
 
-	def age():
-		pass
+	#Fields
+	"""name""" #from AbstractUser
+	"""username""" #from AbstractUser
+	avatar = models.ImageField(upload_to = 'img/')
+	description = models.TextField()
