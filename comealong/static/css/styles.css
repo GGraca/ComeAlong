@@ -1,0 +1,337 @@
+/*------------------------------------*\
+  GENERAL STYLES
+\*------------------------------------*/
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+/*Meu*/
+#barra{
+	color:#FFF;
+	background:#069;
+	top:0;
+	left:0;
+	position:fixed;
+	height:75px;
+	width:100%;
+}
+/*Meu*/
+.btn-iniciarsessao {
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, sans-serif;
+  	background:#34495e;
+  	color: #fff;
+  	cursor: pointer;
+  	padding: 10px 10px;
+  	margin: 5px;*/
+  	text-transform: uppercase;
+  	letter-spacing: 1px;
+  	font-weight: 700;
+  	/*reset default browser*/
+  	border: none;
+  	outline: none;
+  	box-shadow: 0 6px #2c3e50;
+  	border-radius: 0 0 5px 5px;
+}
+.btn-iniciarsessao:hover {
+	box-shadow: 0 4px #2c3e50;
+  	top: 2px;
+}
+.btn-iniciarsessao:active {
+  	background: #2c3e50;
+  	box-shadow: 0 0 #2c3e50;
+  	top: 6px;
+}
+#iniciarsessao{
+  	padding-bottom: 0;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.6);
+}
+
+blockquote {
+	border-left: 0;
+  	font-family: 'Volkov', 'Georgia', serif;
+  	font-weight: 400;
+  	font-style: italic;
+  	color: white;
+  	position: relative;
+}
+
+blockquote a {
+	color: rgba(255,255,255,0.6);
+}
+
+.h-align {
+   display: table;
+   width: 100%;
+   height:100%;
+}
+
+.v-align {
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+}
+
+/*------------------------------------*\
+  NAVIGATION
+\*------------------------------------*/
+
+nav {
+	position: fixed;
+	top: 50%;
+	right: 25px;
+	margin-top: -55px;
+	z-index: 2;
+}
+
+nav li a{
+	display: block;
+	background: #4E4D4A;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px;
+	margin-bottom: 25px;
+	margin-left: 0;
+}
+
+/*Fundo*/
+#fundoincial{
+	background: #1a1a1a;
+	padding: 15px 0 0 0;
+}
+
+.fundoincial{
+	color: white;
+	text-align: center;
+}
+
+.fundoincial img {
+	max-width: 100%;
+	position: absolute;
+	width: 100%;
+	height:100%;
+}
+
+.fundoincial h1 {
+	font-size: 18px;
+	top: 0;
+}
+
+.fundoincial h2 {
+	font-size: 12px;
+	bottom: 0;
+}
+
+/*------------------------------------*\
+  WORKS
+\*------------------------------------*/
+
+#works {
+	background: #1a1a1a;
+	padding: 800px 0 45px 0;
+}
+
+.work {
+	color: white;
+	text-align: center;
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.work img {
+	max-width: 100%;
+}
+
+.work h1, .work h2 {
+	position: absolute;
+	width: 100%;
+	opacity: 0;
+	-webkit-transition: top .3s ease-in-out, bottom .3s ease-in-out, opacity .2s ease-in-out;
+	   -moz-transition: top .3s ease-in-out, bottom .3s ease-in-out, opacity .2s ease-in-out;
+	    -ms-transition: top .3s ease-in-out, bottom .3s ease-in-out, opacity .2s ease-in-out;
+	     -o-transition: top .3s ease-in-out, bottom .3s ease-in-out, opacity .2s ease-in-out;
+	        transition: top .3s ease-in-out, bottom .3s ease-in-out, opacity .2s ease-in-out;
+}
+
+.work h1 {
+	font-size: 18px;
+	top: 0;
+}
+
+.work h2 {
+	font-size: 12px;
+	bottom: 0;
+}
+
+.work .overlay {
+	opacity: 0;
+	-webkit-transition: opacity .1s ease-in;
+	   -moz-transition: opacity .1s ease-in;
+	    -ms-transition: opacity .1s ease-in;
+	     -o-transition: opacity .1s ease-in;
+	        transition: opacity .1s ease-in;
+}
+
+/* Animations */
+
+.work:hover .overlay {
+	opacity: 1;
+}
+
+.work:hover h1, .work:hover h2 {
+	opacity: 1;
+}
+
+.work:hover h1 {
+	top: 50px;
+}
+
+.work:hover h2 {
+	bottom: 25px;
+}
+
+/*------------------------------------*\
+  CAPTION
+\*------------------------------------*/
+/*
+#caption {
+	height: 350px;
+	background-image: url('../images/caption.jpg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: scroll;
+	background-color: #1a1a1a;
+	z-index: -1; *//*push to the background */
+	/*-webkit-background-size: cover;
+	   -moz-background-size: cover;
+	     -o-background-size: cover;
+	        background-size: cover;
+	position: relative;
+	overflow: hidden;
+}*/
+@media all and (min-width: 768px) {
+  #caption blockquote{
+    font-size: 22px;
+  }
+}
+
+@media all and (min-width: 992px) {
+  #caption{
+    background-attachment: fixed;
+  }
+  #caption blockquote{
+    font-size: 28px;
+  }
+}
+
+/*------------------------------------*\
+  CONTACT
+\*------------------------------------*/
+
+#contact {
+	background: #f2f2f2;
+	padding: 75px 0;
+}
+
+#contact h1 {
+	font-size: 22px;
+	margin-top: 0;
+	margin-bottom: 25px;
+}
+
+#contact ul li {
+	font-size: 18px;
+	margin-bottom: 15px
+}
+
+#contact ul i {
+	width: 50px;
+	text-align: center;
+	color: #4E4D4A;
+}
+
+#contact input, #contact textarea, #contact button {
+	font-size: 18px;
+	border: 0;
+	border-radius: 0;
+}
+
+#contact textarea {
+	resize: none;
+	height: 125px;
+}
+
+#contact button {
+	background-color: #4E4D4A;
+	color: white;
+}
+
+/*------------------------------------*\
+  FOOTER
+\*------------------------------------*/
+
+footer {
+	background: #f2f2f2;
+	text-align: center;
+}
+
+footer ul{
+	margin: 15px 0 30px 0;
+}
+
+footer ul li a{
+	color: #4E4D4A;
+}
+
+footer ul li a:hover {
+	color: #1a1a1a;
+}
+
+/*------------------------------------*\
+  ANIMATION WHEN SITE OPENS UP
+\*------------------------------------*/
+
+.fade-in {
+	opacity:0;  /* make things invisible upon start */
+	-webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+	-moz-animation:fadeIn ease-in 1;
+	animation:fadeIn ease-in 1;
+
+	-webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+	-moz-animation-fill-mode:forwards;
+	animation-fill-mode:forwards;
+
+	-webkit-animation-duration:1s;
+	-moz-animation-duration:1s;
+	animation-duration:1s;
+}
+
+.fade-in.two {
+	-webkit-animation-delay: 0.7s;
+	-moz-animation-delay: 0.7s;
+	animation-delay: 0.7s;
+}
+
+.fade-in.three {
+	-webkit-animation-delay: 1.2s;
+	-moz-animation-delay:1.2s;
+	animation-delay: 1.2s;
+}
+
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

@@ -7,4 +7,4 @@ def index(request):
     context = RequestContext(request)
 
     # Render the response and send it back!
-    return render_to_response('base.html', context)
+    return render_to_response('index.html', context)

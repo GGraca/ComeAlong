@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+	{% if user.is_authenticated%}
+		Logged in as {{ user.nickname }}
+		<!-- <img src="{{ user.avatar.url }}"> -->
+		<a href="{% url 'auth:logout' %}?next={% url 'index' %}" class="btn btn-danger	">Logout</a>
+	{% else %}
+		<a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}" class="btn btn-primary">Login with Facebook</a>
+	{%endif%}
+{% endblock %}
