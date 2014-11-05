@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	{% block css_block %}
+    {% include "css.html" %}
+ {% endblock %}
+</head>
+
+<body>
+	{% block navbar_block %}
+		{% include "navbar.html" %}
+	{% endblock %}
+
+	{% block body_block %}
+	{% endblock %}
+
+	{% block footer_block %}
+		{% include "footer.html" %}
+	{% endblock %}
+</body>
+</html>

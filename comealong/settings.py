@@ -54,6 +54,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
     'django.contrib.auth.context_processors.auth',
+    "django.core.context_processors.media",
     #'django.contrib.messages.context_processors.auth',
 )
 
@@ -88,21 +89,25 @@ USE_TZ = True
 
 
 #-----------------------------------------------------------------------------------
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "comealong/static"),
+    os.path.join(BASE_DIR, "ui/static"),
 )
 
 #Media
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIAFILES_DIRS = (
+    os.path.join(BASE_DIR, "media"),
+)
 
 #Templates
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "templates"),
+    os.path.join(BASE_DIR, "ui/templates"),
 )
 #-----------------------------------------------------------------------------------
 
@@ -118,6 +123,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '872629912761605'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'fd1cab6f8911fb9e86a424d080226643'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'publish_actions']
+SOCIAL_AUTH_FACEBOOK_KEY = '876116952412901'
+SOCIAL_AUTH_FACEBOOK_SECRET = '756a3cd8000bc47d0095097000c5dffd'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
