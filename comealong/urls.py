@@ -11,7 +11,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'^$', views.index, name="index"),
-    url(r'^user/', include("my_user.urls")),
+    url(r'^users/', include("my_user.urls")),
+    url(r'^projects/', include("project.urls")),
 
     url(r'^admin/', include(admin.site.urls)),
     url('', include('social.apps.django_app.urls', namespace='social')),
