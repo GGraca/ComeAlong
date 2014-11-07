@@ -12,3 +12,6 @@ class MyUser(AbstractUser):
 	"""username""" #from AbstractUser
 	avatar = models.ImageField(upload_to = 'img/')
 	description = models.TextField()
+
+	def __unicode__(self):
+		return self.username

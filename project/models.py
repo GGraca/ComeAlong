@@ -11,10 +11,8 @@ class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
 
-    # def new_project(self, title, description):
-    #     self.title = title
-    #     self.description = description
-    #     self.save()
+    def __unicode__(self):
+        return self.title
 
 
 
@@ -25,3 +23,6 @@ class Application(models.Model):
 
     #Fields
     pitch = models.TextField()
+
+    def __unicode__(self):
+        return self.user.username + " -> " + self.project.title
