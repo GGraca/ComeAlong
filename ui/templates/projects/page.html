@@ -4,6 +4,8 @@
 
 	{{ project }}
 
-	{% include "projects/apply_btn.html" %}
+	{% if project.founder.id != user.id %}
+		{% include "projects/apply_btn.html" %}
+	{% endif%}
 
 {% endblock %}
