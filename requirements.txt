@@ -2,6 +2,7 @@ Django==1.6.2
 Pillow==2.6.1
 PyJWT==0.3.0
 django-bootstrap3==4.11.0
+django-redactoreditor==1.2.10
 oauthlib==0.7.1
 python-openid==2.2.5
 python-social-auth==0.2.1

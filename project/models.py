@@ -9,12 +9,12 @@ class Project(models.Model):
 
     #Fields
     title = models.CharField(max_length=100)
+    display_image = models.ImageField(upload_to="img/")
+    short_description = models.TextField()
     description = models.TextField()
 
     def __unicode__(self):
         return self.title
-
-
 
 class Application(models.Model):
     #Relations

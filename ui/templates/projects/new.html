@@ -5,6 +5,7 @@
 
 	<form action="/projects/new/" method="post" class="form">
 		{% csrf_token %}
+		{{ form.media }}
 		{% bootstrap_form form %}
   		{% buttons %}
 			<button type="submit" class="btn btn-primary">

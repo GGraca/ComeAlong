@@ -2,7 +2,10 @@
 
 {% block body_block %}
 
-	{{ project }}
+	<h1>{{ project }}</h1>
+	<br>
+	<h4>Description:</h4>
+	{{ project.description | safe}}
 
 	{% if project.founder.id != user.id %}
 		{% include "projects/apply_btn.html" %}

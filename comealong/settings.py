@@ -39,7 +39,8 @@ INSTALLED_APPS = (
 
     'social.apps.django_app.default',
     'bootstrap3',
-    
+    'redactor',
+
     'my_user',
     'project',
 )
