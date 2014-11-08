@@ -45,8 +45,8 @@ def new_application(request, id):
     else:
         form = ApplicationForm();
 
-    args = {}
+    args = {"project_id": id}
     args.update(csrf(request))
     args['form'] = form
 
-    return render_to_response('projects/id/new.html', args)
+    return render_to_response('applications/new.html', args)

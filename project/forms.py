@@ -1,5 +1,5 @@
 from django import forms
-from models import Project
+from models import Project, Application
 
 class ProjectForm(forms.ModelForm):
 
@@ -10,5 +10,5 @@ class ProjectForm(forms.ModelForm):
 class ApplicationForm(forms.ModelForm):
 
     class Meta:
-        model = Project
+        model = Application
         #fields = ("founder", "title", "description")
