@@ -4,7 +4,7 @@ from django.http import  HttpResponseRedirect
 from django.core.context_processors import csrf
 
 from models import Project, Application
-from forms import  ProjectForm
+from forms import  ProjectForm, ApplicationForm
 
 
 def page(request, id):
@@ -36,4 +36,17 @@ def application(request, id, app_id):
     return render_to_response("applications/page.html", RequestContext(request, {"application" : application}))
 
 def new_application(request, id):
-    return render_to_response("applications/new.html", RequestContext(request))
+    if(request.POST):
+        form = ApplicationForm(request.POST)
+        if(form.is_valid()):
+            #form.cleaned_data['founder_id'] = '1';
+            form.save()
+            return HttpResponseRedirect('/projects/')
+    else:
+        form = ApplicationForm();
+
+    args = {}
+    args.update(csrf(request))
+    args['form'] = form
+
+    return render_to_response('projects/id/new.html', args)
