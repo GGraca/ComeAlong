@@ -1,5 +1,6 @@
 body {
     padding-top: 65px;
+    background-color: #eee;
 }
 
 div{
@@ -22,6 +23,14 @@ div{
 
 .c{
 	margin: 0 auto;
-	width: 75%;
+	width: 70%;
 	background:#fff;
+}
+
+#project_details{
+
+}
+
+#description *{
+   max-width: 100%
 }
