@@ -14,6 +14,14 @@
             <li><a href="{% url 'index' %}">Home</a></li> <!--class="active"-->
             <li><a href="/projects/">Projects</a></li>
             <li><a href="/users/">Users</a></li>
+            {% if user.is_authenticated%}
+               <li><a href="/users/{{ user.username }}">{{ user.username }}</a></li>
+            {%endif%}
+            {% if user.is_authenticated%}
+               <li><a href="{% url 'auth:logout' %}?next={% url 'index' %}" class="btn btn-danger	">Logout</a></li>
+            {% else %}
+               <li><a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}" class="btn btn-primary">Login</a></li>
+            {%endif%}
          </ul>
       </div><!--/.nav-collapse -->
    </div>
