@@ -1,7 +1,8 @@
 <div class="row">
    {% for p in projects %}
-      <div class="col-md-3">
-         <a href="/projects/{{ p.id }}">{{ p }}</a>
+      <div class="col-md-3 project_preview">
+         <a href="/projects/{{ p.id }}">{{ p }}</a> <br>
+         <img src="{{ p.display_image.url }}" , height="200px">
       </div>
    {% endfor %}
 </div>

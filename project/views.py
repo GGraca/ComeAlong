@@ -17,7 +17,7 @@ def index(request):
 
 def new(request):
     if(request.POST):
-        form = ProjectForm(request.POST)
+        form = ProjectForm(request.POST, request.FILES)
         if(form.is_valid()):
 
             obj = form.save(commit=False)
@@ -35,8 +35,9 @@ def new(request):
     return render_to_response('projects/new.html', RequestContext(request, args))
 
 def application(request, id, app_id):
-    application = Application.objects.get(id=app_id)
-    return render_to_response("applications/page.html", RequestContext(request, {"application" : application}))
+    application = Application.objects.get(id=app_id, project_id=id)
+    if(application != None):
+        return render_to_response("applications/page.html", RequestContext(request, {"application" : application}))
 
 def new_application(request, id):
     if(request.POST):

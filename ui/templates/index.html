@@ -3,21 +3,28 @@
 {% block body_block %}
 
 	{% if user.is_authenticated%}
+	<!-- Site news -->
+
+	{% else %}
 	<!-- Wellcome -->
 	<div id="start_screen">
 		<h1>Be part of something great</h1>
 	</div>
 
-	{% else %}
-	<!-- Site news -->
-
 
 	{%endif%}
 
+	{% comment %}
 	<!-- Trending -->
+	<div id="trending_projects" class="project_container">
+		{% with projects=new_projects %}
+			{% include "projects/project_list.html" %}
+		{% endwith %}
+	</div>
+	{% endcomment %}
 
 	<!-- New Projects -->
-	<div id="new_projects">
+	<div id="new_projects" class="project_container">
 		{% with projects=new_projects %}
 			{% include "projects/project_list.html" %}
 		{% endwith %}

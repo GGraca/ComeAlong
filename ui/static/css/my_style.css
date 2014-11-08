@@ -1,3 +1,20 @@
 body {
     padding-top: 65px;
 }
+
+div{
+   border-width: 0px;
+   border-color: black;
+   border-style: solid;
+}
+
+.project_container{
+   width: 100%;
+   padding: 20px 0 20px 0;
+   display: block;
+   clear: both;
+}
+
+.project_preview{
+   text-align: center;
+}

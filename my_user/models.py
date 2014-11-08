@@ -10,7 +10,7 @@ class MyUser(AbstractUser):
 	#Fields
 	"""name""" #from AbstractUser
 	"""username""" #from AbstractUser
-	avatar = models.ImageField(upload_to = 'img/')
+	avatar = models.ImageField(upload_to = 'img/',  default = 'img/default/user.jpg')
 	description = models.TextField()
 
 	def __unicode__(self):
