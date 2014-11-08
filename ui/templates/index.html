@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 
 {% block body_block %}
-	Home
+
+	{% if user.is_authenticated%}
+	<!-- Wellcome -->
+	<div id="start_screen">
+		<h1>Be part of something great</h1>
+	</div>
+
+	{% else %}
+	<!-- Site news -->
+
+
+	{%endif%}
+
+	<!-- Trending -->
+
+	<!-- New Projects -->
+	<div id="new_projects">
+		{% with projects=new_projects %}
+			{% include "projects/project_list.html" %}
+		{% endwith %}
+	</div>
 {% endblock %}

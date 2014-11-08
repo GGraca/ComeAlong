@@ -29,7 +29,7 @@ def new(request):
     args.update(csrf(request))
     args['form'] = form
 
-    return render_to_response('projects/new.html', args)
+    return render_to_response('projects/new.html', RequestContext(request, args))
 
 def application(request, id, app_id):
     application = Application.objects.get(id=app_id)
@@ -49,4 +49,4 @@ def new_application(request, id):
     args.update(csrf(request))
     args['form'] = form
 
-    return render_to_response('applications/new.html', args)
+    return render_to_response('applications/new.html', RequestContext(request, args))

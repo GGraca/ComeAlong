@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
 {% block body_block %}
-	<ul class="nav nav-pills nav-stacked" role="tablist">
-	{% for p in projects%}
-		<li>
-			<a href="/projects/{{ p.id }}">{{ p }}</a>
-		</li>
-	{% endfor %}
-	</ul>
+
+	<!-- Search Area -->
+	<div id="search_area">
+	</div>
+
+	<!-- Search Results -->
+	<div id="search_results">
+		{% include "projects/project_list.html" %}
+	</div>
+
 {% endblock %}
