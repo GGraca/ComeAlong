@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import  HttpResponseRedirect
 from django.core.context_processors import csrf
 
-from models import Project
+from models import Project, Application
 from forms import  ProjectForm
 
 
@@ -30,3 +30,10 @@ def new(request):
     args['form'] = form
 
     return render_to_response('projects/new.html', args)
+
+def application(request, id, app_id):
+    application = Application.objects.get(id=app_id)
+    return render_to_response("applications/page.html", RequestContext(request, {"application" : application}))
+
+def new_application(request, id):
+    return render_to_response("applications/new.html", RequestContext(request))

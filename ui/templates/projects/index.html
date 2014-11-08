@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block body_block %}
+	<ul class="nav nav-pills nav-stacked" role="tablist">
 	{% for p in projects%}
-		{{ p }} <p>
+		<li>
+			<a href="/projects/{{ p.id }}">{{ p }}</a>
+		</li>
 	{% endfor %}
+	</ul>
 {% endblock %}

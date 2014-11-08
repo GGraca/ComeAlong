@@ -1,21 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-	{% block css_block %}
-    {% include "css.html" %}
- {% endblock %}
+	{% include "css.html" %}
 </head>
 
 <body>
-	{% block navbar_block %}
-		{% include "navbar.html" %}
-	{% endblock %}
+	{% include "navbar.html" %}
 
 	{% block body_block %}
 	{% endblock %}
 
-	{% block footer_block %}
-		{% include "footer.html" %}
-	{% endblock %}
+	{% include "footer.html" %}
 </body>
 </html>
