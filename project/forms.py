@@ -7,10 +7,10 @@ class ProjectForm(forms.ModelForm):
     description = forms.CharField(widget=RedactorEditor())
     class Meta:
         model = Project
-        fields = ("founder", "title",  "short_description", "description") #"display_image",
+        fields = ("title",  "short_description", "description") #"display_image",
 
 class ApplicationForm(forms.ModelForm):
 
     class Meta:
         model = Application
-        #fields = ("founder", "title", "description")
+        fields = ("pitch",)

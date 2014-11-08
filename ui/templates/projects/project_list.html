@@ -1,0 +1,7 @@
+<div class="row">
+   {% for p in projects %}
+      <div class="col-md-3">
+         <a href="/projects/{{ p.id }}">{{ p }}</a>
+      </div>
+   {% endfor %}
+</div>

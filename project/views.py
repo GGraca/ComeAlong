@@ -19,8 +19,11 @@ def new(request):
     if(request.POST):
         form = ProjectForm(request.POST)
         if(form.is_valid()):
-            #form.cleaned_data['founder_id'] = '1';
-            form.save()
+
+            obj = form.save(commit=False)
+            obj.founder = request.user
+            obj.save()
+
             return HttpResponseRedirect('/projects/')
     else:
         form = ProjectForm();
@@ -39,8 +42,12 @@ def new_application(request, id):
     if(request.POST):
         form = ApplicationForm(request.POST)
         if(form.is_valid()):
-            #form.cleaned_data['founder_id'] = '1';
-            form.save()
+
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.project = Project.objects.get(id=id)
+            obj.save()
+
             return HttpResponseRedirect('/projects/')
     else:
         form = ApplicationForm();
