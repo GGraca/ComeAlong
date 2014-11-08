@@ -1,14 +1,44 @@
 {% extends "base.html" %}
 
 {% block body_block %}
+	<div class="c">
 
-	<h1>{{ project }}</h1>
-	<br>
-	<h4>Description:</h4>
-	{{ project.description | safe}}
+		<h1>{{ project }}</h1>
+		<h3>by {{ project.founder }}</h1> <br>
 
-	{% if project.founder.id != user.id %}
-		{% include "projects/apply_btn.html" %}
-	{% endif%}
+		<ul class="nav nav-tabs" role="tablist" id="projectFounderTab">
+			<li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
+			<li role="presentation"><a href="#team" role="tab" data-toggle="tab">Team</a></li>
+			{% if user.id == project.founder.id %}
+					<li role="presentation"><a href="#applications" role="tab" data-toggle="tab">Applications</a></li>
+					<li role="presentation"><a href="#edit" role="tab" data-toggle="tab">Edit</a></li>
+			{% endif %}
+		</ul>
 
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="description">
+				{{ project.description | safe}}
+			</div>
+			<div role="tabpanel" class="tab-pane" id="team">
+				team
+			</div>
+			{% if user.id == project.founder.id %}
+					<div role="tabpanel" class="tab-pane" id="applications">
+						{% for a in applications %}
+							<a href="/projects/{{ project.id }}/{{ a.id }}">{{ a}}</a>
+						{% endfor %}
+					</div>
+					<div role="tabpanel" class="tab-pane" id="edit">
+						EDIT
+					</div>
+			{% endif %}
+		</div>
+
+
+
+		{% if project.founder.id != user.id %}
+			{% include "projects/apply_btn.html" %}
+		{% endif%}
+
+	</div>
 {% endblock %}

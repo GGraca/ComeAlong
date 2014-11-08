@@ -6,14 +6,14 @@ from django.core.context_processors import csrf
 from models import Project, Application
 from forms import  ProjectForm, ApplicationForm
 
-
-def page(request, id):
-    project = Project.objects.get(id=id)
-    return render_to_response("projects/page.html", RequestContext(request, {"project" : project}))
-
 def index(request):
     projects = Project.objects.all()
     return render_to_response("projects/index.html", RequestContext(request, {"projects" : projects}))
+
+def page(request, id):
+    project = Project.objects.get(id=id)
+    applications = Application.objects.filter(project_id=id)
+    return render_to_response("projects/page.html", RequestContext(request, {"project" : project, "applications": applications}))
 
 def new(request):
     if(request.POST):

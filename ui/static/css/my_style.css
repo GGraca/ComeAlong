@@ -18,3 +18,10 @@ div{
 .project_preview{
    text-align: center;
 }
+
+
+.c{
+	margin: 0 auto;
+	width: 75%;
+	background:#fff;
+}
