@@ -9,28 +9,62 @@ div{
    border-style: solid;
 }
 
-.project_container{
-   width: 100%;
-   padding: 20px 0 20px 0;
-   display: block;
-   clear: both;
+.row-centered {
+    text-align:center;
 }
-
-.project_preview{
-   text-align: center;
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
-
 
 .c{
-	margin: 0 auto;
-	width: 70%;
-	background:#fff;
+   margin: 0 auto;
+   width: 70%;
 }
 
 #project_details{
 
 }
 
+#description{
+   padding: 15px;
+   background-color: white;
+}
+
 #description *{
    max-width: 100%
+}
+
+.project_container{
+   margin: 0 auto;
+   width: 80%;
+   padding: 20px 0 20px 0;
+   display: block;
+   clear: both;
+}
+
+.project_preview *{
+}
+
+.project_preview{
+   height: 400px;
+   width: 250px;
+   padding: 8px;
+   margin: 5px;
+   background-color: white;
+   overflow: hidden;
+}
+
+.img_container {
+   overflow: hidden;
+}
+
+img.cenas {
+   clear:both;
+   height:150px;
+   width:300px;
 }

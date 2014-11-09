@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 
 {% block body_block %}
-
+<div class="c">
 	<form action="/projects/new/" method="post" class="form" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form.media }}
@@ -13,5 +13,5 @@
 	    	</button>
 		{% endbuttons %}
 	</form>
-
+</div>
 {% endblock %}

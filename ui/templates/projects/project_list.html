@@ -1,8 +1,24 @@
-<div class="row">
+{% load webdesign %}
+
+<div class="row row-centered">
    {% for p in projects %}
-      <div class="col-md-3 project_preview">
-         <a href="/projects/{{ p.id }}">{{ p }}</a> <br>
-         <img src="{{ p.display_image.url }}" , height="200px">
+      <div class="col-sm-3 col-centered project_preview" id="project_{{ p.id }}">
+
+            <div class="img_container">
+               <img class="cenas" src="{{ p.display_image.url }}">
+            </div>
+
+            <h4 style="font-weight: bold;">{{ p }}</h4>
+
+            <p>
+               {% lorem %}
+            </p>
+
       </div>
+      <script type="text/javascript">
+         $('#project_{{ p.id }}').click(function() {
+            window.location.replace("/projects/{{ p.id }}/");
+         });
+      </script>
    {% endfor %}
 </div>
