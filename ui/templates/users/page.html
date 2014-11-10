@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 
-
 {% block body_block %}
 	<div class="c">
-		{{ this_user }}
+
+		<br>
+		{% include "users/short.html" %}
+		<br>
+		<div class="description">
+			{{ this_user.description }}
+		</div>
+
+		<br>
+
+		{% with projects=this_user.projects_owned.all %}
+			{% include "projects/project_list.html" %}
+		{% endwith %}
+
 	</div>
+
 {% endblock %}

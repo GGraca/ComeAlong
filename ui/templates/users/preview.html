@@ -1,0 +1,31 @@
+<div class="profile_preview">
+   <div class="avatar_container" id="user_{{ this_user }}">
+      <img class="cenas" src="{{ this_user.avatar.url }}">
+   </div>
+   <br>
+   <ul class="list-inline">
+
+
+         <li><a href="#"><i class="fa fa-facebook fa-lg"></i></a><li>
+
+
+      {% if this_user.twitter %}
+         <li><a href="#"><i class="fa fa-twitter fa-lg"></i></a><li>
+      {% endif %}
+
+      {% if this_user.github %}
+         <li><a href="#"><i class="fa fa-github fa-lg"></i></a><li>
+      {% endif %}
+
+      {% if this_user.linkedin %}
+         <li><a href="#"><i class="fa fa-dribbble fa-lg"></i></a><li>
+      {% endif %}
+   </ul>
+
+   <script type="text/javascript">
+      $('#user_{{ this_user }}').click(function() {
+         window.location.replace("/users/{{ this_user }}/");
+      });
+   </script>
+
+</div>

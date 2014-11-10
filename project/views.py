@@ -10,23 +10,18 @@ def index(request):
     projects = Project.objects.all()
     return render_to_response("projects/index.html", RequestContext(request, {"projects" : projects}))
 
-#POST
-def edit(request, id):
-    project = Project.objects.get(id=id)
-    if(request.user.id != project.founder.id):
-        return HttpResponseForbidden
-
-    form = ProjectForm(request.POST, request.FILES, instance=project)
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/projects/" + str(project.id))
-
 def page(request, id):
     project = Project.objects.get(id=id)
-    applications = Application.objects.filter(project_id=id)
-    form = ProjectForm(instance=project)
 
-    return render_to_response("projects/page.html", RequestContext(request, {"project" : project, "applications": applications, "form": form}))
+    if(request.POST):
+        form = ProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/projects/" + str(project.id))
+    else:
+        applications = Application.objects.filter(project_id=id)
+        form = ProjectForm(instance=project)
+        return render_to_response("projects/page.html", RequestContext(request, {"project" : project, "applications": applications, "form": form}))
 
 def new(request):
     if(request.POST):

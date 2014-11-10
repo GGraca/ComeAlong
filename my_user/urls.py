@@ -4,4 +4,5 @@ import views
 urlpatterns = patterns('',
     url(r'^$', views.index),
     url(r'^(?P<username>\w+)/$', views.page),
+    url(r'^(?P<username>\w+)/edit/$', views.edit),
 )

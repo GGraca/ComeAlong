@@ -26,45 +26,10 @@ div{
    width: 70%;
 }
 
-#project_details{
-
-}
-
-#description{
-   padding: 15px;
-   background-color: white;
-}
-
-#description *{
-   max-width: 100%
-}
-
-.project_container{
-   margin: 0 auto;
-   width: 80%;
-   padding: 20px 0 20px 0;
-   display: block;
-   clear: both;
-}
-
-.project_preview *{
-}
-
-.project_preview{
-   height: 400px;
-   width: 250px;
-   padding: 8px;
-   margin: 5px;
-   background-color: white;
+.img_container{
    overflow: hidden;
 }
 
-.img_container {
-   overflow: hidden;
-}
-
-img.cenas {
+.img_centered{
    clear:both;
-   height:150px;
-   width:300px;
 }

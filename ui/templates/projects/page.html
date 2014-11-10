@@ -32,7 +32,7 @@
 								{% endfor %}
 							</div>
 							<div role="tabpanel" class="tab-pane" id="edit">
-								<form action="/projects/{{ project.id }}/edit/" method="post" class="form" enctype="multipart/form-data">
+								<form action="/projects/{{ project.id }}/" method="post" class="form" enctype="multipart/form-data">
 									{% csrf_token %}
 									{{ form.media }}
 									{% bootstrap_form form %}
@@ -46,14 +46,21 @@
 					{% endif %}
 				</div>
 			</div>
-			<div class="col-md-4" id="project_details">
+			<div class="col-md-2" id="project_details">
+
 				 <h3>Vagas:</h3>
 				<p>0/3 Designer</p>
 				<br>
-
 				{% if project.founder.id != user.id %}
 					{% include "projects/page/apply_btn.html" %}
 				{% endif%}
+
+				<br>
+				<br>
+				{%  with this_user=project.founder %}
+					{% include "users/preview.html" %}
+				{% endwith %}
+
 			</div>
 		</div>
 	</div>

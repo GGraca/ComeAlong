@@ -2,6 +2,18 @@
 
 {% block body_block %}
    <div class="c">
+
+      {% with this_user=application.user %}
+         {% include "users/short.html" %}
+
+      {{ this_user.description }}
+
+      {% endwith %}
+
+      <br>
+      <br>
+      {{ application.pitch }}
+
    <!-- Accept/Reject Buttons -->
 
    <!-- User Profile -->
@@ -10,6 +22,5 @@
    <!-- Choose Pitch or Profile-->
 </div>
 
-   {{ application }}
 
 {% endblock %}
