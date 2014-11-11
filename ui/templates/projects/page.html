@@ -48,8 +48,11 @@
 			</div>
 			<div class="col-md-2" id="project_details">
 
-				 <h3>Vagas:</h3>
-				<p>0/3 Designer</p>
+				{% for v in project.vacancies.all %}
+					<p>
+						{{ v.closed }}/{{ v.total }} {{ v }} 
+					</p>
+				{% endfor %}
 				<br>
 				{% if project.founder.id != user.id %}
 					{% include "projects/page/apply_btn.html" %}

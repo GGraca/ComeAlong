@@ -23,6 +23,7 @@ def page(request, id):
         form = ProjectForm(instance=project)
         return render_to_response("projects/page.html", RequestContext(request, {"project" : project, "applications": applications, "form": form}))
 
+
 def new(request):
     if(request.POST):
         form = ProjectForm(request.POST, request.FILES)
