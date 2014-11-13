@@ -11,6 +11,7 @@ class ProjectForm(forms.ModelForm):
 
 class ApplicationForm(forms.ModelForm):
 
+
     class Meta:
         model = Application
         fields = ("pitch",)

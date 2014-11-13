@@ -1,0 +1,16 @@
+{% load bootstrap3 %}
+
+
+<form name="recruit" action="/projects/{{ project.id }}/recruit/" method="post" class="form">
+   {% csrf_token %}
+   Title:<br>
+   <input type="text" name="title">
+   <br>
+   Quantity<br>
+   <input type="text" name="quantity">
+   {% buttons %}
+      <button type="submit" class="btn btn-primary">
+         {% bootstrap_icon "star" %} Submit
+      </button>
+   {% endbuttons %}
+</form>

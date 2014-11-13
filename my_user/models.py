@@ -15,3 +15,11 @@ class MyUser(AbstractUser):
 
 	def __unicode__(self):
 		return self.username
+
+#2F3954
+#C1E8E3
+#EFEFEF
+#C1C1B5
+#9E9E9C
+#recruitment
+#oportunities

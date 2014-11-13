@@ -19,9 +19,6 @@
    clear: both;
 }
 
-.project_preview *{
-}
-
 .project_preview{
    height: 400px;
    width: 250px;
@@ -31,7 +28,7 @@
    overflow: hidden;
 }
 
-.project_preview img{
+.img_project_preview{
    height:150px;
-   width:300px;
+   background-size: auto 150px;
 }

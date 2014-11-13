@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import  HttpResponseRedirect, HttpResponseForbidden
 from django.core.context_processors import csrf
 
-from models import Project, Application
+from models import Project, Application, Participation, Title, Vacancy
 from forms import  ProjectForm, ApplicationForm
 
 def index(request):
@@ -19,10 +19,9 @@ def page(request, id):
             form.save()
             return HttpResponseRedirect("/projects/" + str(project.id))
     else:
-        applications = Application.objects.filter(project_id=id)
+        applications = Application.objects.filter(project_id=id, result='W')
         form = ProjectForm(instance=project)
         return render_to_response("projects/page.html", RequestContext(request, {"project" : project, "applications": applications, "form": form}))
-
 
 def new(request):
     if(request.POST):
@@ -32,6 +31,12 @@ def new(request):
             obj = form.save(commit=False)
             obj.founder = request.user
             obj.save()
+
+            participation = Participation(project=obj, user=request.user)
+            participation.save()
+
+            title = Title(participation=participation, title="Founder")
+            title.save()
 
             return HttpResponseRedirect('/projects/')
     else:
@@ -67,3 +72,31 @@ def new_application(request, id):
     args['form'] = form
 
     return render_to_response('applications/new.html', RequestContext(request, args))
+
+def recruit(request, id):
+    if(request.POST):
+        user = request.user
+        project = Project.objects.get(id=id)
+
+        if(project.founder == user):
+            vacancy = Vacancy(project=project, title=request.POST['title'], total = request.POST['quantity'])
+            if(vacancy.isValid()):
+                vacancy.save();
+
+    return HttpResponseRedirect('/projects/' + str(project.id))
+
+def apply(request, id):
+    if(request.POST):
+        user = request.user
+        project = Project.objects.get(id=id)
+
+        if(project.founder != user):
+            application = Application()
+            application.project = project
+            application.user = user
+            application.pitch = request.POST['pitch']
+            application.total = request.POST['quantity']
+            if(vacancy.isValid()):
+                vacancy.save();
+
+    return HttpResponseRedirect('/projects/' + str(project.id))

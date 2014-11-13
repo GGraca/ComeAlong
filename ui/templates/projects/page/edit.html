@@ -1,0 +1,12 @@
+{% load bootstrap3 %}
+
+<form name="edit" action="/projects/{{ project.id }}/" method="post" class="form" enctype="multipart/form-data">
+   {% csrf_token %}
+   {{ form.media }}
+   {% bootstrap_form form %}
+   {% buttons %}
+      <button type="submit" class="btn btn-primary">
+         {% bootstrap_icon "star" %} Submit
+      </button>
+   {% endbuttons %}
+</form>

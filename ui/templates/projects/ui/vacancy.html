@@ -1,0 +1,23 @@
+<style>
+.vacancy{
+   text-align: center;
+   padding: 5px;
+   border-radius: 5px;
+   color: #EFEFEF;
+}
+
+.open{
+   background-color: #2F3954;
+}
+
+.closed{
+   background-color: #9E9E9C;
+}
+
+</style>
+
+{% if v.available %}
+   <div class="vacancy open">{{ v.closed }}/{{ v.total }} {{ v }}</div>
+{% else %}
+   <div class="vacancy closed">{{ v.closed }}/{{ v.total }} {{ v }}</div>
+{% endif %}

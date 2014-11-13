@@ -37,3 +37,13 @@ h1{
 .img_centered{
    clear:both;
 }
+
+
+.link{
+   cursor: pointer;
+}
+
+.image{
+   background-position:center;
+   background-repeat: no-repeat;
+}

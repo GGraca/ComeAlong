@@ -1,23 +1,31 @@
+/*Images*/
+.img_small{
+   width: 115px;
+   height: 115px;
+   background-size: 115px auto ;
+   padding: 10px;
+   border-radius: 15px;
+}
+
+.img_medium{
+   width: 200px;
+   height: 200px;
+   background-size: auto 200px;
+   padding: 10px;
+   border-radius: 15px;
+}
+
+/*MOAR*/
 .profile{
    padding: 20px;
 }
 
-/*Preview*/
 .profile_preview{
-   max-width:250px;
+   max-width: 250px;
    text-align: center;
    padding: 0px
 }
 
-.avatar_container{
-   width: 100%;
-}
-
-.avatar_container img{
-   padding: 10px;
-   border-radius: 15px;
-   max-width:100%;
-}
 
 .description{
    padding-top: 0px;

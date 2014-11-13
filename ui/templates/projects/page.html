@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+
 
 {% block body_block %}
 	<div class="c">
@@ -15,33 +15,26 @@
 					{% if user.id == project.founder.id %}
 							<li role="presentation"><a href="#applications" role="tab" data-toggle="tab">Applications</a></li>
 							<li role="presentation"><a href="#edit" role="tab" data-toggle="tab">Edit</a></li>
+							<li role="presentation"><a href="#vacancies" role="tab" data-toggle="tab">Vacancies</a></li>
 					{% endif %}
 				</ul>
 
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="description">
-						{{ project.description | safe}}
+						{% include "projects/page/description.html" %}
 					</div>
 					<div role="tabpanel" class="tab-pane" id="team">
-						team
+						{% include "projects/page/team.html" %}
 					</div>
 					{% if user.id == project.founder.id %}
 							<div role="tabpanel" class="tab-pane" id="applications">
-								{% for a in applications %}
-									<a href="/projects/{{ project.id }}/{{ a.id }}">{{ a}}</a>
-								{% endfor %}
+								{% include "projects/page/applications.html" %}
 							</div>
 							<div role="tabpanel" class="tab-pane" id="edit">
-								<form action="/projects/{{ project.id }}/" method="post" class="form" enctype="multipart/form-data">
-									{% csrf_token %}
-									{{ form.media }}
-									{% bootstrap_form form %}
-									{% buttons %}
-										<button type="submit" class="btn btn-primary">
-											{% bootstrap_icon "star" %} Submit
-										</button>
-									{% endbuttons %}
-								</form>
+								{% include "projects/page/edit.html" %}
+							</div>
+							<div role="tabpanel" class="tab-pane" id="vacancies">
+								{% include "projects/page/vacancies.html" %}
 							</div>
 					{% endif %}
 				</div>
@@ -50,12 +43,12 @@
 
 				{% for v in project.vacancies.all %}
 					<p>
-						{{ v.closed }}/{{ v.total }} {{ v }} 
+						{% include "projects/ui/vacancy.html" %}
 					</p>
 				{% endfor %}
 				<br>
 				{% if project.founder.id != user.id %}
-					{% include "projects/page/apply_btn.html" %}
+					{% include "projects/ui/apply_btn.html" %}
 				{% endif%}
 
 				<br>
