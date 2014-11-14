@@ -6,18 +6,18 @@
 
 		{% include "projects/page/title.html" %}
 
+		<ul class="nav nav-tabs" role="tablist" id="projectFounderTab">
+			<li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
+			<li role="presentation"><a href="#team" role="tab" data-toggle="tab">Team</a></li>
+			{% if user.id == project.founder.id %}
+					<li role="presentation"><a href="#applications" role="tab" data-toggle="tab">Applications</a></li>
+					<li role="presentation"><a href="#edit" role="tab" data-toggle="tab">Edit</a></li>
+					<li role="presentation"><a href="#vacancies" role="tab" data-toggle="tab">Vacancies</a></li>
+			{% endif %}
+		</ul>
+
 		<div class="row">
 			<div class="col-md-8" id="project_body">
-
-				<ul class="nav nav-tabs" role="tablist" id="projectFounderTab">
-					<li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
-					<li role="presentation"><a href="#team" role="tab" data-toggle="tab">Team</a></li>
-					{% if user.id == project.founder.id %}
-							<li role="presentation"><a href="#applications" role="tab" data-toggle="tab">Applications</a></li>
-							<li role="presentation"><a href="#edit" role="tab" data-toggle="tab">Edit</a></li>
-							<li role="presentation"><a href="#vacancies" role="tab" data-toggle="tab">Vacancies</a></li>
-					{% endif %}
-				</ul>
 
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="description">
@@ -41,21 +41,8 @@
 			</div>
 			<div class="col-md-2" id="project_details">
 
-				{% for v in project.vacancies.all %}
-					<p>
-						{% include "projects/ui/vacancy.html" %}
-					</p>
-				{% endfor %}
-				<br>
-				{% if project.founder.id != user.id %}
-					{% include "projects/ui/apply_btn.html" %}
-				{% endif%}
-
-				<br>
-				<br>
-				{%  with this_user=project.founder %}
-					{% include "users/preview.html" %}
-				{% endwith %}
+				{% include "projects/page/project_info.html" %}
+				{% include "projects/page/founder_info.html" %}
 
 			</div>
 		</div>
