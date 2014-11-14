@@ -1,0 +1,49 @@
+body {
+    padding-top: 65px;
+    background-color: #eee;
+}
+
+div{
+   border-width: 0px;
+   border-color: black;
+   border-style: solid;
+}
+
+h1{
+   /*color: #2F3954;*/
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.c{
+   margin: 0 auto;
+   width: 70%;
+}
+
+.img_container{
+   overflow: hidden;
+}
+
+.img_centered{
+   clear:both;
+}
+
+
+.link{
+   cursor: pointer;
+}
+
+.image{
+   background-position:center;
+   background-repeat: no-repeat;
+}

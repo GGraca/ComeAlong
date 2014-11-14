@@ -13,7 +13,7 @@ class Project(models.Model):
 
     #Fields
     title = models.CharField(max_length=100)
-    display_image = models.ImageField(upload_to="img/",  default = 'img/default/project.jpg')
+    display_image = models.ImageField(upload_to="img/",  default = 'default/img/project.jpg')
     short_description = models.TextField()
     description = models.TextField()
 

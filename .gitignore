@@ -48,7 +48,7 @@ coverage.xml
 # Django stuff:
 *.log
 db.sqlite3
-media/
+media/img/
 
 # Sphinx documentation
 docs/_build/
@@ -57,4 +57,4 @@ docs/_build/
 target/
 
 .fuse*
-static/
+#static/
