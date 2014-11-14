@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.webdesign',
 
-    #'south',
+    'south',
     'social.apps.django_app.default',
     'bootstrap3',
     'redactor',
