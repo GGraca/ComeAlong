@@ -54,20 +54,25 @@ def application(request, id, app_id):
         return render_to_response("applications/page.html", RequestContext(request, {"application" : application}))
 
 def new_application(request, id):
+    project = Project.objects.get(id=id)
     if(request.POST):
-        form = ApplicationForm(request.POST)
+        form = ApplicationForm(project, request.POST)
         if(form.is_valid()):
 
-            obj = form.save(commit=False)
-            obj.user = request.user
-            obj.project = Project.objects.get(id=id)
-            obj.save()
+            app = form.save(commit=False)
+            app.user = request.user
+            app.project = project
+
+            app.save()
+            for r in form.cleaned_data["roles"]:
+                t = Title(title = r, application = app)
+                t.save()
 
             return HttpResponseRedirect('/projects/')
     else:
-        form = ApplicationForm();
+        form = ApplicationForm(project);
 
-    args = {"project_id": id}
+    args = {"project_id": id,}
     args.update(csrf(request))
     args['form'] = form
 

@@ -1,15 +1,14 @@
-<br>
-<div class="image img_project_preview" style="background-image:url('{{project.display_image.url}}')"></div>
-<br>
+   <br>
+   <div class="image img_project_preview" style="background-image:url('{{project.display_image.url}}')"></div>
+   <br>
 
-{% for v in project.vacancies.all %}
-   <p>
-      {% include "projects/ui/vacancy.html" %}
-   </p>
-{% endfor %}
-<br>
-{% if project.founder.id != user.id %}
-   {% include "projects/ui/apply_btn.html" %}
-{% endif%}
-
-<br>
+   {% for v in project.vacancies.all %}
+      <p>
+         {% include "projects/ui/vacancy.html" %}
+      </p>
+   {% endfor %}
+   <br>
+   {% if project.founder.id != user.id %}
+      {% include "projects/ui/apply_btn.html" %}
+   {% endif%}
+   <br>

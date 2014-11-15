@@ -15,6 +15,10 @@
    border-radius: 15px;
 }
 
+.profile_container{
+      /*cursor: pointer;*/
+}
+
 /*MOAR*/
 .profile{
    padding: 20px;

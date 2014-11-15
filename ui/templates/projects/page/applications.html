@@ -5,6 +5,11 @@
                {% include "users/previews/team.html" %}
             {% endwith %}
          </div>
+
+         {% for r in a.roles.all %}
+               {{ r }}
+         {% endfor %}
+
       </div>
 
       <script type="text/javascript">

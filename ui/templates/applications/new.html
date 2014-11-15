@@ -5,7 +5,26 @@
 <div class="c">
    <form action="/projects/{{ project_id }}/apply/" method="post" class="form">
       {% csrf_token %}
-      {% bootstrap_form form %}
+
+      <div class="row">
+         <div class="col-sm-8">
+            {% bootstrap_form form %}
+         </div>
+         <div class="col-sm-4">
+            <div class="form-group">
+               <label>Roles</label>
+               <div style="margin-left:20px;">
+                  {% for v in vacancies %}
+                     <div class="checkbox" >
+                         <input type="checkbox" value="">
+                         {{ v }}
+                     </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </div>
+
       {% buttons %}
          <button type="submit" class="btn btn-primary">
             {% bootstrap_icon "star" %} Submit
@@ -13,5 +32,6 @@
       {% endbuttons %}
    </form>
 </div>
+
 
 {% endblock %}

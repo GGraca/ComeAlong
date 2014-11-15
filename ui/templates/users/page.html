@@ -7,12 +7,24 @@
 		{% include "users/short.html" %}
 		<br>
 		<div class="description">
+			<hr>
+				Description
+			<hr>
 			{{ this_user.description }}
 		</div>
 
 		<br>
-
+		<hr>
+			Projects Founded
+		<hr>
 		{% with projects=this_user.projects_owned.all %}
+			{% include "projects/project_list.html" %}
+		{% endwith %}
+
+		<hr>
+			Projects Participated
+		<hr>
+		{% with projects=this_user.projects_participated.all %}
 			{% include "projects/project_list.html" %}
 		{% endwith %}
 

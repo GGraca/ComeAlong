@@ -74,7 +74,8 @@ class Participation(models.Model):
 
 class Title(models.Model):
     #Relations
-    participation = models.ForeignKey(Participation, related_name="titles")
+    application = models.ForeignKey(Application, related_name="roles", null=True)
+    participation = models.ForeignKey(Participation, related_name="titles", null=True)
 
     #Fields
     title = models.CharField(max_length=100)
