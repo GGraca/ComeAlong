@@ -19,12 +19,12 @@
             {% else %}
             <li><a href="/projects/">Create</a></li>
             {%endif%}
-            <li><a href="/users/">Users</a></li>
+            <!-- <li><a href="/users/">Users</a></li> -->
 
          </ul>
          <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated%}
-               <li><a href="/users/{{ user.username }}">{{ this_user.get_short_name }}</a></li>
+               <li><a href="/users/{{ user.username }}">{{ user.get_short_name }}</a></li>
             {%endif%}
             {% if user.is_authenticated%}
                <li><a href="{% url 'auth:logout' %}?next={% url 'index' %}">Logout</a></li>
