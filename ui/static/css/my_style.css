@@ -43,7 +43,8 @@ h1{
 
 .img_container{
    overflow: hidden;
-   float:left;
+   float:left; 
+   text-align:center;
 }
 
 .image{

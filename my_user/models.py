@@ -13,6 +13,14 @@ class MyUser(AbstractUser):
 	avatar = models.ImageField(upload_to = 'img/',  default = 'default/img/user.png')
 	description = models.TextField()
 
+	city = models.CharField(max_length=50, null=True, default=None)
+	country = models.CharField(max_length=50, null=True, default=None)
+
+	facebook = models.CharField(max_length=100, null=True, default=None)
+	linkedin = models.CharField(max_length=100, null=True, default=None)
+	github = models.CharField(max_length=100, null=True, default=None)
+	website = models.CharField(max_length=100, null=True, default=None)
+
 	def __unicode__(self):
 		return self.username
 

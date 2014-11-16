@@ -3,26 +3,34 @@
 {% block body_block %}
 	<div class="c">
 
-		<br>
-		
-		<br>
-		<div class="description">
-			<hr>
+		<div style="width:85%; margin: 0 auto;">
+			{% include "users/previews/application.html" %}
+		</div>
+
+		<hr>
+			<div style="text-align: center;">
 				Description
-			<hr>
+			</div>
+		<hr>
+		<div class="description">
 			{{ this_user.description }}
 		</div>
 
-		<br>
+
 		<hr>
-			Projects Founded
+			<div style="text-align: center;">
+				Projects Founded
+			</div>
 		<hr>
 		{% with projects=this_user.projects_owned.all %}
 			{% include "projects/project_list.html" %}
 		{% endwith %}
 
+
 		<hr>
-			Projects Participated
+			<div style="text-align: center;">
+				Projects Participated
+			</div>
 		<hr>
 		{% with projects=this_user.projects_participated.all %}
 			{% include "projects/project_list.html" %}

@@ -1,0 +1,47 @@
+<div class="profile_container profile">
+   <div class="img_container" style="text-align:center;">
+      <div class="image img_large" style="background-image:url('{{this_user.avatar.url}}')" id="user_{{ this_user }}"></div>
+      <ul class="list-inline">
+      {%if this_user.facebook %}
+         <li><a href="{{ this_user.facebook }}"><i class="fa fa-facebook fa-lg"></i></a><li>
+      {% endif %}
+      {%if this_user.linkedin %}
+         <li><a href="{{ this_user.linkedin }}"><i class="fa fa-linkedin fa-lg"></i></a><li>
+      {% endif %}
+      {%if this_user.github %}
+         <li><a href="{{ this_user.github }}"><i class="fa fa-github fa-lg"></i></a><li>
+      {% endif %}
+      </ul>
+
+      {% comment %}
+      <button type="submit"  class="btn btn-primary">
+         Edit
+      </button>
+      {% endcomment %}
+   </div>
+
+   <div style="float:left; margin: 10px; margin-left:20px;">
+      <h3>{{ this_user.get_full_name }}</h3>
+      <div class="row">
+         <div class="col-md-5">
+            <h4>From:</h4>
+               <h5>
+                  {% if this_user.city and this_user.country %}
+                     {{ this_user.city }}, {{ this_user.country }}
+                  {% else %}
+                     {{ this_user.city }}{{ this_user.country }}
+                  {% endif %}
+               </h5>
+         </div>
+         <div class="col-md-5">
+            <h4>Email:</h4><h5>{{ this_user.email }}</h5>
+         </div>
+         <div class="col-md-5">
+            <h4>Website:</h4><h5><a href="{{ this_user.website }}">{{ this_user.website }}</a></h5>
+         </div>
+      </div>
+      {% comment %}
+      <h5>{{ this_user.city }}, {{ this_user.contry }}</h5>
+      {% endcomment %}
+   </div>
+</div>

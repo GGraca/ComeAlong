@@ -1,4 +1,12 @@
 /*Images*/
+.img_small{
+   width: 100px;
+   height: 100px;
+   background-size: auto 100px;
+   margin: 5px;
+   border-radius: 15px;
+}
+
 .img_medium{
    width: 115px;
    height: 115px;
@@ -7,11 +15,11 @@
    border-radius: 15px;
 }
 
-.img_small{
-   width: 100px;
-   height: 100px;
-   background-size: auto 100px;
-   margin: 5px;
+.img_large{
+   width: 200px;
+   height: 200px;
+   background-size: 200px auto ;
+   padding: 10px;
    border-radius: 15px;
 }
 
