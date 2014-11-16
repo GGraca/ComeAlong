@@ -1,5 +1,5 @@
 /*Images*/
-.img_small{
+.img_medium{
    width: 115px;
    height: 115px;
    background-size: 115px auto ;
@@ -7,16 +7,24 @@
    border-radius: 15px;
 }
 
-.img_medium{
-   width: 200px;
-   height: 200px;
-   background-size: auto 200px;
-   padding: 10px;
+.img_small{
+   width: 100px;
+   height: 100px;
+   background-size: auto 100px;
+   margin: 5px;
    border-radius: 15px;
 }
 
+.profile_list{
+   border-width: 1px;
+   border-color: grey;
+   border-style: solid;
+}
+
 .profile_container{
-      /*cursor: pointer;*/
+   display: inline-block;
+   width: 100%;
+   /*cursor: pointer;*/
 }
 
 /*MOAR*/

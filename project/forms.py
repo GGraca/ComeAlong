@@ -11,6 +11,8 @@ class ProjectForm(forms.ModelForm):
 
 class ApplicationForm(forms.ModelForm):
 
+    pitch = forms.CharField(widget=RedactorEditor())
+
     def __init__(self, project, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)
         self.project = project

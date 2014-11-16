@@ -1,20 +1,7 @@
 {% for a in applications %}
-      <div id="user_{{ a.user.id }}" style="overflow: auto; width:100%;">
-         <div style="float: left;">
-            {% with this_user=a.user %}
-               {% include "users/previews/team.html" %}
-            {% endwith %}
-         </div>
+      <br>
+      {% with this_user=a.user items=a.roles.all context="a" %}
+         {% include "users/previews/list.html" %}
+      {% endwith %}
 
-         {% for r in a.roles.all %}
-               {{ r }}
-         {% endfor %}
-
-      </div>
-
-      <script type="text/javascript">
-         $('#user_{{ p.user.id }}').click(function() {
-            window.location.replace("/users/{{ p.user }}/");
-         });
-      </script>
 {% endfor %}

@@ -1,23 +1,7 @@
 {% for p in project.positions.all %}
-
-   <div id="user_{{ p.user.id }}" style="overflow: auto; width:100%;">
-
-      <div style="float: left;">
-         {% with this_user=p.user %}
-            {% include "users/previews/team.html" %}
-         {% endwith %}
-      </div>
-
-
-         {% for t in p.titles.all %}
-               {{ t }}
-         {% endfor %}
-   </div>
-
-   <script type="text/javascript">
-      $('#user_{{ p.user.id }}').click(function() {
-         window.location.replace("/users/{{ p.user }}/");
-      });
-   </script>
+      <br>
+      {% with this_user=p.user items=p.titles.all context="p"%}
+         {% include "users/previews/list.html" %}
+      {% endwith %}
 
 {% endfor %}

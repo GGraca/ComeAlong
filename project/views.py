@@ -72,7 +72,7 @@ def new_application(request, id):
     else:
         form = ApplicationForm(project);
 
-    args = {"project_id": id,}
+    args = {"project": project,}
     args.update(csrf(request))
     args['form'] = form
 
