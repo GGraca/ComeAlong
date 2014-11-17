@@ -1,9 +1,27 @@
 {% load bootstrap3 %}
 
-<form method="link" action="/projects/{{ project.id }}/apply/">
-   {% buttons %}
-      <button type="submit"  class="btn btn-primary">
-         {% bootstrap_icon "star" %} Apply
+{% if user.is_authenticated%}
+   {% if project.founder.id == user.id %}
+      <button type="submit"  class="btn btn-primary" disabled="disabled">
+         {% bootstrap_icon "star" %} You founded this project
       </button>
-   {% endbuttons %}
-</form>
+      <br>
+
+   {% else %}
+      <form method="link" action="/projects/{{ project.id }}/apply/">
+         {% buttons %}
+            <button type="submit"  class="btn btn-primary">
+               {% bootstrap_icon "star" %} Apply
+            </button>
+         {% endbuttons %}
+      </form>
+
+   {% endif %}
+
+{% else %}
+   <button type="submit"  class="btn btn-primary" disabled="disabled">
+      {% bootstrap_icon "star" %} Login to Apply
+   </button>
+   <br>
+
+{% endif %}

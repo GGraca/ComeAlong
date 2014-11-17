@@ -53,7 +53,7 @@ def application(request, id, app_id):
     if(application != None):
         return render_to_response("applications/page.html", RequestContext(request, {"application" : application}))
 
-def new_application(request, id):
+def apply(request, id):
     project = Project.objects.get(id=id)
     if(request.POST):
         form = ApplicationForm(project, request.POST)
@@ -85,22 +85,6 @@ def recruit(request, id):
 
         if(project.founder == user):
             vacancy = Vacancy(project=project, title=request.POST['title'], total = request.POST['quantity'])
-            if(vacancy.isValid()):
-                vacancy.save();
-
-    return HttpResponseRedirect('/projects/' + str(project.id))
-
-def apply(request, id):
-    if(request.POST):
-        user = request.user
-        project = Project.objects.get(id=id)
-
-        if(project.founder != user):
-            application = Application()
-            application.project = project
-            application.user = user
-            application.pitch = request.POST['pitch']
-            application.total = request.POST['quantity']
             if(vacancy.isValid()):
                 vacancy.save();
 

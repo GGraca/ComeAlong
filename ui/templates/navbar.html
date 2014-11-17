@@ -14,23 +14,23 @@
 
          <ul class="nav navbar-nav">
             <li><a href="/projects/">Join</a></li>
-            {% if user.is_authenticated%}
+            {% if user.is_authenticated %}
             <li><a href="/projects/new/">Create</a></li> <!--class="active"-->
             {% else %}
             <li><a href="/projects/">Create</a></li>
-            {%endif%}
+            {% endif %}
             <!-- <li><a href="/users/">Users</a></li> -->
 
          </ul>
          <ul class="nav navbar-nav navbar-right">
-            {% if user.is_authenticated%}
+            {% if user.is_authenticated %}
                <li><a href="/users/{{ user.username }}">{{ user.get_short_name }}</a></li>
-            {%endif%}
-            {% if user.is_authenticated%}
+            {% endif %}
+            {% if user.is_authenticated %}
                <li><a href="{% url 'auth:logout' %}?next={% url 'index' %}">Logout</a></li>
             {% else %}
                <li><a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}">Sign In</a></li>
-            {%endif%}
+            {% endif %}
          </ul>
       </div><!--/.nav-collapse -->
    </div>

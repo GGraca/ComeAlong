@@ -1,5 +1,6 @@
 from django import forms
 from models import MyUser
+from redactor.widgets import RedactorEditor
 
 class MyUserForm(forms.ModelForm):
 
@@ -10,6 +11,8 @@ class MyUserForm(forms.ModelForm):
     facebook = forms.CharField(required=False)
     linkedin = forms.CharField(required=False)
     github = forms.CharField(required=False)
+
+    description = forms.CharField(widget=RedactorEditor())
 
     class Meta:
         model = MyUser
