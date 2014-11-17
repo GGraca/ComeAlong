@@ -2,13 +2,7 @@
 
 {% block body_block %}
 
-	{% if user.is_authenticated%}
-	<!-- Site news -->
-
-	{% else %}
-		{% include "header.html" %}
-
-	{%endif%}
+	{% include "header.html" %}
 
 	{% comment %}
 	<!-- Trending -->
