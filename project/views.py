@@ -3,8 +3,8 @@ from django.shortcuts import render_to_response
 from django.http import  HttpResponseRedirect, HttpResponseForbidden
 from django.core.context_processors import csrf
 
-from models import Project, Application, Participation, Title, Vacancy
-from forms import  ProjectForm, ApplicationForm
+from models import *
+from forms import  *
 
 def index(request):
     projects = Project.objects.all()
@@ -48,15 +48,49 @@ def new(request):
 
     return render_to_response('projects/new.html', RequestContext(request, args))
 
+
 def application(request, id, app_id):
-    application = Application.objects.get(id=app_id, project_id=id)
-    if(application != None):
-        return render_to_response("applications/page.html", RequestContext(request, {"application" : application}))
+    project = Project.objects.get(id=id)
+    application = Application.objects.filter(id = app_id).first()
+
+    if (not application) or (project.founder != request.user):
+        return HttpResponseRedirect('/projects/' + str(project.id))
+
+    if(request.POST):
+        form = AcceptApplicationForm(application, request.POST);
+        if(form.is_valid()):
+
+            participation = Participation.objects.filter(project=project, user=application.user).first()
+            if( not participation):
+                participation = Participation(project=application.project, user=application.user)
+                participation.save()
+
+
+            for r in form.cleaned_data["roles"]:
+                application.roles.filter(title = r).first().delete()
+                title = Title(participation=participation, title=r)
+                title.save()
+
+            return HttpResponseRedirect('/projects/' + str(project.id))
+
+    else:
+        form = AcceptApplicationForm(application);
+
+    args = {"application": application, "project": project}
+    args.update(csrf(request))
+    args['form'] = form
+
+    return render_to_response("applications/page.html", RequestContext(request, args))
 
 def apply(request, id):
     project = Project.objects.get(id=id)
+    application = Application.objects.filter(project=project, user=request.user).first()
+
     if(request.POST):
-        form = ApplicationForm(project, request.POST)
+        if(application):
+            form = ApplicationForm(project, request.POST, instance=application)
+        else:
+            form = ApplicationForm(project, request.POST)
         if(form.is_valid()):
 
             app = form.save(commit=False)
@@ -64,13 +98,18 @@ def apply(request, id):
             app.project = project
 
             app.save()
+            for r in app.roles.all():
+                r.delete();
             for r in form.cleaned_data["roles"]:
                 t = Title(title = r, application = app)
                 t.save()
 
             return HttpResponseRedirect('/projects/')
     else:
-        form = ApplicationForm(project);
+        if(application):
+            form = ApplicationForm(project, instance = application);
+        else:
+            form = ApplicationForm(project);
 
     args = {"project": project,}
     args.update(csrf(request))

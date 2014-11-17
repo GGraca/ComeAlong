@@ -3,6 +3,8 @@
 {% block body_block %}
 	<div class="c">
 
+	<a style="float:right;" href="/users/{{ this_user.username }}/edit/" class="btn btn-primary" role="button">Edit</a>
+
 		<div style="width:85%; margin: 0 auto;">
 			{% include "users/previews/application.html" %}
 		</div>

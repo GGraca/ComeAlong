@@ -30,3 +30,11 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         fields = ("pitch",)
+
+class AcceptApplicationForm(forms.Form):
+    def __init__(self, app, *args, **kwargs):
+        super(AcceptApplicationForm, self).__init__(*args, **kwargs)
+        choices = []
+        for r in app.roles.all():
+            choices += [[r.title, r.title]]
+        self.fields["roles"] = forms.MultipleChoiceField(choices = choices, widget  = forms.CheckboxSelectMultiple)

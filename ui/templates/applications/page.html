@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap3 %}
 
 {% block body_block %}
    <div class="c">
@@ -9,20 +10,34 @@
          {% include "users/previews/application.html" %}
       </div>
 
-      <div style="float:left; width:49%;">
-         <h4 style="text-align:center;">User Description</h4>
-         <div class="description">
-            {{ this_user.description | safe }}
+      <div style="display: inline-block; width: 100%;">
+
+         <div style="float:left; width:49%;">
+            <h4 style="text-align:center;">User Description</h4>
+            <div class="description">
+               {{ this_user.description | safe }}
+            </div>
          </div>
-      </div>
-      <div style="float:right; width:49%;">
-         <h4 style="text-align:center;">Pitch</h4>
-         <div class="description">
-            {{ application.pitch | safe }}
+         <div style="float:right; width:49%;">
+            <h4 style="text-align:center;">Pitch</h4>
+            <div class="description">
+               {{ application.pitch | safe }}
+            </div>
          </div>
+
       </div>
 
       {% endwith %}
+
+      <form action="/projects/{{ project.id }}/{{ application.id }}/" method="post" class="form">
+         {% csrf_token %}
+         {% bootstrap_form form%}
+         {% buttons %}
+            <button type="submit" class="btn btn-primary">
+               {% bootstrap_icon "star" %} Accept
+            </button>
+         {% endbuttons %}
+      </form>
 
 
    <!-- Accept/Reject Buttons -->
