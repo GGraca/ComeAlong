@@ -7,12 +7,13 @@ class MyUserForm(forms.ModelForm):
     city = forms.CharField(required=False)
     country = forms.CharField(required=False)
     email = forms.CharField(required=False)
-    website = forms.CharField(required=False)
-    facebook = forms.CharField(required=False)
-    linkedin = forms.CharField(required=False)
-    github = forms.CharField(required=False)
+    
+    website = forms.URLField(required=False)
+    facebook = forms.URLField(required=False)
+    linkedin = forms.URLField(required=False)
+    github = forms.URLField(required=False)
 
-    description = forms.CharField(widget=RedactorEditor())
+    description = forms.CharField(widget=RedactorEditor(), required=False)
 
     class Meta:
         model = MyUser

@@ -16,10 +16,10 @@ class MyUser(AbstractUser):
 	city = models.CharField(max_length=50, null=True, default=None)
 	country = models.CharField(max_length=50, null=True, default=None)
 
-	facebook = models.CharField(max_length=100, null=True, default=None)
-	linkedin = models.CharField(max_length=100, null=True, default=None)
-	github = models.CharField(max_length=100, null=True, default=None)
-	website = models.CharField(max_length=100, null=True, default=None)
+	facebook = models.URLField(max_length=100, null=True, default=None)
+	linkedin = models.URLField(max_length=100, null=True, default=None)
+	github = models.URLField(max_length=100, null=True, default=None)
+	website = models.URLField(max_length=100, null=True, default=None)
 
 	def __unicode__(self):
 		return self.username

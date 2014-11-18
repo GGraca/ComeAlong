@@ -1,17 +1,17 @@
 <div class="row row-centered">
    {% for p in projects %}
-      <div class="col-sm-3 col-centered project_preview" id="project_{{ p.id }}">
+      <div class="col-sm-3 col-centered project_preview">
 
-            <div class="image img_project_preview" style="background-image:url('{{p.display_image.url}}')"></div>
-            <h4 style="font-weight: bold;">{{ p }}</h4>
+            <div class="image img_project_preview project_{{ p.id }}" style="background-image:url('{{p.display_image.url}}')"></div>
 
+            <h4 class="title" style="font-weight: bold;">{{ p }}</h4>
             <p>
                {{ p.short_description }}
             </p>
 
       </div>
       <script type="text/javascript">
-         $('#project_{{ p.id }}').click(function() {
+         $('.project_{{ p.id }}').click(function() {
             window.location.replace("/projects/{{ p.id }}/");
          });
       </script>
