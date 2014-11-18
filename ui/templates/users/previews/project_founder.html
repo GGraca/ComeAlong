@@ -1,13 +1,23 @@
 {%  with this_user=project.founder %}
-   <div class="profile_container">
+<div class="profile_container">
 
-      {% include "users/previews/img_small.html"%}
+  {% include "users/previews/img_small.html"%}
 
-      <div style="float:left; margin: 10px;; margin-right: -50px;">
-         <h4>{{ this_user.get_full_name }}</h4>
-         <h5>Coimbra</h5>
-         <h5>{{ this_user.email }}</h5>
-      </div>
+  <div style="float:left; margin: 10px; margin-right: -200px;">
+    {% if this_user.get_full_name %}
+    <h4>{{ this_user.get_full_name }}</h4>
+    {% else %}
+    <h4>{{ this_user.username }}</h4>
+    {% endif%}
+    <h5>
+      {% if this_user.city and this_user.country %}
+      {{ this_user.city }}, {{ this_user.country }}
+      {% else %}
+      {{ this_user.city }}{{ this_user.country }}
+      {% endif %}
+    </h5>
+    <h5>{{ this_user.email }}</h5>
+  </div>
 
-   </div>
+</div>
 {% endwith %}
