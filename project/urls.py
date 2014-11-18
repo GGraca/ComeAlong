@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'^(?P<id>\d+)/$', views.page),
     url(r'^(?P<id>\d+)/recruit/$', views.recruit),
     url(r'^(?P<id>\d+)/apply/$', views.apply),
+    url(r'^(?P<id>\d+)/delete/$', views.delete_project),
     url(r'^(?P<id>\d+)/(?P<app_id>\d+)/$', views.application),
 )

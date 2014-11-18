@@ -48,6 +48,30 @@ def new(request):
 
     return render_to_response('projects/new.html', RequestContext(request, args))
 
+def delete_project(request, id):
+    project = Project.objects.get(id=id)
+    if(request.user != project.founder):
+        return HttpResponseRedirect('/projects/' + str(project.id))
+
+    if(request.POST):
+        print "cona "
+        for v in project.vacancies.all():
+            v.delete()
+
+        for a in project.applications.all():
+            for r in a.roles.all():
+                r.delete()
+
+        for p in project.participants.all():
+            for r in p.titles.all():
+                r.delete()
+
+        project.delete()
+
+        return HttpResponseRedirect('/projects')
+
+    return render_to_response("projects/delete.html", RequestContext(request, {"project": project}))
+
 
 def application(request, id, app_id):
     project = Project.objects.get(id=id)
@@ -65,11 +89,16 @@ def application(request, id, app_id):
                 participation = Participation(project=application.project, user=application.user)
                 participation.save()
 
-
             for r in form.cleaned_data["roles"]:
                 application.roles.filter(title = r).first().delete()
+                v = project.vacancies.filter(title = r).first()
+                v.available -= 1
+                v.save()
+
                 title = Title(participation=participation, title=r)
                 title.save()
+
+
 
             return HttpResponseRedirect('/projects/' + str(project.id))
 
@@ -85,6 +114,9 @@ def application(request, id, app_id):
 def apply(request, id):
     project = Project.objects.get(id=id)
     application = Application.objects.filter(project=project, user=request.user).first()
+
+    if(not project.has_vacancies()):
+        return HttpResponseRedirect('/projects/' + str(project.id))
 
     if(request.POST):
         if(application):

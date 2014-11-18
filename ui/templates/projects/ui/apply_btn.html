@@ -8,13 +8,24 @@
       <br>
 
    {% else %}
-      <form method="link" action="/projects/{{ project.id }}/apply/">
-         {% buttons %}
-            <button type="submit"  class="btn btn-primary">
-               {% bootstrap_icon "star" %} Apply
-            </button>
-         {% endbuttons %}
-      </form>
+      {% if project.has_vacancies %}
+
+        <form method="link" action="/projects/{{ project.id }}/apply/">
+           {% buttons %}
+              <button type="submit"  class="btn btn-primary">
+                 {% bootstrap_icon "star" %} Apply
+              </button>
+           {% endbuttons %}
+        </form>
+
+      {% else %}
+
+        <button type="submit"  class="btn btn-primary" disabled="disabled">
+           {% bootstrap_icon "star" %} No vacancies at the moment
+        </button>
+        <br>
+
+      {% endif %}
 
    {% endif %}
 

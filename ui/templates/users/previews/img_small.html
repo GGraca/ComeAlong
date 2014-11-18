@@ -1,0 +1,9 @@
+<div class="img_container user_{{ this_user }}">
+   <div class="image img_small" style="background-image:url('{{this_user.avatar.url}}')" id="user_{{ this_user }}"></div>
+</div>
+
+<script type="text/javascript">
+   $('.user_{{ this_user }}').click(function() {
+      window.location.replace("/users/{{ this_user }}/");
+   });
+</script>

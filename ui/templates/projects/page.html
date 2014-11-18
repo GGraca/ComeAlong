@@ -8,11 +8,11 @@
 
 		<ul class="nav nav-tabs" role="tablist" id="projectFounderTab">
 			<li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
-			<li role="presentation"><a href="#team" role="tab" data-toggle="tab">Team</a></li>
+			<li role="presentation"><a href="#team" role="tab" data-toggle="tab">Participants</a></li>
 			{% if user.id == project.founder.id %}
 					<li role="presentation"><a href="#applications" role="tab" data-toggle="tab">Entries</a></li>
-					<li role="presentation"><a href="#edit" role="tab" data-toggle="tab">Edit</a></li>
 					<li role="presentation"><a href="#vacancies" role="tab" data-toggle="tab">Recruit</a></li>
+					<li role="presentation"><a href="#edit" role="tab" data-toggle="tab">Edit</a></li>
 			{% endif %}
 		</ul>
 
@@ -30,11 +30,11 @@
 							<div role="tabpanel" class="tab-pane" id="applications">
 								{% include "projects/page/applications.html" %}
 							</div>
-							<div role="tabpanel" class="tab-pane" id="edit">
-								{% include "projects/page/edit.html" %}
-							</div>
 							<div role="tabpanel" class="tab-pane" id="vacancies">
 								{% include "projects/page/vacancies.html" %}
+							</div>
+							<div role="tabpanel" class="tab-pane" id="edit">
+								{% include "projects/page/edit.html" %}
 							</div>
 					{% endif %}
 				</div>

@@ -17,6 +17,10 @@ class Project(models.Model):
     short_description = models.TextField()
     description = models.TextField()
 
+    def has_vacancies(self):
+        return self.vacancies.exclude(available=0)
+
+
 
     def __unicode__(self):
         return self.title
