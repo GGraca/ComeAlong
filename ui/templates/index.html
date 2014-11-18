@@ -6,11 +6,9 @@
 
 	{% comment %}
 	<!-- Trending -->
-	<hr>
-		<div style="text-align: center;">
-			Trending
-		</div>
-	<hr>
+	<div style="text-align: center;">
+		<h3>Trending</h3>
+	</div>
 	<div id="trending_projects" class="project_container">
 		{% with projects=new_projects %}
 			{% include "projects/project_list.html" %}
@@ -19,11 +17,10 @@
 	{% endcomment %}
 
 	<!-- New Projects -->
-	<hr>
-		<div style="text-align: center;">
-			New
-		</div>
-	<hr>
+	<div style="text-align: center;">
+		<br>
+		<h3>Projects</h3>
+	</div>
 	<div id="new_projects" class="project_container">
 		{% with projects=new_projects %}
 			{% include "projects/project_list.html" %}

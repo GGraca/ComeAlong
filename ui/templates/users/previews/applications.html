@@ -1,0 +1,20 @@
+<div class="profile_container">
+
+   <div class="img_container">
+      <div class="image img_small" style="background-image:url('{{this_user.avatar.url}}')" id="user_{{ this_user }}"></div>
+   </div>
+   <div style="float:left; margin: 10px;; margin-right: -50px;">
+      <h4>{{ this_user.get_full_name }}</h4>
+      <h5>
+         {% for i in items %}
+            {% if forloop.last %}
+               {{ i }}
+            {% else %}
+               {{ i }},
+            {% endif %}
+         {% endfor %}
+      </h5>
+   </div>
+   <a style="float:right; margin-top: 35px; margin-right: 10px;" href="/project/{{ project.id }}/application.id/" class="btn btn-primary" role="button">View</a>
+
+</div>

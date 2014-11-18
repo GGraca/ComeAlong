@@ -7,7 +7,7 @@ from models import *
 from forms import  *
 
 def index(request):
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by("id").reverse()
     return render_to_response("projects/index.html", RequestContext(request, {"projects" : projects}))
 
 def page(request, id):
@@ -96,8 +96,8 @@ def apply(request, id):
             app = form.save(commit=False)
             app.user = request.user
             app.project = project
-
             app.save()
+
             for r in app.roles.all():
                 r.delete();
             for r in form.cleaned_data["roles"]:

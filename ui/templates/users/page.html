@@ -3,37 +3,33 @@
 {% block body_block %}
 	<div class="c">
 
-	<a style="float:right;" href="/users/{{ this_user.username }}/edit/" class="btn btn-primary" role="button">Edit</a>
+	{% if user == this_user%}
+		<a style="float:right;" href="/users/{{ this_user.username }}/edit/" class="btn btn-primary" role="button">Edit</a>
+	{% endif %}
 
 		<div style="width:85%; margin: 0 auto;">
 			{% include "users/previews/application.html" %}
 		</div>
 
-		<hr>
-			<div style="text-align: center;">
-				Description
-			</div>
-		<hr>
+		<div style="text-align: center;">
+			<h3>Description</h3>
+		</div>
 		<div class="description">
 			{{ this_user.description | safe }}
 		</div>
 
+		<div style="text-align: center;">
+			<h3>Projects Founded</h3>
+		</div>
 
-		<hr>
-			<div style="text-align: center;">
-				Projects Founded
-			</div>
-		<hr>
 		{% with projects=this_user.projects_owned.all %}
 			{% include "projects/project_list.html" %}
 		{% endwith %}
 
 
-		<hr>
-			<div style="text-align: center;">
-				Projects Participated
-			</div>
-		<hr>
+		<div style="text-align: center;">
+			<h3>Projects Participated</h3>
+		</div>
 		{% with projects=this_user.projects_participated.all %}
 			{% include "projects/project_list.html" %}
 		{% endwith %}
