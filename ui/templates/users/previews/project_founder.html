@@ -10,11 +10,13 @@
     <h4>{{ this_user.username }}</h4>
     {% endif%}
     <h5>
-      {% if this_user.city and this_user.country %}
+    {% if this_user.city and this_user.country %}
       {{ this_user.city }}, {{ this_user.country }}
-      {% else %}
-      {{ this_user.city }}{{ this_user.country }}
-      {% endif %}
+    {% elif this_user.city %}
+      {{ this_user.city }}
+    {% elif this_user.country %}
+      {{ this_user.country }}
+    {% endif %}
     </h5>
     <h5>{{ this_user.email }}</h5>
   </div>
