@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>ComeAlong</title>
+	{% block title_block %}
+		<title>ComeAlong</title>
+	{% endblock %}
 	{% include "static.html" %}
 </head>
 
@@ -10,5 +12,6 @@
 
 	{% block body_block %}
 	{% endblock %}
+
 </body>
 </html>
