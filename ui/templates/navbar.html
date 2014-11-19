@@ -13,11 +13,11 @@
       <div id="navbar" class="collapse navbar-collapse">
 
          <ul class="nav navbar-nav">
-            <li><a href="/projects/">Join</a></li>
+            <li><a href="/projects/">Projects</a></li>
             {% if user.is_authenticated %}
             <li><a href="/projects/new/">Create</a></li> <!--class="active"-->
             {% else %}
-            <li><a href="/projects/">Create</a></li>
+            <li><a href="/projects/">Sign in to create</a></li>
             {% endif %}
             <!-- <li><a href="/users/">Users</a></li> -->
 
