@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-	{% block title_block %}
-		<title>ComeAlong</title>
-	{% endblock %}
+	<title>{% block title %}ComeAlong{% endblock %}</title>
+	<meta property="og:title" content={% block metatitle %}"ComeAlong"{% endblock %}/>
 	{% include "static.html" %}
 </head>
 

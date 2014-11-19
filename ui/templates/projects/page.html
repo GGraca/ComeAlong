@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
-{% block title_block %}
-	<title>{{ project.title }} - ComeAlong</title>
+{% block title %}
+	{{ project.title }} - ComeAlong
+{% endblock %}
+{% block metatitle %}
+	"{{ project.title }} - ComeAlong"
 {% endblock %}
 
 {% block body_block %}
