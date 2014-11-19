@@ -3,6 +3,8 @@
 <head>
 	<title>{% block title %}ComeAlong{% endblock %}</title>
 	<meta property="og:title" content={% block metatitle %}"ComeAlong"{% endblock %}/>
+	{% block ogimage %}
+	{% endblock %}
 	{% include "static.html" %}
 </head>
 

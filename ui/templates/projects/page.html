@@ -6,6 +6,9 @@
 {% block metatitle %}
 	"{{ project.title }} - ComeAlong"
 {% endblock %}
+{% block ogimage %}
+<meta property="og:image" content={{ project.display_image.url }}/>
+{% endblock %}
 
 {% block body_block %}
 	<div class="c">
