@@ -11,5 +11,8 @@ from project.models import Project
 #    return HttpResponse(html)
 
 def index(request):
-    new_projects = Project.objects.all().order_by("id").reverse()
-    return render_to_response("index.html", RequestContext(request, {"new_projects" : new_projects}))
+    staffpicks_projects = [
+        Project.objects.get(id=4),
+    ]
+    new_projects = Project.objects.all().order_by("id").reverse()[0:4]
+    return render_to_response("index.html", RequestContext(request, {"new_projects" : new_projects, "staffpicks_projects": staffpicks_projects}))

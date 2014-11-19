@@ -1,6 +1,7 @@
 from django.contrib import admin
-from models import Project, Application, Vacancy, Participation, Title
+from models import *
 
+admin.site.register(Event)
 admin.site.register(Project)
 admin.site.register(Application)
 admin.site.register(Vacancy)

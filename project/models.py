@@ -1,10 +1,22 @@
 from django.db import models
 from my_user.models import MyUser
 
+class Event(models.Model):
+    #Relations
+    """projects"""
+
+    #Fields
+    title = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.title
+
+
 class Project(models.Model):
     #Relations
     founder = models.ForeignKey(MyUser, related_name="projects_owned")
     participants = models.ManyToManyField(MyUser, related_name = "projects_participated", blank=True)
+    event = models.ForeignKey(Event, related_name="projects", null=True, default=None)
     """vacancies"""
     """applications"""
     """positions"""

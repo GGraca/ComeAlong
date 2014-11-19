@@ -4,7 +4,19 @@
 
 	{% include "header.html" %}
 
+
+	<!-- Staff Picks -->
+	<div style="text-align: center;">
+		<h3>Staff Picks</h3>
+	</div>
+	<div id="staffpicks_projects" class="project_container">
+		{% with projects=staffpicks_projects %}
+			{% include "projects/project_list.html" %}
+		{% endwith %}
+	</div>
+
 	{% comment %}
+
 	<!-- Trending -->
 	<div style="text-align: center;">
 		<h3>Trending</h3>
@@ -19,7 +31,7 @@
 	<!-- New Projects -->
 	<div style="text-align: center;">
 		<br>
-		<h3>Projects</h3>
+		<h3>New Projects</h3>
 	</div>
 	<div id="new_projects" class="project_container">
 		{% with projects=new_projects %}
