@@ -54,7 +54,6 @@ def delete_project(request, id):
         return HttpResponseRedirect('/projects/' + str(project.id))
 
     if(request.POST):
-        print "cona "
         for v in project.vacancies.all():
             v.delete()
 

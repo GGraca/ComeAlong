@@ -1,9 +1,14 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import  HttpResponseRedirect, HttpResponseForbidden
+from django.views.generic import View
 
 from models import MyUser
 from forms import MyUserForm
+
+class MyUserView(View):
+    def get(self, request):
+        pass
 
 
 def page(request, username):
