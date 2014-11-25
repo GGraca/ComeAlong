@@ -15,11 +15,11 @@
          <ul class="nav navbar-nav">
             <li><a href="/projects/">Projects</a></li>
             {% if user.is_authenticated %}
-            <li><a href="/projects/new/">Create</a></li> <!--class="active"-->
+            <li><a href="/projects/new/">Create</a></li>
             {% else %}
             <li><a href="/projects/">Sign in to create</a></li>
             {% endif %}
-            <!-- <li><a href="/users/">Users</a></li> -->
+            <li><a href="/projects/1/">About</a></li>
 
          </ul>
          <ul class="nav navbar-nav navbar-right">
