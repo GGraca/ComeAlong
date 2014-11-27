@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, include, url
-import views
+from views import *
 
 urlpatterns = patterns('',
-    url(r'^$', views.index),
-    url(r'^(?P<username>\w+)/$', views.page),
-    url(r'^(?P<username>\w+)/edit/$', views.edit),
+    url(r'^$', UsersIndex.as_view()),
+    url(r'^(?P<username>\w+)/$', UserPageView.as_view()),
+    url(r'^(?P<username>\w+)/edit/$', UserUpdateView.as_view()),
 )

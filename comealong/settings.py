@@ -62,6 +62,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social.apps.django_app.context_processors.login_redirect',
     'django.contrib.auth.context_processors.auth',
     "django.core.context_processors.media",
+    #"django.core.context_processors.request",
     #'django.contrib.messages.context_processors.auth',
 )
 

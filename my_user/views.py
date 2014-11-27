@@ -1,34 +1,26 @@
-from django.template import RequestContext
-from django.shortcuts import render_to_response
-from django.http import  HttpResponseRedirect, HttpResponseForbidden
-from django.views.generic import View
-
+from django.views.generic import TemplateView, UpdateView
 from models import MyUser
 from forms import MyUserForm
 
-class MyUserView(View):
-    def get(self, request):
-        pass
+class UsersIndex(TemplateView):
+    template_name = "users/index.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        context['users'] = MyUser.objects.all()
+        return context
 
-def page(request, username):
-    this_user = MyUser.objects.get(username=username)
-    return render_to_response("users/page.html", RequestContext(request, {"this_user" : this_user}))
+class UserPageView(TemplateView):
+    template_name = "users/page.html"
 
-def edit(request, username):
-    this_user = MyUser.objects.get(username=username)
-    if(request.user != this_user):
-        return HttpResponseRedirect("/users/" + this_user.username)
+    def get_context_data(self, **kwargs):
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        context['this_user'] = MyUser.objects.get(username=kwargs['username'])
+        return context
 
-    if(request.POST):
-        form = MyUserForm(request.POST, request.FILES, instance=this_user)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/users/" + this_user.username)
-    else:
-        form = MyUserForm(instance=this_user)
-        return render_to_response("users/edit.html", RequestContext(request, {"this_user" : this_user, "form": form}))
+class UserUpdateView(UpdateView):
+    template_name = "users/edit.html"
+    form_class = MyUserForm
 
-def index(request):
-    users = MyUser.objects.all()
-    return render_to_response("users/index.html", RequestContext(request, {"users" : users}))
+    def get_object(self):
+        return MyUser.objects.get(username=self.kwargs['username'])

@@ -2,51 +2,50 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import  HttpResponseRedirect, HttpResponseForbidden
 from django.core.context_processors import csrf
+from django.views.generic import TemplateView, UpdateView, CreateView
 
 from models import *
 from forms import  *
 
-def index(request):
-    projects = Project.objects.all().order_by("id").reverse()
-    return render_to_response("projects/index.html", RequestContext(request, {"projects" : projects}))
 
-def page(request, id):
-    project = Project.objects.get(id=id)
+class ProjectsIndex(TemplateView):
+    template_name = "projects/index.html"
 
-    if(request.POST):
-        form = ProjectForm(request.POST, request.FILES, instance=project)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/projects/" + str(project.id))
-    else:
-        applications = Application.objects.filter(project_id=id, result='W')
-        form = ProjectForm(instance=project)
-        return render_to_response("projects/page.html", RequestContext(request, {"project" : project, "applications": applications, "form": form}))
+    def get_context_data(self, **kwargs):
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        context['projects'] = Project.objects.all().order_by("id").reverse()
+        return context
 
-def new(request):
-    if(request.POST):
-        form = ProjectForm(request.POST, request.FILES)
-        if(form.is_valid()):
+class ProjectPageView(UpdateView):
+    template_name = "projects/page.html"
+    form_class = ProjectForm
 
-            obj = form.save(commit=False)
-            obj.founder = request.user
-            obj.save()
+    def get_object(self):
+        return Project.objects.get(id=self.kwargs['id'])
 
-            participation = Participation(project=obj, user=request.user)
-            participation.save()
+    def get_context_data(self, **kwargs):
+        context = super(UpdateView, self).get_context_data(**kwargs)
+        context['participations'] = self.object.positions.all()
+        context['applications'] = self.object.applications.filter(result='W')
+        return context
 
-            title = Title(participation=participation, title="Founder")
-            title.save()
+class CreateProjectView(CreateView):
+    form_class = ProjectForm
+    template_name = "projects/new.html"
 
-            return HttpResponseRedirect('/projects/')
-    else:
-        form = ProjectForm();
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
 
-    args = {}
-    args.update(csrf(request))
-    args['form'] = form
+        self.object.founder = self.request.user
+        self.object.save()
 
-    return render_to_response('projects/new.html', RequestContext(request, args))
+        participation = Participation(project=self.object, user=self.request.user)
+        participation.save()
+
+        title = Title(participation=participation, title="Founder")
+        title.save()
+
+        return super(CreateView, self).form_valid(form)
 
 def delete_project(request, id):
     project = Project.objects.get(id=id)

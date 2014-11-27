@@ -24,6 +24,9 @@ class MyUser(AbstractUser):
 	def __unicode__(self):
 		return self.username
 
+	def get_absolute_url(self):
+		return u'/users/%d' % self.username
+
 #2F3954
 #C1E8E3
 #EFEFEF

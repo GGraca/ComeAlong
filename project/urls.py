@@ -1,12 +1,12 @@
 from django.conf.urls import patterns, include, url
-import views
+from views import *
 
 urlpatterns = patterns('',
-    url(r'^$', views.index),
-    url(r'^new/$', views.new),
-    url(r'^(?P<id>\d+)/$', views.page),
-    url(r'^(?P<id>\d+)/recruit/$', views.recruit),
-    url(r'^(?P<id>\d+)/apply/$', views.apply),
-    url(r'^(?P<id>\d+)/delete/$', views.delete_project),
-    url(r'^(?P<id>\d+)/(?P<app_id>\d+)/$', views.application),
+    url(r'^$', ProjectsIndex.as_view()),
+    url(r'^new/$', CreateProjectView.as_view()),
+    url(r'^(?P<id>\d+)/$', ProjectPageView.as_view()),
+    url(r'^(?P<id>\d+)/recruit/$', recruit),
+    url(r'^(?P<id>\d+)/apply/$', apply),
+    url(r'^(?P<id>\d+)/delete/$', delete_project),
+    url(r'^(?P<id>\d+)/(?P<app_id>\d+)/$', application),
 )

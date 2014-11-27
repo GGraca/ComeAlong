@@ -37,6 +37,9 @@ class Project(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return u'/projects/%d' % self.id
+
 class Vacancy(models.Model):
     #Relations
     project = models.ForeignKey(Project, related_name="vacancies")
@@ -87,6 +90,9 @@ class Participation(models.Model):
     user = models.ForeignKey(MyUser, related_name="positions")
     project = models.ForeignKey(Project, related_name="positions")
     """titles"""
+
+    def __unicode__(self):
+        return self.user.username + " -> " + self.project.title
 
 class Title(models.Model):
     #Relations
