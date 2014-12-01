@@ -87,6 +87,8 @@ def application(request, id, app_id):
                 participation = Participation(project=application.project, user=application.user)
                 participation.save()
 
+                #notification "you have been accepted in c"
+
             for r in form.cleaned_data["roles"]:
                 application.roles.filter(title = r).first().delete()
                 v = project.vacancies.filter(title = r).first()
@@ -127,6 +129,7 @@ def apply(request, id):
             app.user = request.user
             app.project = project
             app.save()
+            #notification "x applied for y in z"
 
             for r in app.roles.all():
                 r.delete();

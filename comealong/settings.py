@@ -46,6 +46,8 @@ INSTALLED_APPS = (
     'internal',
     'my_user',
     'project',
+    
+    'notifications',
 )
 
 MIDDLEWARE_CLASSES = (
