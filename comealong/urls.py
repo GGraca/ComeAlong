@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-import views
+from views import *
 import notifications
 
 from django.conf import settings
@@ -11,7 +11,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    url(r'^$', views.index, name="index"),
+    url(r'^$', Index.as_view(), name='index'),
     url(r'^users/', include("my_user.urls")),
     url(r'^projects/', include("project.urls")),
 

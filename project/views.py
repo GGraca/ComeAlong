@@ -53,17 +53,6 @@ def delete_project(request, id):
         return HttpResponseRedirect('/projects/' + str(project.id))
 
     if(request.POST):
-        for v in project.vacancies.all():
-            v.delete()
-
-        for a in project.applications.all():
-            for r in a.roles.all():
-                r.delete()
-
-        for p in project.participants.all():
-            for r in p.titles.all():
-                r.delete()
-
         project.delete()
 
         return HttpResponseRedirect('/projects')
