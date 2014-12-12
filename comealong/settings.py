@@ -70,7 +70,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 ROOT_URLCONF = 'comealong.urls'
 
-WSGI_APPLICATION = 'comealong.wsgi.application'
+#WSGI_APPLICATION = 'comealong.wsgi.application'
 
 
 # Database
