@@ -49,7 +49,6 @@ coverage.xml
 *.log
 db.sqlite3
 media/img/
-*/migrations/
 
 # Sphinx documentation
 docs/_build/
