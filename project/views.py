@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import  HttpResponseRedirect, HttpResponseForbidden
 from django.core.context_processors import csrf
 from django.views.generic import TemplateView, UpdateView, CreateView
+from notifications import *
 
 from models import *
 from forms import  *
@@ -47,6 +48,8 @@ class CreateProjectView(CreateView):
 
         return super(CreateView, self).form_valid(form)
 
+#class Delete
+
 def delete_project(request, id):
     project = Project.objects.get(id=id)
     if(request.user != project.founder):
@@ -76,7 +79,6 @@ def application(request, id, app_id):
                 participation = Participation(project=application.project, user=application.user)
                 participation.save()
 
-                #notification "you have been accepted in c"
 
             for r in form.cleaned_data["roles"]:
                 application.roles.filter(title = r).first().delete()
@@ -87,7 +89,7 @@ def application(request, id, app_id):
                 title = Title(participation=participation, title=r)
                 title.save()
 
-
+            notify.send(project.founder, recipient=participation.user, verb="accepted your application for", action_object=project)
 
             return HttpResponseRedirect('/projects/' + str(project.id))
 
@@ -118,7 +120,10 @@ def apply(request, id):
             app.user = request.user
             app.project = project
             app.save()
-            #notification "x applied for y in z"
+
+            notify.send(request.user, recipient=project.founder, verb="applied for", action_object=project)
+            if(request.user.projects_following.filter(id=project.id).count() == 0):
+                request.user.projects_following.add(project)
 
             for r in app.roles.all():
                 r.delete();
@@ -140,13 +145,38 @@ def apply(request, id):
     return render_to_response('applications/new.html', RequestContext(request, args))
 
 def recruit(request, id):
-    if(request.POST):
-        user = request.user
-        project = Project.objects.get(id=id)
+    user = request.user
+    project = Project.objects.get(id=id)
 
+    if(request.POST):
         if(project.founder == user):
             vacancy = Vacancy(project=project, title=request.POST['title'], total = request.POST['quantity'])
             if(vacancy.isValid()):
                 vacancy.save();
+
+                for u in project.followers.all():
+                    notify.send(project, recipient=u, verb="is recruiting", action_object=vacancy)
+
+
+
+    return HttpResponseRedirect('/projects/' + str(project.id))
+
+def follow(request, id):
+    project = Project.objects.get(id=id)
+    user = request.user
+
+    if(request.POST):
+        if(project.founder != user):
+            user.projects_following.add(project)
+
+    return HttpResponseRedirect('/projects/' + str(project.id))
+
+def unfollow(request, id):
+    project = Project.objects.get(id=id)
+    user = request.user
+
+    if(request.POST):
+        if(request.user.projects_following.filter(id=project.id).count()):
+            request.user.projects_following.remove(project)
 
     return HttpResponseRedirect('/projects/' + str(project.id))

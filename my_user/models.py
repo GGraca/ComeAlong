@@ -6,6 +6,7 @@ class MyUser(AbstractUser):
 	"""projects_owned"""
 	"""projects_participated"""
 	"""applications"""
+	"""projects_following"""
 
 	#Fields
 	"""name""" #from AbstractUser

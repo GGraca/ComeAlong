@@ -17,6 +17,7 @@ class Project(models.Model):
     founder = models.ForeignKey(MyUser, related_name="projects_owned")
     participants = models.ManyToManyField(MyUser, related_name = "projects_participated", blank=True)
     event = models.ForeignKey(Event, related_name="projects", null=True, default=None)
+    followers = models.ManyToManyField(MyUser, related_name = "projects_following", blank=True)
     """vacancies"""
     """applications"""
     """positions"""

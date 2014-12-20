@@ -27,6 +27,15 @@
 
       {% endif %}
 
+      <form method="post" action="/projects/{{ project.id }}/follow/">
+        {% csrf_token %}
+        {% buttons %}
+        <button type="submit"  class="btn btn-primary">
+          {% bootstrap_icon "star" %} Follow
+        </button>
+        {% endbuttons %}
+      </form>
+
    {% endif %}
 
 {% else %}
