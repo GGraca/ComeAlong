@@ -147,3 +147,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.load_extra_data',
     'social_auth.backends.pipeline.user.update_user_details'
 )
+
+LOGIN_REDIRECT_URL = '/'

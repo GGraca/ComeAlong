@@ -1,34 +1,47 @@
 {% load static %}
 
-<style>
-html, body{
-   padding-top: 0px;
-   height: 100%;
-}
-header {
-   height: 100%;
-   width: 100%;
-   background-image: url({% static 'img/cover2.jpg' %});
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;
-}
+<header class="container-fluid">
+   <div class="row">
 
-#message{
-   color: white;
-   padding-top: 34%;
-   padding-left: 5%;
+      <section id="hero" class="cover">
+         
+         <div class="col-xs-6">
+            <div class="hero-image cover" style="background-image: url({% static 'img/cover-discover.jpg' %});">
+               <div class="overlay"></div>
+               <div class="h-align">
+                  <div class="v-align">
+                     <h1 class="caption">Take part on something great</h1>
+                     <button class="btn btn-default">
+                        {% if user.is_authenticated %}
+                        <a href="/projects">Apply to a project</a>
+                        {% else %}
+                        <a href="#signin" data-toggle="modal" data-target="#signup-signin-md">Apply to a project</a>
+                        {% endif %}
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
 
-}
+         <div class="col-xs-6">
+            <div class="hero-image cover" style="background-image: url({% static 'img/cover-share.jpg' %});">
+               <div class="overlay"></div>
+               <div class="h-align">
+                  <div class="v-align">
+                     <h1 class="caption">Complete your project team</h1>
+                     <button class="btn btn-default">
+                        {% if user.is_authenticated %}
+                        <a href="/projects/new/">Share your project</a>
+                        {% else %}
+                        <a href="#signin" data-toggle="modal" data-target="#signup-signin-md">Share your project</a>
+                        {% endif %}
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
 
-#message h1{
-   font-size: 400%;
-}
+      </section>
 
-</style>
-
-<header id="page-top">
-   <div id="message">
-      <h1>be part of something great</h1>
    </div>
 </header>
