@@ -1,7 +1,8 @@
 from project.models import Project
 from django.views.generic import TemplateView
 from my_user.models import MyUser
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
 
 class Index(TemplateView):
     template_name = "index.html"
@@ -16,17 +17,25 @@ class Index(TemplateView):
         return context
 
 def is_username_available(request):
-    if MyUser.objects.filter(username=request.username).count() > 0:
-        return HttpResponse("False")
-    return HttpResponse("True")
+    if(request.POST):
+        if MyUser.objects.filter(username=request.POST["username"]).count() > 0:
+            return HttpResponse("False")
+        return HttpResponse("True")
+    return HttpResponse("error")
 
+def login_view(request):
+    if(request.POST):
+        f = request.POST
+        user = authenticate(username=f['username'], password=f['password'])
+        if user is not None:
+            login(request, user)
+            return HttpResponse("success", status=200)
+    return HttpResponse("error")
 
-def login(request):
-    user = authenticate(username=request.username, password=request.password)
-    if user is None:
-        return HttpResponse("error")
-    return HttpResponse("success")
-
-def register(request):
-    user = User.objects.create_user(request.username, request.email, request.password, first_name=request.first_name, last_name=request.last_name)
-    login(request)
+def register_view(request):
+    if(request.POST):
+        f = request.POST
+        user = MyUser.objects.create_user(f['username'], f['email'], f['password'], first_name=f['firstname'], last_name=f['lastname'])
+        if user is not None:
+            return HttpResponse("success", status=200)
+    return HttpResponse("error")
