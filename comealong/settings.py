@@ -45,6 +45,7 @@ INSTALLED_APPS = (
 
     'my_user',
     'project',
+    'topic',
 
     'notifications',
 )
