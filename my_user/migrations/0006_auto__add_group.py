@@ -8,26 +8,25 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'Group'
+        db.create_table(u'my_user_group', (
+            ('avatar', self.gf('django.db.models.fields.files.ImageField')(default='default/img/user.png', max_length=100)),
+            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('city', self.gf('django.db.models.fields.CharField')(default=None, max_length=50, null=True)),
+            ('country', self.gf('django.db.models.fields.CharField')(default=None, max_length=50, null=True)),
+            ('facebook', self.gf('django.db.models.fields.URLField')(default=None, max_length=100, null=True)),
+            ('linkedin', self.gf('django.db.models.fields.URLField')(default=None, max_length=100, null=True)),
+            ('github', self.gf('django.db.models.fields.URLField')(default=None, max_length=100, null=True)),
+            ('website', self.gf('django.db.models.fields.URLField')(default=None, max_length=100, null=True)),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        ))
+        db.send_create_signal(u'my_user', ['Group'])
 
-        # Changing field 'MyUser.linkedin'
-        db.alter_column(u'my_user_myuser', 'linkedin', self.gf('django.db.models.fields.URLField')(max_length=100, null=True))
-
-        # Changing field 'MyUser.github'
-        db.alter_column(u'my_user_myuser', 'github', self.gf('django.db.models.fields.URLField')(max_length=100, null=True))
-
-        # Changing field 'MyUser.facebook'
-        db.alter_column(u'my_user_myuser', 'facebook', self.gf('django.db.models.fields.URLField')(max_length=100, null=True))
 
     def backwards(self, orm):
+        # Deleting model 'Group'
+        db.delete_table(u'my_user_group')
 
-        # Changing field 'MyUser.linkedin'
-        db.alter_column(u'my_user_myuser', 'linkedin', self.gf('django.db.models.fields.CharField')(max_length=100, null=True))
-
-        # Changing field 'MyUser.github'
-        db.alter_column(u'my_user_myuser', 'github', self.gf('django.db.models.fields.CharField')(max_length=100, null=True))
-
-        # Changing field 'MyUser.facebook'
-        db.alter_column(u'my_user_myuser', 'facebook', self.gf('django.db.models.fields.CharField')(max_length=100, null=True))
 
     models = {
         u'auth.group': {
@@ -49,6 +48,18 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
+        u'my_user.group': {
+            'Meta': {'object_name': 'Group'},
+            'avatar': ('django.db.models.fields.files.ImageField', [], {'default': "'default/img/user.png'", 'max_length': '100'}),
+            'city': ('django.db.models.fields.CharField', [], {'default': 'None', 'max_length': '50', 'null': 'True'}),
+            'country': ('django.db.models.fields.CharField', [], {'default': 'None', 'max_length': '50', 'null': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {}),
+            'facebook': ('django.db.models.fields.URLField', [], {'default': 'None', 'max_length': '100', 'null': 'True'}),
+            'github': ('django.db.models.fields.URLField', [], {'default': 'None', 'max_length': '100', 'null': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'linkedin': ('django.db.models.fields.URLField', [], {'default': 'None', 'max_length': '100', 'null': 'True'}),
+            'website': ('django.db.models.fields.URLField', [], {'default': 'None', 'max_length': '100', 'null': 'True'})
         },
         u'my_user.myuser': {
             'Meta': {'object_name': 'MyUser'},

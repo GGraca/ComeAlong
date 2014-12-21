@@ -1,5 +1,7 @@
 from django.db import models
-from my_user.models import MyUser
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
+from my_user.models import MyUser, Group
 
 class Event(models.Model):
     #Relations
@@ -18,11 +20,25 @@ class Project(models.Model):
     participants = models.ManyToManyField(MyUser, related_name = "projects_participated", blank=True)
     event = models.ForeignKey(Event, related_name="projects", null=True, default=None)
     followers = models.ManyToManyField(MyUser, related_name = "projects_following", blank=True)
+
     """vacancies"""
     """applications"""
     """positions"""
 
-
+    """limit = models.Q(app_label='my_user', model='MyUser') | \
+        models.Q(app_label='my_user', model='Group')
+    content_type = models.ForeignKey(
+        ContentType,
+        verbose_name='content page',
+        limit_choices_to=limit,
+        null=True,
+        blank=True,
+    )
+    object_id = models.PositiveIntegerField(
+        verbose_name='related object',
+        null=True,
+    )
+    founder = generic.GenericForeignKey('content_type', 'object_id')"""
 
     #Fields
     title = models.CharField(max_length=100)
@@ -40,6 +56,12 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return u'/projects/%d' % self.id
+
+class Update(models.Model):
+    project = models.ForeignKey(Project, related_name="updates")
+    version = models.CharField(max_length=50)
+    description = models.TextField()
+    
 
 class Vacancy(models.Model):
     #Relations
