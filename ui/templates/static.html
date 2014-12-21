@@ -1,23 +1,19 @@
 {% load static %}
 {% load bootstrap3 %}
 
+<!--[if lt IE 9]>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 
-<!-- Imported -->
-<link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Patrick+Hand">
-<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+
+<!-- Google Web Fonts -->
+<link rel='stylesheet' href="http://fonts.googleapis.com/css?family=Montserrat:400,100,300,100italic,300italic,400italic,500,500italic,700,700italic,900,900italic|Source+Sans+Pro:400,100,300,100italic,300italic,400italic,500,500italic,700,700italic,900,900italic|Volkhov:400,100,300,100italic,300italic,400italic,500,500italic,700,700italic,900,900italic">
 
 <!-- Bootstrap -->
 {% bootstrap_css %}
-{% bootstrap_javascript %}
 
-<!-- Stylesheets -->
-<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap_extension.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/my_style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/user.css' %}">
-<!--
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
--->
-
-<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+<!-- CSS Styles -->
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">

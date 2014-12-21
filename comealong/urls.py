@@ -18,7 +18,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url('', include('social.apps.django_app.urls', namespace='social')),
-    url('', include('django.contrib.auth.urls', namespace='auth')),
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name':'index.html'}, name="login"),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name':'index.html'}, name="logout"),
 
     url('^inbox/notifications/', include(notifications.urls)),
 )

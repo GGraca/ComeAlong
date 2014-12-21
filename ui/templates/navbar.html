@@ -1,30 +1,25 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: #2F3954;">
-  <div class="container">
+<nav id="navigation" class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#avigation-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="{% url 'index' %}" class="navbar-brand" href="#" style="font-family: 'Patrick Hand', cursive; font-size: 200%;">ComeAlong</a>
+      <a class="navbar-brand" href="{% url 'index' %}">Come Along</a>
     </div>
 
-    <div id="navbar" class="collapse navbar-collapse">
-
+    <div class="collapse navbar-collapse" id="navigation-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/projects/">Projects</a></li>
-        {% if user.is_authenticated %}
-        <li><a href="/projects/new/">Create</a></li>
-        {% else %}
-        <li><a href="/projects/">Sign in to create</a></li>
-        {% endif %}
-        <li><a href="/projects/1/">About</a></li>
-
+        <li><a href="/projects">Discover</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/features">Feature List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
         <li><a href="/users/{{ user.username }}">{{ user.get_short_name }}</a></li>
+        <li><a href="/projects/new/">Create</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ user.notifications.count }}</a>
           <ul class="dropdown-menu" role="menu">
@@ -34,13 +29,14 @@
             <li class="divider"></li>
           </ul>
         </li>
-        {% endif %}
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'auth:logout' %}?next={% url 'index' %}">Logout</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
-        <li><a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}">Sign In</a></li>
+        <li><a href="#signin" data-toggle="modal" data-target="#signup-signin-md">Sign In</a></li>
+        <li><a href="#signup" data-toggle="modal" data-target="#signup-signin-md">Sign Up</a></li>
+<!--           <li><a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}">Sign In</a></li> -->
         {% endif %}
       </ul>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>
+

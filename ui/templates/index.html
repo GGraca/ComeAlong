@@ -4,38 +4,40 @@
 
 	{% include "header.html" %}
 
+	<section id="content" class="container">
 
-	<!-- Staff Picks -->
-	<div style="text-align: center;">
-		<h3>Staff Picks</h3>
-	</div>
-	<div id="staffpicks_projects" class="project_container">
-		{% with projects=staffpicks_projects %}
-			{% include "projects/project_list.html" %}
-		{% endwith %}
-	</div>
+		<div class="section">
 
-	{% comment %}
+			<div class="row">
+				<div class="col-xs-12">
+					<h4 class="section-title">Pick of the week</h4>
+				</div>
+			</div>
+			<div class="hand-picked">
+				<div class="row">
+					{% with projects=staffpicks_projects %}
+						{% include "projects/project_staffpick.html" %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
 
-	<!-- Trending -->
-	<div style="text-align: center;">
-		<h3>Trending</h3>
-	</div>
-	<div id="trending_projects" class="project_container">
-		{% with projects=new_projects %}
-			{% include "projects/project_list.html" %}
-		{% endwith %}
-	</div>
-	{% endcomment %}
+		<div class="section">
 
-	<!-- New Projects -->
-	<div style="text-align: center;">
-		<br>
-		<h3>New Projects</h3>
-	</div>
-	<div id="new_projects" class="project_container">
-		{% with projects=new_projects %}
-			{% include "projects/project_list.html" %}
-		{% endwith %}
-	</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h4 class="section-title">Latest Projects</h4>
+				</div>
+			</div>
+			<div class="latest-projects">
+				<div class="row">
+					{% with projects=new_projects %}
+						{% include "projects/project_list.html" %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
+
+	</section>
+
 {% endblock %}

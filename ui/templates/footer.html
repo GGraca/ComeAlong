@@ -1,18 +1,269 @@
+{% load static %}
+{% load bootstrap3 %}
+
 <footer>
    <div class="container">
       <div class="row">
-
-         <div class="col-xs-12">
-            <hr/>
-            <small>© Copyright 2014, ComeAlong &nbsp;&nbsp;&nbsp; PGI</small>
-            <ul class="list-inline">
-               <li><a href="#"><i class="fa fa-facebook fa-lg"></i></a><li>
-               <li><a href="#"><i class="fa fa-twitter fa-lg"></i></a><li>
-               <li><a href="#"><i class="fa fa-github fa-lg"></i></a><li>
-               <li><a href="#"><i class="fa fa-dribbble fa-lg"></i></a><li>
+         <div class="col-xs-12 col-sm-6 col-md-3">
+            <h5 class="title">Company</h5>
+            <ul class="list-unstyled">
+               <li><a href="#">About</a></li>
+               <li><a href="#">Features</a></li>
+               <li><a href="#">Jobs</a></li>
             </ul>
          </div>
-
+         <div class="col-xs-12 col-sm-6 col-md-3">
+            <h5 class="title">Help</h5>
+            <ul class="list-unstyled">
+               <li><a href="#">FAQ</a></li>
+               <li><a href="#">Terms of Use</a></li>
+               <li><a href="#">Privacy Policy</a></li>
+            </ul>
+         </div>
+         <div class="col-xs-12 col-sm-6 col-md-3">
+            <h5 class="title">Community</h5>
+            <ul class="list-unstyled">
+               <li><a href="#">Discover</a></li>
+               <li><a href="#">Members</a></li>
+            </ul>                
+         </div>
+         <div class="col-xs-12 col-sm-6 col-md-3">
+            <h5 class="title">Contacts</h5>
+            <ul class="list-unstyled">
+               <li><a href="#">Blog</a></li>
+               <li><a href="#">Mail</a></li>
+               <li><a href="#">Facebook</a></li>
+            </ul> 
+         </div>
+         <div class="clearfix"/>
+         <div class="col-xs-12">
+            <div class="copyright">
+               <a class="brand" href="index.html">Come Along</a>
+               <p>© 2014</p>
+            </p>
+         </div>
       </div>
    </div>
 </footer>
+
+<div class="select-options">
+   <div class="h-align">
+      <div class="v-align">
+         <div class="container">
+            <div class="row">
+               <div class="col-xs-12">
+                  <ul>
+                     <li class="selected">All</li>
+                     <li>Staff Picks</li>
+                     <li>Trending</li>
+                     <hr>
+                     <li>Business</li>
+                     <li>Gaming</li>
+                     <li>Life</li>
+                     <li>Music</li>
+                     <li>Technology</li>              
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="signup-signin-md" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div>
+                <ul id="signup-signin" class="nav nav-tabs">
+                    <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+                    <li class=""><a href="#signup" data-toggle="tab">Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="modal-body">
+                <div id="signup-signin" class="tab-content">
+                    <div class="tab-pane fade active in" id="signin">
+                        <button class="btn btn-default btn-facebook"><a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}">Sign In with Facebook</a></button>
+                        <span class="divider">OR</span>
+
+                        {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                        {% endif %}
+
+                        <form class="form-horizontal" method="post" action="{% url 'login' %}">
+                           {% csrf_token %}
+                            <fieldset>
+                                <!-- Sign In Form -->
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="username">Username:</label>
+                                    <div class="controls">
+                                        <input required="" id="username" name="username" type="text" class="form-control" placeholder="johndoe" class="input-medium" required="">
+                                    </div>
+                                </div>
+                                <!-- Password input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="password">Password:</label>
+                                    <div class="controls">
+                                        <input required="" id="password" name="password" class="form-control" type="password" placeholder="********" class="input-medium">
+                                    </div>
+                                </div>
+                                <!-- Button -->
+                                <div class="control-group">
+                                    <label class="control-label" for="signin"></label>
+                                    <div class="controls">
+                                        <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="signup">
+                        <button class="btn btn-default btn-facebook"><a href="{% url 'social:begin' 'facebook' %}?next={% url 'index' %}">Sign Up with Facebook</a></button>
+                        <span class="divider">OR</span>
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <!-- Sign Up Form -->
+                                <!-- Text input-->
+                                <div class="control-group control-group-half left">
+                                    <label class="control-label" for="firstname">First Name:</label>
+                                    <div class="controls">
+                                        <input id="firstname" name="firstname" class="form-control" type="text" placeholder="John" class="input-large" required="">
+                                    </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="control-group control-group-half right">
+                                    <label class="control-label" for="lastname">Last Name:</label>
+                                    <div class="controls">
+                                        <input id="lastname" name="lastname" class="form-control" type="text" placeholder="Doe" class="input-large" required="">
+                                    </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="userid">Username:</label>
+                                    <div class="controls">
+                                        <input id="userid" name="userid" class="form-control" type="text" placeholder="johndoe" class="input-large" required="">
+                                    </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="email">E-mail:</label>
+                                    <div class="controls">
+                                        <input id="email" name="email" class="form-control" type="email" placeholder="johndoe@gmail.com" class="input-large" required="">
+                                    </div>
+                                </div>
+                                <!-- Password input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="password">Password:</label>
+                                    <div class="controls">
+                                        <input id="password" name="password" class="form-control" type="password" placeholder="********" class="input-large" required="">
+                                    </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="control-group">
+                                    <label class="control-label" for="reenterpassword">Re-Enter Password:</label>
+                                    <div class="controls">
+                                        <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="********" class="input-large" required="">
+                                    </div>
+                                </div>
+                                <!-- Button -->
+                                <div class="control-group">
+                                    <label class="control-label" for="confirmsignup"></label>
+                                    <div class="controls">
+                                        <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+{% bootstrap_javascript %}
+<script src="{% static 'js/isotope.min.js' %}"></script>
+
+<script>
+   var $container = $('#projects .row').isotope({
+     itemSelector: '.project-container',
+     getSortData: {
+       name: '.name',
+       category: '[data-category]'
+     }
+   });
+
+
+   var current;
+   $('.section-title .select').on('click', function(){
+      current = $(this).find('.selection').html();
+      var replace = '';
+
+      for (i = 0; i < current.length; i++) {
+         replace += '_';
+      }
+      $(this).find('.selection').html(replace);
+
+      $('.select-options').addClass('open');
+   });
+
+   $('.select-options ul li').on('click', function(){
+      event.stopPropagation();
+      $('.select-options ul li').removeClass('selected');
+      $(this).addClass('selected');
+
+      var replace = $(this).html();
+      var replace_slug = replace.replace(' ','-').toLowerCase();
+
+      if (replace_slug == 'all') {
+         replace_slug = 'project-container';
+      }
+
+      $('.section-title .select').find('.selection').html(replace);
+      $('.select-options').removeClass('open');
+
+      $container.isotope({ filter: '.' + replace_slug });
+   });
+
+   $('.select-options').on('click', function(){
+      $('.select-options').removeClass('open');
+      $('.section-title .select').find('.selection').html(current);
+   });
+
+    // name your elements here
+    var stickyElement   = '.info-fixed',   // the element you want to make sticky
+        bottomElement   = 'footer'; // the bottom element where you want the sticky element to stop (usually the footer) 
+    // make sure the element exists on the page before trying to initalize
+    if($( stickyElement ).length){
+        $( stickyElement ).each(function(){
+            
+            // let's save some messy code in clean variables
+            // when should we start affixing? (the amount of pixels to the top from the element)
+            var fromTop = $("#hero").height()+61, 
+                // where is the bottom of the element?
+                fromBottom = $( document ).height()-($( this ).offset().top + $( this ).outerHeight()),
+                // where should we stop? (the amount of pixels from the top where the bottom element is)
+                // also add the outer height mismatch to the height of the element to account for padding and borders
+                stopOn = $( document ).height()-( $( bottomElement ).offset().top)+($( this ).outerHeight() - $( this ).height()); 
+            // if the element doesn't need to get sticky, then skip it so it won't mess up your layout
+            if( (fromBottom-stopOn) > 200 ){
+                // let's put a sticky width on the element and assign it to the top
+                $( this ).css('width', $( this ).parent().width()).css('top', 0).css('position', '');
+                // assign the affix to the element
+                $( this ).affix({
+                    offset: { 
+                        // make it stick where the top pixel of the element is
+                        top: fromTop,  
+                        // make it stop where the top pixel of the bottom element is
+                        bottom: stopOn
+                    }
+                // when the affix get's called then make sure the position is the default (fixed) and it's at the top
+                }).on('affix.bs.affix', function(){ $( this ).css('top', 0).css('position', ''); });
+            }
+            // trigger the scroll event so it always activates 
+            $( window ).trigger('scroll'); 
+        }); 
+    }
+
+</script>
