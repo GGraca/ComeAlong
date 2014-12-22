@@ -2,7 +2,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import  HttpResponseRedirect, HttpResponseForbidden
 from django.core.context_processors import csrf
-from django.views.generic import TemplateView, UpdateView, CreateView
+from django.views.generic import TemplateView, DetailView, UpdateView, CreateView
 from notifications import *
 
 from models import *
@@ -17,7 +17,13 @@ class ProjectsIndex(TemplateView):
         context['projects'] = Project.objects.all().order_by("id").reverse()
         return context
 
-class ProjectPageView(UpdateView):
+class ProjectPageView(DetailView):
+    template_name = "projects/page.html"
+
+    def get_object(self):
+        return Project.objects.get(id=self.kwargs['id'])
+
+class UpdateProjectView(UpdateView):
     template_name = "projects/page.html"
     form_class = ProjectForm
 
