@@ -1,5 +1,5 @@
 {% if v.available %}
-	<li class="full">{{ v.closed }}/{{ v.total }} {{ v }}</li>
-{% else %}
 	<li>{{ v.closed }}/{{ v.total }} {{ v }}</li>
+{% else %}
+	<li class="full">{{ v.closed }}/{{ v.total }} {{ v }}</li>
 {% endif %}
