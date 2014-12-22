@@ -2,46 +2,22 @@
 
 {% if user.is_authenticated%}
    {% if project.founder.id == user.id %}
-      <button type="submit"  class="btn btn-primary" disabled="disabled">
-         {% bootstrap_icon "star" %} You founded this project
-      </button>
-      <br>
+
+      <button class="btn btn-default btn-blue" disabled="disabled">Founder</button>
 
    {% else %}
       {% if project.has_vacancies %}
 
-        <form method="link" action="/projects/{{ project.id }}/apply/">
-           {% buttons %}
-              <button type="submit"  class="btn btn-primary">
-                 {% bootstrap_icon "star" %} Apply
-              </button>
-           {% endbuttons %}
-        </form>
+        <button class="btn btn-default btn-blue"><a href="/projects/{{ project.id }}/apply/">Apply Now</a></button>
 
       {% else %}
 
-        <button type="submit"  class="btn btn-primary" disabled="disabled">
-           {% bootstrap_icon "star" %} No vacancies at the moment
-        </button>
-        <br>
+        <button class="btn btn-default" disabled="disabled">No vacancies at the moment</button>
 
       {% endif %}
-
-      <form method="post" action="/projects/{{ project.id }}/follow/">
-        {% csrf_token %}
-        {% buttons %}
-        <button type="submit"  class="btn btn-primary">
-          {% bootstrap_icon "star" %} Follow
-        </button>
-        {% endbuttons %}
-      </form>
 
    {% endif %}
 
 {% else %}
-   <button type="submit"  class="btn btn-primary" disabled="disabled">
-      {% bootstrap_icon "star" %} Login to Apply
-   </button>
-   <br>
-
+   <button type="submit"  class="btn btn-default btn-blue" disabled="disabled">Login to Apply</button>
 {% endif %}

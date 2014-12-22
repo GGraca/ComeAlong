@@ -1,0 +1,16 @@
+{% load bootstrap3 %}
+
+{% if user.is_authenticated%}
+
+  {% if user.id == project.founder.id %}
+
+    <button class="btn btn-default pull-right"><a href="/projects/{{ project.id }}/edit/"><i class="fa fa-edit fa-lg"></i></a></button>
+    <button class="btn btn-default pull-right"><a href="/projects/{{ project.id }}/applications/"><i class="fa fa-group fa-lg"></i></a></button>
+
+  {% else %}
+
+    <button class="btn btn-default pull-right"><a href="/projects/{{ project.id }}/follow/">Follow</a></button>
+
+  {% endif %}
+
+{% endif %}

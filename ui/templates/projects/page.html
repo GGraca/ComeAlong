@@ -11,51 +11,63 @@
 {% endblock %}
 
 {% block body_block %}
-	<div class="c">
+	<header id="hero" class="project cover" style="background-image: url({{ project.display_image.url }});">
+		<div class="video-icon">
+			<i class="fa fa-play fa-2x"></i>
+		</div>
+	</header>
 
-		{% include "projects/ui/title.html" %}
+	<section id="content" class="container page project-single">
 
-		<ul class="nav nav-tabs" role="tablist" id="projectFounderTab">
-			<li role="presentation" class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
-			<li role="presentation"><a href="#team" role="tab" data-toggle="tab">Participants</a></li>
-			{% if user.id == project.founder.id %}
-					<li role="presentation"><a href="#applications" role="tab" data-toggle="tab">Entries</a></li>
-					<li role="presentation"><a href="#vacancies" role="tab" data-toggle="tab">Recruit</a></li>
-					<li role="presentation"><a href="#edit" role="tab" data-toggle="tab">Edit</a></li>
-			{% endif %}
-		</ul>
+		<div class="section cover">
 
-		<div class="row">
-			<div class="col-md-8" id="project_body">
-
-				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active description" id="description">
-						{% include "projects/page/description.html" %}
-					</div>
-					<div role="tabpanel" class="tab-pane" id="team">
-						{% include "projects/page/team.html" %}
-					</div>
-					{% if user.id == project.founder.id %}
-							<div role="tabpanel" class="tab-pane" id="applications">
-								{% include "projects/page/applications.html" %}
+			<div class="row">
+				<div class="col-xs-12 col-sm-3">
+					<aside class="project">
+						<div class="logo">
+							<img src="{{ project.display_image.url }}" />
+						</div>
+						<div class="info info-fixed">
+							<a href="#">
+								<h2 class="title">{{ project }}</h2>
+							</a>
+							<span class="author">by {{ project.founder.get_full_name }}</span>
+							<div class="bottom-info">
+								<ul class="list-inline vancancies">
+					               {% for v in project.vacancies.all %}
+					                  {% include "projects/ui/vacancy.html" %}
+					               {% endfor %}
+								</ul>
+								{% include "projects/ui/apply_btn.html" %}
 							</div>
-							<div role="tabpanel" class="tab-pane" id="vacancies">
-								{% include "projects/page/vacancies.html" %}
-							</div>
-							<div role="tabpanel" class="tab-pane" id="edit">
-								{% include "projects/page/edit.html" %}
-							</div>
-					{% endif %}
+						</div>
+					</aside>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-sm-offset-1">
+					<div class="description">
+						<ul id="project-actions" class="nav nav-tabs info-fixed">
+		                    <li class="active"><a href="#description" data-toggle="tab">Description</a></li>
+		                    <li class=""><a href="#team" data-toggle="tab">Team</a></li>
+		                    <li class=""><a href="#discussion" data-toggle="tab">Discussion</a></li>
+		                    {% include "projects/ui/follow_btn.html" %}
+		                </ul>
+		                <div id="project-info" class="tab-content">
+			                <div id="description" class="tab-pane fade active in">
+			                	{{ project.description | safe}}
+			                </div>
+			                <div id="team" class="tab-pane fade active in">		
+
+			                </div>
+			                <div id="discussion" class="tab-pane fade active in">
+
+			                </div>
+			            </div>
+			        </div>
 				</div>
 			</div>
-			<div class="col-md-2" id="project_details">
 
-				<h3>Project</h3>
-				{% include "projects/page/project_info.html" %}
-
-				<h3>Founder</h3>
-				{% include "users/previews/project_founder.html" %}
-			</div>
 		</div>
-	</div>
+
+	</section>
+
 {% endblock %}

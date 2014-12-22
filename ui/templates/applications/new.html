@@ -4,8 +4,6 @@
 {% block body_block %}
 <div class="c">
 
-   {% include "projects/ui/title.html" %}
-
    <form action="/projects/{{ project.id }}/apply/" method="post" class="form">
       {% csrf_token %}
       {{ form.media }}
