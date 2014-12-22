@@ -11,6 +11,6 @@ urlpatterns = patterns('',
     url(r'^(?P<id>\d+)/unfollow/$', unfollow),
     url(r'^(?P<id>\d+)/apply/$', apply),
     url(r'^(?P<id>\d+)/delete/$', delete_project),
-    #url(r'^(?P<id>\d+)/applications', applications),
+    url(r'^(?P<id>\d+)/applications', applications),
     url(r'^(?P<id>\d+)/(?P<app_id>\d+)/$', application),
 )

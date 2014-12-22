@@ -24,7 +24,7 @@ class ProjectPageView(DetailView):
         return Project.objects.get(id=self.kwargs['id'])
 
 class UpdateProjectView(UpdateView):
-    template_name = "projects/page.html"
+    template_name = "projects/edit.html"
     form_class = ProjectForm
 
     def get_object(self):
@@ -33,7 +33,7 @@ class UpdateProjectView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UpdateView, self).get_context_data(**kwargs)
         context['participations'] = self.object.positions.all()
-        context['applications'] = self.object.applications.filter(result='W')
+        context['followers'] = self.object.followers.all()
         return context
 
 class CreateProjectView(CreateView):
@@ -185,4 +185,12 @@ def unfollow(request, id):
         if(request.user.projects_following.filter(id=project.id).count()):
             request.user.projects_following.remove(project)
 
+    return HttpResponseRedirect('/projects/' + str(project.id))
+
+def applications(request, id):
+    project = Project.objects.get(id=id)
+    user = request.user
+
+    if(project.founder == user):
+        return render_to_response('applications/new.html', RequestContext(request, {"applications": project.applications.filter(result='W')}))
     return HttpResponseRedirect('/projects/' + str(project.id))

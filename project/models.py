@@ -61,7 +61,7 @@ class Update(models.Model):
     project = models.ForeignKey(Project, related_name="updates")
     version = models.CharField(max_length=50)
     description = models.TextField()
-    
+
 
 class Vacancy(models.Model):
     #Relations
