@@ -2,7 +2,7 @@ from project.models import Project
 from django.views.generic import TemplateView
 from my_user.models import MyUser
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 class Index(TemplateView):
     template_name = "index.html"
@@ -29,7 +29,8 @@ def login_view(request):
         user = authenticate(username=f['username'], password=f['password'])
         if user is not None:
             login(request, user)
-            return HttpResponse("success", status=200)
+            #return HttpResponse("success", status=200)
+            return HttpResponseRedirect('/')
     return HttpResponse("error")
 
 def register_view(request):
