@@ -12,6 +12,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'^$', Index.as_view(), name='index'),
+    url(r'^about/$', About.as_view(), name='about'),
+    url(r'^features/$', Features.as_view(), name='features'),
     url(r'^users/', include("my_user.urls")),
     url(r'^projects/', include("project.urls")),
 

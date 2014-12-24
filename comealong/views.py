@@ -16,6 +16,12 @@ class Index(TemplateView):
         ]
         return context
 
+class About(TemplateView):
+    template_name = "about.html"
+
+class Features(TemplateView):
+    template_name = "features.html"
+
 def is_username_available(request):
     if(request.POST):
         if MyUser.objects.filter(username=request.POST["username"]).count() > 0:
