@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block title %}
+	{{ project.title }} - ComeAlong
+{% endblock %}
+{% block metatitle %}
+	"{{ project.title }} - ComeAlong"
+{% endblock %}
+{% block ogimage %}
+<meta property="og:image" content="http://comealong.dei.uc.pt{{ project.display_image.url }}"/>
+{% endblock %}
+
+{% block body_block %}
+
+	<section id="content" class="container page edit-project">
+
+		<div class="section cover">
+
+			<div class="row">
+				<form name="edit" action="" method="post" class="form" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ form.media }}
+					<div class="col-xs-12 col-sm-3">
+						<aside class="project">
+							<div class="info info-fixed">
+								<h3>You're editing project:<br><span class="project-name">{{ project }}</span></h3>
+								<button type="submit" value="Update" class="btn btn-default">Save</button>
+							</div>
+						</aside>
+					</div>
+					<div class="col-xs-12 col-sm-8 col-sm-offset-1">
+					   {% bootstrap_form form %}					
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</section>
+
+{% endblock %}

@@ -195,7 +195,6 @@
      }
    });
 
-
    var current;
    $('.section-title .select').on('click', function(){
       current = $(this).find('.selection').html();
@@ -232,23 +231,36 @@
       $('.section-title .select').find('.selection').html(current);
    });
 
+   if($('.page.project-single').length){
+      $('.page.project-single .section.cover').css('margin-top', - $('aside .logo').height());
+      $('.page.project-single .section.cover .description').css('margin-top', $('aside .logo').height());
+   }
+
     // name your elements here
     var stickyElement   = '.info-fixed',   // the element you want to make sticky
         bottomElement   = 'footer'; // the bottom element where you want the sticky element to stop (usually the footer)
     // make sure the element exists on the page before trying to initalize
     if($( stickyElement ).length){
+        var affix;
         $( stickyElement ).each(function(){
+            if ($('.edit-project').length) {
+              affix = $(this).offset().top-20;
+            } else {
+              affix = $("#hero").height()+61;
+            } 
+            console.log($(this));
 
             // let's save some messy code in clean variables
             // when should we start affixing? (the amount of pixels to the top from the element)
-            var fromTop = $("#hero").height()+61,
+            var fromTop = affix,
                 // where is the bottom of the element?
                 fromBottom = $( document ).height()-($( this ).offset().top + $( this ).outerHeight()),
                 // where should we stop? (the amount of pixels from the top where the bottom element is)
                 // also add the outer height mismatch to the height of the element to account for padding and borders
-                stopOn = $( document ).height()-( $( bottomElement ).offset().top)+($( this ).outerHeight() - $( this ).height());
+                stopOn = $( document ).height()-( $( bottomElement ).offset().top-125)+($( this ).outerHeight() - $( this ).height());
             // if the element doesn't need to get sticky, then skip it so it won't mess up your layout
             if( (fromBottom-stopOn) > 200 ){
+              console.log($(this));
                 // let's put a sticky width on the element and assign it to the top
                 $( this ).css('width', $( this ).parent().width()).css('top', 0).css('position', '');
                 // assign the affix to the element

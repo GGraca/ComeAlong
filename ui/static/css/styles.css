@@ -127,10 +127,12 @@ a, a:hover, a:focus {
 /* Cover Background */
 
 .cover {
-  -webkit-background-size: cover;
-     -moz-background-size: cover;
-       -o-background-size: cover;
-          background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: cover;
+	 -moz-background-size: cover;
+	   -o-background-size: cover;
+	      background-size: cover;
 }
 
 /* Overlay */
@@ -290,13 +292,23 @@ a, a:hover, a:focus {
 	font-size: 22px;
 }
 
-#navigation .navbar-nav {
-	padding: 5px 0;
+#navigation .navbar-nav li a {
+	padding: 20px 15px;
 }
 
 #navigation .navbar-nav>li.current>a {
 	color: #333;
 	font-weight: bold;
+}
+
+/* Navigation Notifications */
+
+.notifications {
+	padding: 10px;
+}
+
+#navigation .notifications li {
+	font-size: 12px;
 }
 
 /* Section Styles */
@@ -761,6 +773,7 @@ footer .brand {
 
 .page.project-single #project-actions.info-fixed {
 	position: absolute;
+	width: 100%;
 }
 
 .page.project-single #project-actions.info-fixed.affix {
@@ -791,6 +804,30 @@ footer .brand {
 	margin-top: 10px;
 }
 
+.page.project-single #project-actions button:hover {
+	background: #34495e;
+	border: 0;
+}
+
+.page.project-single #project-actions button:hover i, .page.project-single #project-actions button:hover a {
+	color: white;
+}
+
+.page.project-single #project-actions .btn-group {
+	margin-top: 10px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.page.project-single #project-actions .btn-group button {
+	margin-top: 0;
+	border: 0;
+}
+
+.page.project-single #project-actions .btn-group button a {
+	padding: 20px 5px;
+}
+
 .page.project-single #project-actions li.active a {
 	color: #1a1a1a;
 	font-weight: bold;
@@ -804,4 +841,168 @@ footer .brand {
 .page.project-single #project-info p {
 	font-size: 20px;
 	line-height: 28px;
+}
+
+/* Project Edit Page */
+
+span.project-name {
+	display: block;
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+.page.edit-project aside h3 {
+	line-height: 32px;
+}
+
+.page.edit-project aside button {
+	width: 100%;
+	margin: 25px 0 15px 0;
+	background: #f2f2f2;
+	border: 0;
+	outline: 0;
+}
+
+.page.edit-project aside button:hover {
+	background: #34495e;
+	color: white;
+}
+
+.page.edit-project form label {
+	font-size: 22px;
+}
+
+.page.edit-project .form-group {
+	margin-bottom: 25px;
+}
+
+.page.edit-project .info.affix {
+	background-color: white;
+	border-radius: 5px;
+}
+
+.page.edit-project input, .page.edit-project textarea {
+	border-radius: 0;
+	box-shadow: none;
+	border: 1px solid #ccc !important;
+}
+
+.page.edit-project textarea {
+	height: 75px;
+	resize: none;
+	outline: 0 !important;
+}
+
+.page.edit-project .redactor_editor {
+	min-height: 450px;
+}
+
+#id_avatar, #id_display_image {
+	display: inline-block;
+	border: 0 !important;	
+}
+
+/* Profile Page */
+
+.avatar {
+	width: 100%;
+	height: 200px;
+}
+
+.page.profile .profile-info {
+	border-radius: 5px;
+	overflow: hidden;
+	background-color: white;
+}
+
+.page.profile button {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.page.profile .title {
+	font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+	font-weight: bold;
+	color: #1a1a1a;
+	margin-bottom: 0;
+}
+
+.page.profile .sub-title {
+	margin-bottom: 5px;
+}
+
+.page.profile .location {
+	font-size: 14px;
+}
+
+.page.profile .content {
+	padding: 15px 15px 0 0;
+}
+
+.page.profile .extra-info {
+	border-left: 1px solid #f2f2f2;
+	padding: 15px 25px;	
+}
+
+.page.profile .extra-info ul {
+	font-size: 14px;
+}
+
+.page.profile .extra-info ul.social li a {
+	color: #1a1a1a;
+	opacity: 0.8;
+}
+
+.page.profile .extra-info ul.social li a:hover {
+	color: #1a1a1a;
+	opacity: 1;
+}
+
+.page.profile .extra-info button {
+	background: #f2f2f2;
+	border: 0;
+}
+
+.page.profile .extra-info button a {
+	color: #34495e;
+}
+
+.page.profile .extra-info button:hover {
+	background: #34495e;
+	color: white;
+	border: 0;
+}
+
+.page.profile .extra-info button:hover a {
+	color: white;
+}
+
+.page.profile .nav-tabs {
+	background: rgb(242, 242, 242);
+	margin-bottom: 50px;
+}
+
+.page.profile .nav-tabs li, .page.profile .nav-tabs a {
+	background: none !important;
+	border: 0 !important;
+}
+
+.page.profile .nav-tabs a {
+	color: #777;
+	padding: 20px;
+}
+
+.page.profile .nav-tabs a:hover {
+	background: none;
+	border: 0;
+}
+
+.page.profile .nav-tabs li.active, .page.profile .nav-tabs li:hover {
+	border: 0;
+	border-bottom: 1px solid #1a1a1a !important;
+}
+
+.page.profile .nav-tabs li.active a, .page.profile .nav-tabs li:hover a {
+	color: #1a1a1a;
+	font-weight: bold;
 }

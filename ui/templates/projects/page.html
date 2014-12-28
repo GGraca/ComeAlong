@@ -47,16 +47,12 @@
 					<div class="description">
 						<ul id="project-actions" class="nav nav-tabs info-fixed">
 		                    <li class="active"><a href="#description" data-toggle="tab">Description</a></li>
-		                    <li class=""><a href="#team" data-toggle="tab">Team</a></li>
 		                    <li class=""><a href="#discussion" data-toggle="tab">Discussion</a></li>
 		                    {% include "projects/ui/follow_btn.html" %}
 		                </ul>
 		                <div id="project-info" class="tab-content">
 			                <div id="description" class="tab-pane fade active in">
 			                	{{ project.description | safe}}
-			                </div>
-			                <div id="team" class="tab-pane fade active in">		
-
 			                </div>
 			                <div id="discussion" class="tab-pane fade active in">
 
