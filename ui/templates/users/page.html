@@ -1,39 +1,104 @@
 {% extends "base.html" %}
 
 {% block body_block %}
-	<div class="c">
 
-	{% if user == this_user%}
-		<a style="float:right;" href="/users/{{ this_user.username }}/edit/" class="btn btn-primary" role="button">Edit</a>
-	{% endif %}
 
-		<div style="width:85%; margin: 0 auto;">
-			{% include "users/previews/application.html" %}
+	<section id="content" class="container page profile">
+
+		<div class="section">
+
+			<div class="profile-info">
+
+				<div class="row">
+
+					<div class="col-xs-12 col-sm-3">
+						<div class="avatar cover" style="background-image:url('{{this_user.avatar.url}}')"></div>
+					</div>
+
+					<div class="col-xs-12 col-sm-6">
+						<h2 class="title">{{ this_user.get_full_name }}</h2>
+						{% if this_user.city or this_user.country %}
+					   	<span class="location">
+					   		{% if this_user.city and this_user.country %}
+	                     		{{ this_user.city }}, {{ this_user.country }}
+	                  		{% else %}
+	                     		{{ this_user.city }}{{ this_user.country }}
+	                  		{% endif %}
+	                  	</span>
+	                  	{% endif %}
+	                  	{% if this_user.description %}
+					   	<div class="content">
+					    	<p>{{ this_user.description | safe }}</p>
+					   	</div>	
+					   	{% endif %}				
+					</div>
+
+					<div class="col-xs-12 col-sm-3">
+						<div class="extra-info">
+							{% if this_user.email %}
+							<h4 class="title sub-title">Contacts:</h4>
+							<ul class="list-inline">
+								<li>{{ this_user.email }}</li>
+							</ul>
+							{% endif %}
+							{% if this_user.email or this_user.linkedin or this_user.github %}
+							<h4 class="title sub-title">Social:</h4>
+							<ul class="list-inline social">
+							    {%if this_user.facebook %}
+		         					<li><a href="{{ this_user.facebook }}"><i class="fa fa-facebook fa-lg"></i></a><li>
+		      					{% endif %}
+		      					{%if this_user.linkedin %}
+		         					<li><a href="{{ this_user.linkedin }}"><i class="fa fa-linkedin fa-lg"></i></a><li>
+		      					{% endif %}
+						      	{%if this_user.github %}
+						        	<li><a href="{{ this_user.github }}"><i class="fa fa-github fa-lg"></i></a><li>
+						      	{% endif %}
+						    </ul>
+							{% endif %}
+							{% if user == this_user%}
+								<button class="btn btn-default"><a href="/users/{{ this_user.username }}/edit/">Edit Profile</a></button>
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
 		</div>
 
-		<div style="text-align: center;">
-			<h3>Description</h3>
+		<div class="section">
+
+			<div class="row">
+
+				<div class="col-xs-12">
+					<ul id="user-actions" class="nav nav-tabs">
+	                    <li class="active"><a href="#projects-founded" data-toggle="tab">Projects Founded</a></li>
+	                    <li class=""><a href="#projects-participated" data-toggle="tab">Projects Participated</a></li>
+	                </ul>
+	                <div id="user-info" class="tab-content">
+		                <div id="projects-founded" class="tab-pane fade active in">
+		                	<div class="row">
+								{% with projects=this_user.projects_owned.all %}
+									{% include "projects/project_list_discover.html" %}
+								{% endwith %}
+							</div>
+		                </div>
+		                <div id="projects-participated" class="tab-pane fade active in">
+		                	<div class="row">
+			                	{% with projects=this_user.projects_participated.all %}
+									{% include "projects/project_list.html" %}
+								{% endwith %}
+							</div>
+		                </div>
+		            </div>
+				</div>
+
+
+			</div>
+
 		</div>
-		<div class="description">
-			{{ this_user.description | safe }}
-		</div>
 
-		<div style="text-align: center;">
-			<h3>Projects Founded</h3>
-		</div>
-
-		{% with projects=this_user.projects_owned.all %}
-			{% include "projects/project_list.html" %}
-		{% endwith %}
-
-
-		<div style="text-align: center;">
-			<h3>Projects Participated</h3>
-		</div>
-		{% with projects=this_user.projects_participated.all %}
-			{% include "projects/project_list.html" %}
-		{% endwith %}
-
-	</div>
+	</section>
 
 {% endblock %}
