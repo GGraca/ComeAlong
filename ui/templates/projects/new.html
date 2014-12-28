@@ -2,16 +2,30 @@
 {% load bootstrap3 %}
 
 {% block body_block %}
-<div class="c">
-	<form action="" method="post" class="form" enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ form.media }}
-		{% bootstrap_form form %}
-  		{% buttons %}
-			<button type="submit" value="Create" class="btn btn-primary">
-	      	{% bootstrap_icon "star" %} Submit
-	    	</button>
-		{% endbuttons %}
-	</form>
-</div>
+
+<section id="content" class="container page edit-project">
+
+	<div class="section cover">
+
+		<div class="row">
+			<form action="" method="post" class="form" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.media }}
+				<div class="col-xs-12 col-sm-3">
+					<aside class="project">
+						<div class="info info-fixed">
+							<h3>You're creating a new project.</h3>
+							<button type="submit" value="Update" class="btn btn-default">Create</button>
+						</div>
+					</aside>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-sm-offset-1">
+				   {% bootstrap_form form %}					
+				</div>
+			</form>
+		</div>
+	</div>
+
+</section>
+
 {% endblock %}
