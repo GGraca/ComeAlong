@@ -942,6 +942,7 @@ span.project-name {
 .page.profile .extra-info {
 	border-left: 1px solid #f2f2f2;
 	padding: 15px 25px;	
+	height: 200px;
 }
 
 .page.profile .extra-info ul {
