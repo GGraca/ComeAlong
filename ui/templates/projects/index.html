@@ -1,14 +1,36 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block body_block %}
 
-	<!-- Search Area -->
-	<div id="search_area">
-	</div>
+	<section id="content" class="container">
 
-	<!-- Search Results -->
-	<div id="search_results" class="project_container">
-		{% include "projects/project_list.html" %}
-	</div>
+		<div class="section">
+
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="section-title single">You're seeing <span class="select"><span class="selection">All</span> <img src="{% static 'img/down.png' %}" alt="Select Project"/></span> Projects</h2>
+				</div>
+			</div>
+			<div id="projects" class="latest-projects">
+				<div class="row">
+					{% include "projects/project_list_discover.html" %}	
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section id="call-to-action">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<p>Come Along is a new way of making and sharing projects with the help of the community. The concept is simple, everybody can be both a creator or a contributor to other people's ideas.</p>
+					<p>Want to join a project, or start your own?</p>
+
+					<button class="btn btn-default"><a href="#signin" data-toggle="modal" data-target="#signup-signin-md">Join Now</a></button>
+				</div>
+			</div>
+		</div>
+	</section>
 
 {% endblock %}

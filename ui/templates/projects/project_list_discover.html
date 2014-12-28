@@ -1,0 +1,23 @@
+{% for p in projects %}
+<div class="col-xs-12 col-sm-6 col-md-3 project-container life">
+   <div class="project">
+      <div class="image cover" style="background-image: url('{{p.display_image.url}}');"></div>
+      <div class="info">
+         <a href="/projects/{{ p.id }}/">
+            <h3 class="title">{{ p.title }}</h3>
+         </a>
+         <span class="author">by {{ p.founder.get_full_name }}</span>
+         <div class="content">
+            <p>{{ p.short_description }}</p>
+         </div>
+         <div class="bottom-info">
+            <ul class="list-inline vancancies">
+               {% for v in p.vacancies.all %}
+                  {% include "projects/ui/vacancy.html" %}
+               {% endfor %}
+            </ul>
+         </div>     
+      </div>
+   </div>
+</div>
+{% endfor %}

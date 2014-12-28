@@ -47,6 +47,10 @@ a, a:hover, a:focus {
 	color: #34495e;
 }
 
+.btn-default[disabled] {
+	background: #f2f2f2;
+}
+
 .single.project .btn-default:hover {
 	background: #34495e;
 	border: 0;
@@ -635,7 +639,7 @@ footer .brand {
 /* Discover Select Options */
 
 .select-options {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -712,10 +716,7 @@ footer .brand {
 	margin-bottom: 50px;
 }
 
-.member .info {.page.project-single #project-info p {
-	font-size: 20px;
-	line-height: 28px;
-}
+.member .info {
 	margin-top: -80px;
 }
 
@@ -724,6 +725,11 @@ footer .brand {
 	font-weight: bold;
 	color: #1a1a1a;
 	margin-bottom: 5px;	
+}
+
+.page.project-single #project-info p {
+	font-size: 20px;
+	line-height: 28px;
 }
 
 /* Project Page */ 
