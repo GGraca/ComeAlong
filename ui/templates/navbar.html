@@ -18,18 +18,26 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-        <li><a href="/users/{{ user.username }}">{{ user.get_short_name }}</a></li>
-        <li><a href="/projects/new/">Create</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ user.notifications.count }}</a>
-          <ul class="dropdown-menu" role="menu">
-            {% for n in user.notifications.unread %}
-              <li><a href="#">{{ n }}</a></li>
-            {% endfor %}
-            <li class="divider"></li>
+          <ul class="dropdown-menu notifications" role="menu">
+            {% if user.notifications.unread %}
+              {% for n in user.notifications.unread %}
+                <li><a href="#">{{ n }}</a></li>
+              {% endfor %}
+            {% else %}
+              <li>No new notifications.</li>
+            {% endif %}
           </ul>
         </li>
-        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ user.get_short_name }}</a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/users/{{ user.username }}">Profile</a></li>
+            <li><a href="/projects/new/">Create Project</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>       
+        <li>
         {% else %}
         <li><a href="#signin" data-toggle="modal" data-target="#signup-signin-md">Sign In</a></li>
         <li><a href="#signup" data-toggle="modal" data-target="#signup-signin-md">Sign Up</a></li>
