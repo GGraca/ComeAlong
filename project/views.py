@@ -1,40 +1,12 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from django.http import  HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.core.context_processors import csrf
 from django.views.generic import TemplateView, DetailView, UpdateView, CreateView
 from notifications import *
 
 from models import *
 from forms import  *
-
-
-class ProjectsIndex(TemplateView):
-    template_name = "projects/index.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(TemplateView, self).get_context_data(**kwargs)
-        context['projects'] = Project.objects.all().order_by("id").reverse()
-        return context
-
-class ProjectPageView(DetailView):
-    template_name = "projects/page.html"
-
-    def get_object(self):
-        return Project.objects.get(id=self.kwargs['id'])
-
-class UpdateProjectView(UpdateView):
-    template_name = "projects/edit.html"
-    form_class = ProjectForm
-
-    def get_object(self):
-        return Project.objects.get(id=self.kwargs['id'])
-
-    def get_context_data(self, **kwargs):
-        context = super(UpdateView, self).get_context_data(**kwargs)
-        context['participations'] = self.object.positions.all()
-        context['followers'] = self.object.followers.all()
-        return context
 
 class CreateProjectView(CreateView):
     form_class = ProjectForm
@@ -54,7 +26,36 @@ class CreateProjectView(CreateView):
 
         return super(CreateView, self).form_valid(form)
 
-#class Delete
+
+class UpdateProjectView(UpdateView):
+    template_name = "projects/edit.html"
+    form_class = ProjectForm
+
+    def get_object(self):
+        return Project.objects.get(id=self.kwargs['id'])
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateView, self).get_context_data(**kwargs)
+        context['participations'] = self.object.positions.all()
+        context['followers'] = self.object.followers.all()
+        return context
+
+
+class ProjectPageView(DetailView):
+    template_name = "projects/page.html"
+
+    def get_object(self):
+        return Project.objects.get(id=self.kwargs['id'])
+
+
+class ProjectsIndex(TemplateView):
+    template_name = "projects/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        context['projects'] = Project.objects.all().order_by("id").reverse()
+        return context
+
 
 def delete_project(request, id):
     project = Project.objects.get(id=id)
@@ -194,3 +195,21 @@ def applications(request, id):
     if(project.founder == user):
         return render_to_response('applications/new.html', RequestContext(request, {"applications": project.applications.filter(result='W')}))
     return HttpResponseRedirect('/projects/' + str(project.id))
+
+
+#Vacancies
+class CreateVacancyView(CreateView):
+    form_class = VacancyForm
+
+    def form_valid(self, form):
+        project = Project.objects.get(id=self.kwargs['id'])
+        user = self.request.user
+
+        if(self.request.user == project.founder):
+            self.object = form.save(commit=False)
+            self.object.project = project
+            self.object.save()
+
+            return super(CreateView, self).form_valid(form)
+        else:
+            return HttpResponseForbidden()

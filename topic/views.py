@@ -1,3 +1,5 @@
 from django.shortcuts import render
+from django.http import  HttpResponse
 
-# Create your views here.
+def teste(request, project_id):
+    return HttpResponse("success!")

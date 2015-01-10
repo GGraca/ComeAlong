@@ -1,5 +1,5 @@
 from django import forms
-from models import Project, Application
+from models import Project, Application, Vacancy
 from redactor.widgets import RedactorEditor
 
 class ProjectForm(forms.ModelForm):
@@ -38,3 +38,9 @@ class AcceptApplicationForm(forms.Form):
         for r in app.roles.all():
             choices += [[r.title, r.title]]
         self.fields["roles"] = forms.MultipleChoiceField(choices = choices, widget  = forms.CheckboxSelectMultiple)
+
+
+class VacancyForm(forms.ModelForm):
+    class Meta:
+        model = Vacancy
+        fields = ("title",  "total")
