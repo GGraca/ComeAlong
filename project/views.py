@@ -2,7 +2,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.core.context_processors import csrf
-from django.views.generic import TemplateView, DetailView, UpdateView, CreateView
+from django.views.generic import TemplateView, DetailView, UpdateView, CreateView, DeleteView
 from notifications import *
 
 from models import *
@@ -224,3 +224,23 @@ class CreateVacancyView(CreateView):
             return HttpResponse()
         else:
             return HttpResponseForbidden()
+
+class UpdateVacancyView(UpdateView):
+    form_class = ProjectForm
+
+    def get_object(self):
+        return Vacancies.object.get(id=self.kwargs['vacancy_id'])
+
+    def form_valid(self, form):
+        project = Project.objects.get(id=self.kwargs['project_id'])
+        user = self.request.user
+
+        if(user == project.founder):
+            self.object.save()
+            return HttpResponse()
+        else:
+            return HttpResponseForbidden()
+
+class DeleteVacancyView(DeleteView):
+    model = Vacancy
+    success_url = HttpResponse()
