@@ -221,6 +221,6 @@ class CreateVacancyView(CreateView):
             self.object.available = self.object.total
             self.object.save()
 
-            return super(CreateView, self).form_valid(form)
+            return HttpResponse()
         else:
             return HttpResponseForbidden()
