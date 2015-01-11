@@ -18,8 +18,8 @@
 		<div class="section cover">
 
 			<div class="row">
+				{% csrf_token %}
 				<form name="edit" action="" method="post" class="form" enctype="multipart/form-data">
-					{% csrf_token %}
 					{{ form.media }}
 					<div class="col-xs-12 col-sm-3">
 						<aside class="project">
@@ -37,5 +37,6 @@
 		</div>
 
 	</section>
+
 
 {% endblock %}

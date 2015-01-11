@@ -29,6 +29,11 @@ a, a:hover, a:focus {
 	position: relative;
 	letter-spacing: 2px;
 	border-color: white;
+	outline: none !important;
+}
+
+.btn:active {
+	box-shadow: 0;
 }
 
 .btn-move {
@@ -1006,4 +1011,17 @@ span.project-name {
 .page.profile .nav-tabs li.active a, .page.profile .nav-tabs li:hover a {
 	color: #1a1a1a;
 	font-weight: bold;
+}
+
+.edit-vacancy .vacancy .input-group-addon {
+	width: 50%;
+	text-align: center;
+}
+
+.edit-vacancy .vacancy .delete-vacancy.disabled {
+	opacity: 0.6;
+}
+
+.edit-vacancy .vacancy .delete-vacancy:not(.disabled), .edit-vacancy .vacancy .undo-vacancy {
+	cursor: pointer;
 }

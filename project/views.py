@@ -198,8 +198,8 @@ def applications(request, id):
 
 
 #Vacancies
-class Index(TemplateView):
-    template_name = "project/vacancies/index.html"
+class EditVacanciesView(TemplateView):
+    template_name = "projects/edit-vacancy.html"
 
     def get_context_data(self, **kwargs):
         project = Project.objects.get(id=self.kwargs['id'])
@@ -226,13 +226,13 @@ class CreateVacancyView(CreateView):
             return HttpResponseForbidden()
 
 class UpdateVacancyView(UpdateView):
-    form_class = ProjectForm
+    form_class = VacancyForm
 
     def get_object(self):
-        return Vacancies.object.get(id=self.kwargs['vacancy_id'])
+        return Vacancy.objects.get(id=self.kwargs['vacancy_id'])
 
     def form_valid(self, form):
-        project = Project.objects.get(id=self.kwargs['project_id'])
+        project = Project.objects.get(id=self.kwargs['id'])
         user = self.request.user
 
         if(user == project.founder):

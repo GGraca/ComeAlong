@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block title %}
+	{{ project.title }} - ComeAlong
+{% endblock %}
+{% block metatitle %}
+	"{{ project.title }} - ComeAlong"
+{% endblock %}
+{% block ogimage %}
+<meta property="og:image" content="http://comealong.dei.uc.pt{{ project.display_image.url }}"/>
+{% endblock %}
+
+{% block body_block %}
+
+	<section id="content" class="container page edit-project">
+
+		<div class="section edit-vacancy">
+
+			<div class="row">
+			{% csrf_token %}
+				<div class="col-xs-12 col-sm-3">
+					<aside class="project">
+						<div class="info info-fixed">
+							<h3>You're editing project vacancies</h3>
+							<button type="submit" value="Update" class="btn btn-default" id="submit-vacancy">Save</button>
+						</div>
+					</aside>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-sm-offset-1">
+                    <form id="vacancies">
+                        {% for v in vacancies %}
+                            <div id="{{ v.id }}" class="row form-group vacancy old">
+                                <div class="col-xs-2">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">{{ v.closed }}</div>
+                                        <input type="number" class="form-control number" placeholder="0" min="{% if v.closed > 1 %}{{ v.closed }}{% else %}1{% endif %}" value="{{ v.total }}" >
+                                    </div>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input type="text" class="form-control name" placeholder="Title" value="{{ v }}" >
+                                </div>
+                                <div class="col-xs-1 action">
+                                    <div class="delete-vacancy {% if v.closed >= 1 %}disabled{% endif %}"><i class="fa fa-times"></i></div>
+                                    <div class="undo-vacancy hide"><i class="fa fa-undo"></i></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <hr/>
+                    </form>
+                    <button class="btn btn-default" id="add-vacancy">Add Vancancy</button>		
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+{% endblock %}

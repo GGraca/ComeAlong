@@ -10,10 +10,10 @@ comments = patterns('',
 
 #Vacancies
 vacancies = patterns('',
-    url(r'^$', ProjectsIndex.as_view()),
+    url(r'^edit/$', EditVacanciesView.as_view()),
     url(r'^new/$', CreateVacancyView.as_view()),
     url(r'^(?P<vacancy_id>\d+)/edit/$', UpdateVacancyView.as_view()),
-    url(r'^(?P<vacancy_id>\d+)/delete/$', DeleteVacancyView.as_view()),
+    url(r'^(?P<pk>\d+)/delete/$', DeleteVacancyView.as_view()),
 )
 
 #Projects
