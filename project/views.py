@@ -198,6 +198,16 @@ def applications(request, id):
 
 
 #Vacancies
+class Index(TemplateView):
+    template_name = "project/vacancies/index.html"
+
+    def get_context_data(self, **kwargs):
+        project = Project.objects.get(id=self.kwargs['id'])
+
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        context['vacancies'] = project.vacancies.all()
+        return context
+
 class CreateVacancyView(CreateView):
     form_class = VacancyForm
 
@@ -205,9 +215,10 @@ class CreateVacancyView(CreateView):
         project = Project.objects.get(id=self.kwargs['id'])
         user = self.request.user
 
-        if(self.request.user == project.founder):
+        if(user == project.founder):
             self.object = form.save(commit=False)
             self.object.project = project
+            self.object.available = self.object.total
             self.object.save()
 
             return super(CreateView, self).form_valid(form)
