@@ -174,17 +174,11 @@ def follow(request, id):
 
     if(request.POST):
         if(project.founder != user):
-            user.projects_following.add(project)
+            if(project in user.projects_following.all()):
+                user.projects_following.remove(project)
+            else:
+                user.projects_following.add(project)
 
-    return HttpResponseRedirect('/projects/' + str(project.id))
-
-def unfollow(request, id):
-    project = Project.objects.get(id=id)
-    user = request.user
-
-    if(request.POST):
-        if(request.user.projects_following.filter(id=project.id).count()):
-            request.user.projects_following.remove(project)
 
     return HttpResponseRedirect('/projects/' + str(project.id))
 
@@ -236,11 +230,28 @@ class UpdateVacancyView(UpdateView):
         user = self.request.user
 
         if(user == project.founder):
+            old = Vacancy.objects.get(id=self.kwargs['vacancy_id'])
+            closed = old.total-old.available
+            self.object.available = self.object.total-closed
             self.object.save()
+
             return HttpResponse()
         else:
             return HttpResponseForbidden()
 
-class DeleteVacancyView(DeleteView):
-    model = Vacancy
-    success_url = HttpResponse()
+#class DeleteVacancyView(DeleteView):
+#    model = Vacancy
+#    success_url = HttpResponse()
+
+def delete_vacancy(request, id, vacancy_id):
+    project = Project.objects.get(id=id)
+    user = request.user
+
+    #if(request.POST):
+    if(user == project.founder):
+        vacancy = Vacancy.objects.get(id=vacancy_id)
+        vacancy.delete()
+        return HttpResponse()
+    else:
+        return HttpResponseForbidden()
+    #return HttpResponse()

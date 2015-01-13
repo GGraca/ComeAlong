@@ -13,7 +13,8 @@ vacancies = patterns('',
     url(r'^edit/$', EditVacanciesView.as_view()),
     url(r'^new/$', CreateVacancyView.as_view()),
     url(r'^(?P<vacancy_id>\d+)/edit/$', UpdateVacancyView.as_view()),
-    url(r'^(?P<pk>\d+)/delete/$', DeleteVacancyView.as_view()),
+    #url(r'^(?P<pk>\d+)/delete/$', DeleteVacancyView.as_view()),
+    url(r'^(?P<vacancy_id>\d+)/delete/$', delete_vacancy),
 )
 
 #Projects
@@ -27,7 +28,6 @@ urlpatterns = patterns('',
     url(r'^(?P<id>\d+)/$', ProjectPageView.as_view()),
 
     url(r'^(?P<id>\d+)/follow/$', follow),
-    url(r'^(?P<id>\d+)/unfollow/$', unfollow),
 
     url(r'^(?P<id>\d+)/vacancies/', include(vacancies)),
     #url(r'^(?P<id>\d+)/recruit/$', recruit),

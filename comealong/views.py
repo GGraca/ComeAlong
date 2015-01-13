@@ -42,7 +42,8 @@ def login_view(request):
 def register_view(request):
     if(request.POST):
         f = request.POST
-        user = MyUser.objects.create_user(f['username'], f['email'], f['password'], first_name=f['firstname'], last_name=f['lastname'])
-        if user is not None:
+        if not (MyUser.objects.get(username=f['username']) or MyUser.objects.get(email=f['email'])):
+            user = MyUser(f['username'], f['email'], f['password'], first_name=f['firstname'], last_name=f['lastname'])
+            user.save()
             return HttpResponse("success", status=200)
     return HttpResponse("error")
