@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["comealong.dei.uc.pt", "www.comealong.dei.uc.pt"]
 
 
 # Application definition
@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'bootstrap3',
     'redactor',
-    'debug_toolbar',
+    #'debug_toolbar',
 
     'my_user',
     'project',
@@ -58,7 +58,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -73,7 +73,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 ROOT_URLCONF = 'comealong.urls'
 
-#WSGI_APPLICATION = 'comealong.wsgi.application'
+WSGI_APPLICATION = 'comealong.wsgi.application'
 
 
 # Database
