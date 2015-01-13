@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'idi2wp2c6-$zz=+yqqfw*w*ttmd^s8@h$k)lx)!tz7uy&-er$h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -135,10 +135,10 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '725531677540887'
-#SOCIAL_AUTH_FACEBOOK_KEY = '745274525566602'
-SOCIAL_AUTH_FACEBOOK_SECRET = '5a64571fb9155326f8b69ee92aa77b7b'
-#SOCIAL_AUTH_FACEBOOK_SECRET = 'bf2114bc3d9477a25abfa6fac6e54cda'
+#SOCIAL_AUTH_FACEBOOK_KEY = '725531677540887'
+SOCIAL_AUTH_FACEBOOK_KEY = '745274525566602'
+#SOCIAL_AUTH_FACEBOOK_SECRET = '5a64571fb9155326f8b69ee92aa77b7b'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'bf2114bc3d9477a25abfa6fac6e54cda'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['public_profile', 'email']
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
