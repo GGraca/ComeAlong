@@ -1061,3 +1061,51 @@ span.project-name {
 .edit-vacancy .vacancy .delete-vacancy:not(.disabled), .edit-vacancy .vacancy .undo-vacancy {
 	cursor: pointer;
 }
+
+.application-form .user-information .cover {
+	float: left;
+	height: 40px;
+	width: 40px;
+	border-radius: 40px;
+}
+
+.application-form .user-information h3 {
+	float: left;
+	margin-left: 15px;
+	margin-top: 7px;
+}
+
+.application-form .user-information button {
+	float: right;
+}
+
+aside.project button a {
+	color: #333;
+}
+
+aside.project button a:hover {
+	color: white;
+}
+
+.application-form .application-information {
+	margin-left: 55px;
+}
+
+.application-form .application-information p {
+	font-size: 18px;
+	width: 80%;
+}
+
+.application-form hr {
+	border-top: 1px solid white;
+}
+
+.application-form .application-information .vacancies {
+	font-size: 14px;
+	width: 80%;
+}
+
+.application-form .application-information .vacancy {
+	display: inline-block;
+	margin-right: 15px;
+}

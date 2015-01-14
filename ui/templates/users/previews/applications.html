@@ -1,20 +1,28 @@
-<div class="profile_container">
+<form class="application-form">
 
-   <div class="img_container">
-      <div class="image img_small" style="background-image:url('{{this_user.avatar.url}}')" id="user_{{ this_user }}"></div>
+   <div class="user-information">
+      <div class="cover" style="background-image:url('{{this_user.avatar.url}}');" id="user_{{ this_user }}"></div>
+      <h3>{{ this_user.get_full_name }}</h3>
+      <button type="submit" class="btn btn-default application-button">Accept</button>
    </div>
-   <div style="float:left; margin: 10px;; margin-right: -50px;">
-      <h4>{{ this_user.get_full_name }}</h4>
-      <h5>
+   <div class="clearfix"></div>
+   <div class="application-information">
+      <div class="pitch">
+         {{ a.pitch | safe }}
+      </div>
+      <div class="vacancies">
+         
          {% for i in items %}
-            {% if forloop.last %}
-               {{ i }}
-            {% else %}
-               {{ i }},
-            {% endif %}
+            <div class="vacancy">
+               <input type="checkbox" name="{{ i }}" value="{{ i }}" checked /> {{ i }}
+            </div>
          {% endfor %}
-      </h5>
+         
+      </div>
    </div>
-   <a style="float:right; margin-top: 35px; margin-right: 10px;" href="/projects/{{ project.id }}/{{ a.id }}/" class="btn btn-primary" role="button">View</a>
 
-</div>
+   <hr/>
+   
+</form>
+
+

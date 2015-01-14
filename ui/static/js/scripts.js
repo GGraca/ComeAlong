@@ -100,6 +100,28 @@
         login(user,pass);
     });
 
+    function login(user,pass) {
+        $.ajax({
+            url : "/login/",
+            type : "POST",
+            data : { username : user, password: pass },
+
+            success : function(json) {
+                if (json == 'error') {
+                    $("#signin-error").show();
+                } else if (json == 'success') {
+                    window.location = document.URL
+                }
+            },
+
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
+
+    // Register
+
     $(document).on('click', '#submit-signup', function(){
         event.preventDefault();
         $("#signup-error").hide();
@@ -128,7 +150,34 @@
             $("#signup-error").show();
             return false
         } 
+
+        register(firstname,lastname,username,email,password);
     });
+
+    function register(firstname,lastname,username,email,password) {
+        console.log('entrou no registo');
+        $.ajax({
+            url : "/register/",
+            type : "POST",
+            data : { firstname : firstname, lastname: lastname, username: username, email: email, password: password, csrfmiddlewaretoken:  $("input[name$='csrfmiddlewaretoken']").val() },
+
+            success : function(json) {
+                if (json == 'invalid username') {
+                    $("#signup-error").html('Username already in use.');
+                    $("#signup-error").show();
+                } else if (json == 'invalid email') {
+                    $("#signup-error").html('Email already in use.');
+                    $("#signup-error").show();
+                } else {
+                    login(username,password);
+                }
+            },
+
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
 
     $(document).on('click', 'a[data-target="#signup-signin-md"]', function(){
         var link = $(this).attr('href');
@@ -150,26 +199,6 @@
         var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return regex.test(email);
     } 
-
-    function login(user,pass) {
-        $.ajax({
-            url : "../login/",
-            type : "POST",
-            data : { username : user, password: pass },
-
-            success : function(json) {
-                if (json == 'error') {
-                    $("#signin-error").show();
-                } else if (json == 'success') {
-                    window.location = "/"
-                }
-            },
-
-            error : function(xhr,errmsg,err) {
-                console.log(xhr.status + ": " + xhr.responseText);
-            }
-        });
-    }
 
     // Vacancies 
 

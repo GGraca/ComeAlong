@@ -43,13 +43,12 @@ def register_view(request):
     if(request.POST):
         f = request.POST
 
-        if MyUser.objects.get(username=f['username']):
+        if MyUser.objects.filter(username=f['username']).count():
             return HttpResponse("invalid username")
-        if MyUser.objects.get(email=f['email']):
+        if MyUser.objects.filter(email=f['email']).count():
             return HttpResponse("invalid email")
 
-        user = MyUser(f['username'], f['email'], f['password'], first_name=f['firstname'], last_name=f['lastname'])
-        user.save()
+        user = MyUser.objects.create_user(f['username'], f['email'], f['password'], first_name=f['firstname'], last_name=f['lastname'])
         return HttpResponse("success", status=200)
 
     return HttpResponse("error")
