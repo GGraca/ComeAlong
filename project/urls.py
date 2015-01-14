@@ -34,6 +34,6 @@ urlpatterns = patterns('',
 
     url(r'^(?P<id>\d+)/apply/$', apply),
     url(r'^(?P<id>\d+)/applications', applications),
-    url(r'^(?P<id>\d+)/(?P<app_id>\d+)/$', application),
+    url(r'^(?P<id>\d+)/applications/(?P<app_id>\d+)/$', application),
     url(r'^(?P<project_id>\d+)/topics/', include("topic.urls")),
 )

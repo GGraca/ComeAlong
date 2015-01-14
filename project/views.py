@@ -71,6 +71,7 @@ def delete_project(request, id):
 
 
 def application(request, id, app_id):
+    print "cenas"
     project = Project.objects.get(id=id)
     application = Application.objects.filter(id = app_id).first()
 

@@ -155,7 +155,6 @@
     });
 
     function register(firstname,lastname,username,email,password) {
-        console.log('entrou no registo');
         $.ajax({
             url : "/register/",
             type : "POST",
@@ -199,6 +198,37 @@
         var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return regex.test(email);
     } 
+
+    // Accept Applications
+
+    $(document).on('submit', '.application-form', function(){
+        event.preventDefault();
+        var apply = $(this).attr('id');
+        var roles = [];
+
+        $('#' + apply + ' input[type="checkbox"]:checked').each(function() {
+            roles.push($(this).attr('name'));
+        }); 
+        console.log(roles);
+        acceptApply(apply, roles);
+    });
+
+    function acceptApply(id, roles) {
+        console.log(id);
+        $.ajax({
+            url : "./applications/" + id + "/",
+            type : "POST",
+            data : { roles: roles, csrfmiddlewaretoken:  $("input[name$='csrfmiddlewaretoken']").val() },
+
+            success : function(json) {
+                console.log(json);
+            },
+
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
 
     // Vacancies 
 
