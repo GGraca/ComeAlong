@@ -3,7 +3,7 @@
 
     if ($('[data-toggle="tooltip"]').length > 0) {
         $('[data-toggle="tooltip"]').tooltip();
-    }  
+    }
 
    var $container = $('#projects .row').isotope({
      itemSelector: '.project-container',
@@ -213,7 +213,7 @@
         $('#' + apply + ' input[type="checkbox"]:checked').each(function() {
             roles.push($(this).attr('value'));
             $(this).parent().remove();
-        }); 
+        });
 
         if ($('#' + apply + ' input[type="checkbox"]').length == 0){
             $('#' + apply + '').remove();
@@ -236,6 +236,29 @@
             }
         });
     }
+
+    //Follow
+
+    $(document).on('click', '#follow-project', function(){
+      event.preventDefault();
+      var button = $(this);
+      $.ajax({
+        url : "follow/",
+        type : "POST",
+
+        success : function(json) {
+          button.html(json);
+          if(json == "Follow")
+            button.removeClass("btn-following")
+          else if(json == "Following")
+            button.addClass("btn-following")
+        },
+
+        error : function(xhr,errmsg,err) {
+          console.log(xhr.status + ": " + xhr.responseText);
+        }
+      });
+    });
 
     // Vacancies
 

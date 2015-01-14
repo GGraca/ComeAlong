@@ -167,15 +167,16 @@ def follow(request, id):
     project = Project.objects.get(id=id)
     user = request.user
 
-    if(request.POST):
-        if(project.founder != user):
-            if(project in user.projects_following.all()):
-                user.projects_following.remove(project)
-            else:
-                user.projects_following.add(project)
+    #if(request.POST):
+    if(project.founder != user):
+        if(project in user.projects_following.all()):
+            user.projects_following.remove(project)
+            return HttpResponse("Follow")
+        else:
+            user.projects_following.add(project)
+            return HttpResponse("Following")
 
-
-    return HttpResponseRedirect('/projects/' + str(project.id))
+    return HttpResponse("a")
 
 def applications(request, id):
     project = Project.objects.get(id=id)

@@ -7,12 +7,16 @@
   	<div class="btn-group pull-right">
   		<button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Moderate Applications"><a href="/projects/{{ project.id }}/applications/"><i class="fa fa-group fa-lg"></i></a></button>
   		<button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Edit Vacancies"><a href="/projects/{{ project.id }}/vacancies/edit/"><i class="fa fa-briefcase fa-lg"></i></a></button>
-	    <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Edit Project"><a href="/projects/{{ project.id }}/edit/"><i class="fa fa-edit fa-lg"></i></a></button>    
+	    <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Edit Project"><a href="/projects/{{ project.id }}/edit/"><i class="fa fa-edit fa-lg"></i></a></button>
 	</div>
 
   {% else %}
 
-    <button class="btn btn-default pull-right"><a href="/projects/{{ project.id }}/follow/">Follow</a></button>
+    {% if project in user.projects_following.all %}
+    <button class="btn btn-default pull-right btn-following" id="follow-project">Following</button>
+    {% else %}
+    <button class="btn btn-default pull-right" id="follow-project">Follow</button>
+    {% endif %}
 
   {% endif %}
 
