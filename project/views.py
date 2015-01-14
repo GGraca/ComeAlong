@@ -75,39 +75,28 @@ def application(request, id, app_id):
     application = Application.objects.filter(id = app_id).first()
 
     if (not application) or (project.founder != request.user):
-        return HttpResponseRedirect('/projects/' + str(project.id))
+        return HttpResponseForbidden()
 
     if(request.POST):
-        form = AcceptApplicationForm(application, request.POST);
-        if(form.is_valid()):
+        participation = Participation.objects.filter(project=project, user=application.user).first()
+        if( not participation):
+            participation = Participation(project=application.project, user=application.user)
+            participation.save()
 
-            participation = Participation.objects.filter(project=project, user=application.user).first()
-            if( not participation):
-                participation = Participation(project=application.project, user=application.user)
-                participation.save()
+        for r in request.POST["roles"]:
+            #check later
+            application.roles.filter(title = r).first().delete()
+            v = project.vacancies.filter(title = r).first()
+            v.available -= 1
+            v.save()
 
+            title = Title(participation=participation, title=r)
+            title.save()
 
-            for r in form.cleaned_data["roles"]:
-                application.roles.filter(title = r).first().delete()
-                v = project.vacancies.filter(title = r).first()
-                v.available -= 1
-                v.save()
+        notify.send(project.founder, recipient=participation.user, verb="accepted your application for", action_object=project)
 
-                title = Title(participation=participation, title=r)
-                title.save()
-
-            notify.send(project.founder, recipient=participation.user, verb="accepted your application for", action_object=project)
-
-            return HttpResponseRedirect('/projects/' + str(project.id))
-
-    else:
-        form = AcceptApplicationForm(application);
-
-    args = {"application": application, "project": project}
-    args.update(csrf(request))
-    args['form'] = form
-
-    return render_to_response("applications/page.html", RequestContext(request, args))
+        return HttpResponse()
+    return HttpResponseForbidden()
 
 def apply(request, id):
     project = Project.objects.get(id=id)

@@ -42,8 +42,14 @@ def login_view(request):
 def register_view(request):
     if(request.POST):
         f = request.POST
-        if not (MyUser.objects.get(username=f['username']) or MyUser.objects.get(email=f['email'])):
-            user = MyUser(f['username'], f['email'], f['password'], first_name=f['firstname'], last_name=f['lastname'])
-            user.save()
-            return HttpResponse("success", status=200)
+
+        if MyUser.objects.get(username=f['username'])
+            return HttpResponse("invalid username")
+        if MyUser.objects.get(email=f['email'])
+            return HttpResponse("invalid email")
+
+        user = MyUser(f['username'], f['email'], f['password'], first_name=f['firstname'], last_name=f['lastname'])
+        user.save()
+        return HttpResponse("success", status=200)
+        
     return HttpResponse("error")
