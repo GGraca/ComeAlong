@@ -1,3 +1,4 @@
+from pprint import pprint
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
@@ -71,7 +72,6 @@ def delete_project(request, id):
 
 
 def application(request, id, app_id):
-    print "cenas"
     project = Project.objects.get(id=id)
     application = Application.objects.filter(id = app_id).first()
 
@@ -84,15 +84,20 @@ def application(request, id, app_id):
             participation = Participation(project=application.project, user=application.user)
             participation.save()
 
-        for r in request.POST["roles"]:
-            #check later
-            application.roles.filter(title = r).first().delete()
-            v = project.vacancies.filter(title = r).first()
-            v.available -= 1
-            v.save()
 
-            title = Title(participation=participation, title=r)
-            title.save()
+        for r in request.POST.getlist("roles[]"):
+            title = application.roles.filter(id = r)
+            if(title.count()):
+                title = title[0]
+
+                application.roles.filter(title = title.title).first().delete()
+                v = project.vacancies.filter(title = title.title).first()
+
+                v.available -= 1
+                v.save()
+
+                title = Title(participation=participation, title=title.title)
+                title.save()
 
         notify.send(project.founder, recipient=participation.user, verb="accepted your application for", action_object=project)
 
@@ -177,7 +182,11 @@ def applications(request, id):
     user = request.user
 
     if(project.founder == user):
-        return render_to_response('applications/page.html', RequestContext(request, {"applications": project.applications.filter(result='W')}))
+        applications = []
+        for a in project.applications.filter(result='W'):
+            if(a.roles.count()):
+                applications.append(a)
+        return render_to_response('applications/page.html', RequestContext(request, {"applications": applications}))
     return HttpResponseRedirect('/projects/' + str(project.id))
 
 

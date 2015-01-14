@@ -8,6 +8,13 @@ comments = patterns('',
     #url(r'^(?P<comment_id>\d+)/delete/$', delete),
 )
 
+#Applications
+applications = patterns('',
+    url(r'^$', applications),
+    url(r'^(?P<app_id>\d+)/$', application),
+)
+
+
 #Vacancies
 vacancies = patterns('',
     url(r'^edit/$', EditVacanciesView.as_view()),
@@ -33,7 +40,7 @@ urlpatterns = patterns('',
     #url(r'^(?P<id>\d+)/recruit/$', recruit),
 
     url(r'^(?P<id>\d+)/apply/$', apply),
-    url(r'^(?P<id>\d+)/applications', applications),
-    url(r'^(?P<id>\d+)/applications/(?P<app_id>\d+)/$', application),
+    url(r'^(?P<id>\d+)/applications/', include(applications)),
+
     url(r'^(?P<project_id>\d+)/topics/', include("topic.urls")),
 )

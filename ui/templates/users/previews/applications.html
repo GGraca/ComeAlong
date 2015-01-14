@@ -11,18 +11,16 @@
          {{ a.pitch | safe }}
       </div>
       <div class="vacancies">
-         
+
          {% for i in items %}
             <div class="vacancy">
-               <input type="checkbox" name="{{ i }}" value="{{ i }}" checked /> {{ i }}
+               <input type="checkbox" name="{{ i }}" value="{{ i.id }}" checked /> {{ i }}
             </div>
          {% endfor %}
-         
+
       </div>
    </div>
 
    <hr/>
-   
+
 </form>
-
-

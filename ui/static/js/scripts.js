@@ -61,7 +61,7 @@
               affix = $(this).offset().top-20;
             } else {
               affix = $("#hero").height()+61;
-            } 
+            }
 
             // let's save some messy code in clean variables
             // when should we start affixing? (the amount of pixels to the top from the element)
@@ -138,7 +138,7 @@
             $("#signup-error").show();
             return false
         }
-  
+
         if (!validateEmail(email)) {
             $("#signup-error").html('Please enter a valid email.');
             $("#signup-error").show();
@@ -149,7 +149,7 @@
             $("#signup-error").html('Both passwords must match.');
             $("#signup-error").show();
             return false
-        } 
+        }
 
         register(firstname,lastname,username,email,password);
     });
@@ -190,14 +190,14 @@
             $('#signup-signin').find('li:last-of-type').addClass('active');
             $('#signin').removeClass('active in');
             $('#signup').addClass('active in');
-        } 
+        }
     });
 
 
-    function validateEmail(email) { 
+    function validateEmail(email) {
         var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return regex.test(email);
-    } 
+    }
 
     // Accept Applications
 
@@ -207,16 +207,16 @@
         var roles = [];
 
         $('#' + apply + ' input[type="checkbox"]:checked').each(function() {
-            roles.push($(this).attr('name'));
-        }); 
+            roles.push($(this).attr('value'));
+        });
         console.log(roles);
         acceptApply(apply, roles);
     });
 
     function acceptApply(id, roles) {
-        console.log(id);
+        console.log(roles);
         $.ajax({
-            url : "./applications/" + id + "/",
+            url : id + "/",
             type : "POST",
             data : { roles: roles, csrfmiddlewaretoken:  $("input[name$='csrfmiddlewaretoken']").val() },
 
@@ -230,7 +230,7 @@
         });
     }
 
-    // Vacancies 
+    // Vacancies
 
     $("#add-vacancy").click(function(){
         event.preventDefault();
@@ -277,11 +277,11 @@
         // validate fields
         $('.error').remove();
         $('.vacancy').each(function() {
-            
+
             if (!validateVacancy($(this))) {
                 error = true;
             }
-            
+
         });
 
         // if validation errors
@@ -318,8 +318,8 @@
         if (error) {
             return false
         } else {
-            return true; 
-        }  
+            return true;
+        }
     }
 
     function removeVacancy(vac) {
@@ -378,7 +378,7 @@
         });
     }
 
-	$.ajaxSetup({ 
+	$.ajaxSetup({
 	     beforeSend: function(xhr, settings) {
 	         function getCookie(name) {
 	             var cookieValue = null;
@@ -397,6 +397,6 @@
 	         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
 	             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
 	         }
-	     } 
+	     }
 	});
 })(jQuery);
