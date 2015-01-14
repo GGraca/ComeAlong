@@ -1,6 +1,10 @@
 (function($) {
     "use strict";
 
+    if ($('[data-toggle="tooltip"]').length > 0) {
+        $('[data-toggle="tooltip"]').tooltip();
+    }  
+
    var $container = $('#projects .row').isotope({
      itemSelector: '.project-container',
      getSortData: {
@@ -208,20 +212,23 @@
 
         $('#' + apply + ' input[type="checkbox"]:checked').each(function() {
             roles.push($(this).attr('value'));
-        });
-        console.log(roles);
+            $(this).parent().remove();
+        }); 
+
+        if ($('#' + apply + ' input[type="checkbox"]').length == 0){
+            $('#' + apply + '').remove();
+        };
+
         acceptApply(apply, roles);
     });
 
     function acceptApply(id, roles) {
-        console.log(roles);
         $.ajax({
             url : id + "/",
             type : "POST",
             data : { roles: roles, csrfmiddlewaretoken:  $("input[name$='csrfmiddlewaretoken']").val() },
 
             success : function(json) {
-                console.log(json);
             },
 
             error : function(xhr,errmsg,err) {
@@ -287,6 +294,8 @@
         // if validation errors
         if (!error) {
 
+            var aux = 0;
+
             $('.vacancy').each(function() {
                 if ($(this).hasClass('delete')) {
                     removeVacancy($(this));
@@ -295,8 +304,12 @@
                 } else if ($(this).hasClass('new')) {
                     newVacancy($(this));
                 }
+                aux++
             });
 
+            if (aux == $('.vacancy').length) {
+                window.location = document.URL.replace("vacancies/edit/", "");;
+            }
         }
     });
 

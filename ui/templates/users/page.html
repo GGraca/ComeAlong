@@ -73,8 +73,9 @@
 
 				<div class="col-xs-12">
 					<ul id="user-actions" class="nav nav-tabs">
-	                    <li class="active"><a href="#projects-founded" data-toggle="tab">Projects Founded</a></li>
-	                    <li class=""><a href="#projects-participated" data-toggle="tab">Projects Participated</a></li>
+	                    <li class="active"><a href="#projects-founded" data-toggle="tab">Projects Founded ({{this_user.projects_owned.all.count}})</a></li>
+	                    <li class=""><a href="#projects-participated" data-toggle="tab">Projects Participated ({{projects_participated|length}})</a></li>
+	                    <li class=""><a href="#projects-following" data-toggle="tab">Projects Following ({{this_user.projects_following.count}})</a></li>
 	                </ul>
 	                <div id="user-info" class="tab-content">
 		                <div id="projects-founded" class="tab-pane fade active in">
@@ -84,10 +85,17 @@
 								{% endwith %}
 							</div>
 		                </div>
-		                <div id="projects-participated" class="tab-pane fade active in">
+		                <div id="projects-participated" class="tab-pane fade">
 		                	<div class="row">
-			                	{% with projects=this_user.projects_participated.all %}
-									{% include "projects/project_list.html" %}
+			                	{% with projects=projects_participated %}
+									{% include "projects/project_list_discover.html" %}
+								{% endwith %}
+							</div>
+		                </div>
+		                <div id="projects-following" class="tab-pane fade">
+		                	<div class="row">
+			                	{% with projects=this_user.projects_following.all %}
+									{% include "projects/project_list_discover.html" %}
 								{% endwith %}
 							</div>
 		                </div>

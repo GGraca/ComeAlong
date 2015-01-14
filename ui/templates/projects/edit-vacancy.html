@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-9">
-                                    <input type="text" class="form-control name" placeholder="Title" value="{{ v }}" >
+                                    <input type="text" class="form-control name" placeholder="Title" value="{{ v }}" {% if v.closed >= 1 %}disabled{% endif %}>
                                 </div>
                                 <div class="col-xs-1 action">
                                     <div class="delete-vacancy {% if v.closed >= 1 %}disabled{% endif %}"><i class="fa fa-times"></i></div>

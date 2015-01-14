@@ -375,6 +375,10 @@ a, a:hover, a:focus {
 	font-size: 14px;
 }
 
+.section .author a {
+	color: #1a1a1a;
+}
+
 .section .bottom-info {
 	position: absolute;
 	bottom: 20px;
@@ -1032,6 +1036,7 @@ span.project-name {
 .page.profile .nav-tabs a {
 	color: #777;
 	padding: 20px;
+	font-weight: bold;
 }
 
 .page.profile .nav-tabs a:hover {
@@ -1108,4 +1113,34 @@ aside.project button a:hover {
 .application-form .application-information .vacancy {
 	display: inline-block;
 	margin-right: 15px;
+}
+
+.team-member {
+	margin-bottom: 25px;
+}
+
+.team-member .cover {
+	float: left;
+	height: 75px;
+	width: 75px;
+	border-radius: 75px;
+}
+
+.team-member .info {
+	margin-left: 100px;
+}
+
+.team-member h3 {
+	font-weight: bold;
+	margin-bottom: 0;
+	padding-top: 10px;
+}
+
+.team-member p {
+	margin-top: 0 !important;
+	font-size: 14px !important;
+}
+
+.team-member h3, .team-member p {
+	color: #1a1a1a;
 }

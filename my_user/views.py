@@ -16,6 +16,11 @@ class UserPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TemplateView, self).get_context_data(**kwargs)
         context['this_user'] = MyUser.objects.get(username=kwargs['username'])
+        context['projects_participated'] = []
+        for p in context['this_user'].positions.all():
+            if not p.project.founder == context['this_user']:
+                context['projects_participated'].append(p.project)
+              
         return context
 
 class UserUpdateView(UpdateView):
