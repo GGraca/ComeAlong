@@ -35,12 +35,6 @@ class UpdateProjectView(UpdateView):
     def get_object(self):
         return Project.objects.get(id=self.kwargs['id'])
 
-    def get_context_data(self, **kwargs):
-        context = super(UpdateView, self).get_context_data(**kwargs)
-        context['participations'] = self.object.positions.all()
-        context['followers'] = self.object.followers.all()
-        return context
-
 
 class ProjectPageView(DetailView):
     template_name = "projects/page.html"
