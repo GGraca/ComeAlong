@@ -11,7 +11,7 @@ class Index(TemplateView):
         context = super(TemplateView, self).get_context_data(**kwargs)
         context['new_projects'] = Project.objects.all().order_by("id").reverse()[0:4]
         context['staffpicks_projects'] = [
-            #Project.objects.get(id=1),
+            Project.objects.get(id=1),
             #Project.objects.get(id=3),
         ]
         return context
@@ -35,8 +35,8 @@ def login_view(request):
         user = authenticate(username=f['username'], password=f['password'])
         if user is not None:
             login(request, user)
-            #return HttpResponse("success", status=200)
-            return HttpResponseRedirect('/')
+            return HttpResponse("success", status=200)
+            #return HttpResponseRedirect('/')
     return HttpResponse("error")
 
 def register_view(request):

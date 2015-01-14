@@ -638,6 +638,13 @@ footer .brand {
 	border-color: transparent;
 }
 
+#signin-error, #signup-error {
+	color: red;
+	margin-top: 10px;
+	display: none;
+	text-align: center;
+}
+
 /* Facebook Button */
 
 #signup-signin .btn-facebook {
@@ -645,6 +652,16 @@ footer .brand {
 	background-color: #3b5998;
 	color: white;
 	margin: 10px 0 20px 0;
+	padding: 0;
+}
+
+#signup-signin .btn-facebook a {
+	padding: 10px 20px;
+	display: block;
+}
+
+#signup-signin .btn-facebook a:hover {
+	color: white;
 }
 
 #signup-signin  .btn {
@@ -772,6 +789,10 @@ footer .brand {
 	border-bottom-right-radius: 10px;
 }
 
+.page.project-single .info .btn {
+	width: 100%;
+}
+
 .page.project-single .logo img, .page.project-single .featured-image img {
 	width: 100%;
 }
@@ -788,6 +809,19 @@ footer .brand {
 .page.project-single .description {
 	margin-top: 5px;
 	position: relative;
+}
+
+.page.project-single .description h3 {
+	font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+}
+
+.page.project-single .description a {
+	border-bottom: 1px dashed #1a1a1a;
+	font-weight: normal;
+}
+
+.page.project-single .description img {
+	width: 100%;
 }
 
 .page.project-single .section.cover .description {
@@ -846,6 +880,8 @@ footer .brand {
 .page.project-single #project-info p {
 	font-size: 20px;
 	line-height: 28px;
+	margin-left: 0 !important;
+	margin-top: 20px;
 }
 
 /* Project Edit Page */

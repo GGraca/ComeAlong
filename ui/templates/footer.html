@@ -97,21 +97,22 @@
                                 <div class="control-group">
                                     <label class="control-label" for="username">Username:</label>
                                     <div class="controls">
-                                        <input required="" id="username" name="username" type="text" class="form-control" placeholder="johndoe" class="input-medium" required="">
+                                        <input required="" id="signin-username" name="username" type="text" class="form-control" placeholder="johndoe" class="input-medium" required="">
                                     </div>
                                 </div>
                                 <!-- Password input-->
                                 <div class="control-group">
                                     <label class="control-label" for="password">Password:</label>
                                     <div class="controls">
-                                        <input required="" id="password" name="password" class="form-control" type="password" placeholder="********" class="input-medium">
+                                        <input required="" id="signin-password" name="password" class="form-control" type="password" placeholder="********" class="input-medium">
                                     </div>
                                 </div>
                                 <!-- Button -->
                                 <div class="control-group">
                                     <label class="control-label" for="signin"></label>
                                     <div class="controls">
-                                        <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+                                        <button id="submit-signin" name="submit-signin" class="btn btn-success">Sign In</button>
+                                        <div id="signin-error">Your username or password are invalid.</div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -170,7 +171,8 @@
                                 <div class="control-group">
                                     <label class="control-label" for="confirmsignup"></label>
                                     <div class="controls">
-                                        <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+                                        <button id="submit-signup" name="submit-signup" class="btn btn-success">Sign Up</button>
+                                        <div id="signup-error"></div>
                                     </div>
                                 </div>
                             </fieldset>

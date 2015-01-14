@@ -62,7 +62,6 @@
             } else {
               affix = $("#hero").height()+61;
             } 
-            console.log($(this));
 
             // let's save some messy code in clean variables
             // when should we start affixing? (the amount of pixels to the top from the element)
@@ -74,7 +73,6 @@
                 stopOn = $( document ).height()-( $( bottomElement ).offset().top-125)+($( this ).outerHeight() - $( this ).height());
             // if the element doesn't need to get sticky, then skip it so it won't mess up your layout
             if( (fromBottom-stopOn) > 200 ){
-              console.log($(this));
                 // let's put a sticky width on the element and assign it to the top
                 $( this ).css('width', $( this ).parent().width()).css('top', 0).css('position', '');
                 // assign the affix to the element
@@ -90,6 +88,86 @@
             }
             // trigger the scroll event so it always activates
             $( window ).trigger('scroll');
+        });
+    }
+
+    // Login
+
+    $(document).on('click', '#submit-signin', function(){
+        event.preventDefault();
+        var user = $('#signin-username').val();
+        var pass = $('#signin-password').val();
+        login(user,pass);
+    });
+
+    $(document).on('click', '#submit-signup', function(){
+        event.preventDefault();
+        $("#signup-error").hide();
+
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+        var username = $('#username').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var password2 = $('#reenterpassword').val();
+
+        if (firstname == '' || lastname == '' || username == '' || email == '' || password == '' || password2 == '') {
+            $("#signup-error").html('Please fill in all fields properly.');
+            $("#signup-error").show();
+            return false
+        }
+  
+        if (!validateEmail(email)) {
+            $("#signup-error").html('Please enter a valid email.');
+            $("#signup-error").show();
+            return false
+        }
+
+        if (password != password2) {
+            $("#signup-error").html('Both passwords must match.');
+            $("#signup-error").show();
+            return false
+        } 
+    });
+
+    $(document).on('click', 'a[data-target="#signup-signin-md"]', function(){
+        var link = $(this).attr('href');
+        if (link == '#signin') {
+            $('#signup-signin').find('li').removeClass('active');
+            $('#signup-signin').find('li:first-of-type').addClass('active');
+            $('#signup').removeClass('active in');
+            $('#signin').addClass('active in');
+        } else if (link == '#signup') {
+            $('#signup-signin').find('li').removeClass('active');
+            $('#signup-signin').find('li:last-of-type').addClass('active');
+            $('#signin').removeClass('active in');
+            $('#signup').addClass('active in');
+        } 
+    });
+
+
+    function validateEmail(email) { 
+        var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return regex.test(email);
+    } 
+
+    function login(user,pass) {
+        $.ajax({
+            url : "../login/",
+            type : "POST",
+            data : { username : user, password: pass },
+
+            success : function(json) {
+                if (json == 'error') {
+                    $("#signin-error").show();
+                } else if (json == 'success') {
+                    window.location = "/"
+                }
+            },
+
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
         });
     }
 
@@ -152,13 +230,10 @@
 
             $('.vacancy').each(function() {
                 if ($(this).hasClass('delete')) {
-                    console.log('remove');
                     removeVacancy($(this));
                 } else if ($(this).hasClass('old')) {
-                    console.log('update');
                     updateVacancy($(this));
                 } else if ($(this).hasClass('new')) {
-                    console.log('novo');
                     newVacancy($(this));
                 }
             });
@@ -198,7 +273,7 @@
             type : "POST",
 
             success : function(json) {
-                console.log("success"); // another sanity check
+
             },
 
             error : function(xhr,errmsg,err) {
@@ -218,7 +293,6 @@
             data : { title : name, total: number, csrfmiddlewaretoken:  $("input[name$='csrfmiddlewaretoken']").val() },
 
             success : function(json) {
-                console.log("success");
             },
 
             error : function(xhr,errmsg,err) {
@@ -237,7 +311,6 @@
             data : { title : name, total: number, csrfmiddlewaretoken:  $("input[name$='csrfmiddlewaretoken']").val() },
 
             success : function(json) {
-                console.log("success");
             },
 
             error : function(xhr,errmsg,err) {

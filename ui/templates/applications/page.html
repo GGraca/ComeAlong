@@ -2,46 +2,35 @@
 {% load bootstrap3 %}
 
 {% block body_block %}
-   <div class="c">
 
-      {% with this_user=application.user %}
+   <section id="content" class="container page edit-project">
 
-      <div style="width:85%; margin: 0 auto;">
-         {% include "users/previews/application.html" %}
+      <div class="section cover">
+
+         <div class="row">
+            <form action="/projects/{{ project.id }}/apply/" method="post" class="form">
+               {% csrf_token %}
+               {{ form.media }}
+               <div class="col-xs-12 col-sm-3">
+                  <aside class="project">
+                     <div class="info info-fixed">
+                        <h3>You're seeing all the applications made to your project.</h3>
+                        <button type="submit" class="btn btn-default">Save</button>
+                     </div>
+                  </aside>
+               </div>
+               <div class="col-xs-12 col-sm-8 col-sm-offset-1">
+               {% for a in applications %}
+                     {% with this_user=a.user items=a.roles.all context="a" %}
+                        {% include "users/previews/applications.html" %}
+                     {% endwith %}
+
+               {% endfor %}           
+               </div>
+            </form>
+         </div>
       </div>
 
-      <div style="display: inline-block; width: 100%;">
-
-         <div style="float:left; width:49%;">
-            <h4 style="text-align:center;">User Description</h4>
-            <div class="description">
-               {{ this_user.description | safe }}
-            </div>
-         </div>
-         <div style="float:right; width:49%;">
-            <h4 style="text-align:center;">Pitch</h4>
-            <div class="description">
-               {{ application.pitch | safe }}
-            </div>
-         </div>
-
-      </div>
-
-      {% endwith %}
-
-      <form action="/projects/{{ project.id }}/{{ application.id }}/" method="post" class="form">
-         {% csrf_token %}
-         {% bootstrap_form form%}
-         {% buttons %}
-            <button type="submit" class="btn btn-primary">
-               {% bootstrap_icon "star" %} Accept
-            </button>
-         {% endbuttons %}
-      </form>
-
-
-   <!-- Accept/Reject Buttons -->
-</div>
-
+   </section>
 
 {% endblock %}

@@ -46,11 +46,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-					<h3>How can you help?</h3>
-					<p>We want you to create and participate in projects giving strength to our platform and share it with your friends or on the internet. Give us your feedback and ideas. Anything from YOU will be valuable for us.</p>
+					{% if user.is_authenticated %}
+						<p>Why don't you join a project, or start your own?</p>
 
-					<button class="btn btn-default btn-move"><a href="#signin" data-toggle="modal" data-target="#signup-signin-md">Join Now</a></button>
-					<button class="btn btn-default btn-move"><a href="mailto:comealongplatform@gmail.com?Subject=Feedback ComeAlong">Give Feedback</a></button>
+						<button class="btn btn-default btn-move"><a href="http://localhost:8000/projects/new/">Create Project</a></button>
+						<button class="btn btn-default"><a href="http://localhost:8000/discover">Join Project</a></button>
+					{% else %}
+						<h3>How can you help?</h3>
+						<p>We want you to create and participate in projects giving strength to our platform and share it with your friends or on the internet. Give us your feedback and ideas. Anything from YOU will be valuable for us.</p>
+
+						<button class="btn btn-default btn-move"><a href="#signin" data-toggle="modal" data-target="#signup-signin-md">Join Now</a></button>
+						<button class="btn btn-default btn-move"><a href="mailto:comealongplatform@gmail.com?Subject=Feedback ComeAlong">Give Feedback</a></button>
+					{% endif %}
 				</div>
 			</div>
 		</div>

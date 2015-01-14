@@ -187,7 +187,7 @@ def applications(request, id):
     user = request.user
 
     if(project.founder == user):
-        return render_to_response('applications/new.html', RequestContext(request, {"applications": project.applications.filter(result='W')}))
+        return render_to_response('applications/page.html', RequestContext(request, {"applications": project.applications.filter(result='W')}))
     return HttpResponseRedirect('/projects/' + str(project.id))
 
 
