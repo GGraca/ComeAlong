@@ -72,6 +72,14 @@ a, a:hover, a:focus {
 	margin-top: 25px;
 }
 
+.btn-blue a {
+	color: white;
+}
+
+.btn-blue a:hover {
+	color: #333;
+}
+
 /* centered columns styles */
 .row-centered {
     text-align:center;
@@ -795,6 +803,7 @@ footer .brand {
 
 .page.project-single .info .btn {
 	width: 100%;
+	margin-top: 25px;
 }
 
 .page.project-single .logo img, .page.project-single .featured-image img {
@@ -847,9 +856,10 @@ footer .brand {
 	margin-top: 10px;
 }
 
-.page.project-single #project-actions button:hover {
+.page.project-single #project-actions button:hover, .page.project-single #project-actions button.btn-following {
 	background: #34495e;
 	border: 0;
+	color: white;
 }
 
 .page.project-single #project-actions button:hover i, .page.project-single #project-actions button:hover a {
@@ -981,7 +991,7 @@ span.project-name {
 }
 
 .page.profile .content {
-	padding: 15px 15px 0 0;
+	padding: 15px 15px 15px 0;
 }
 
 .page.profile .extra-info {
