@@ -178,6 +178,52 @@
     </div>
 </div>
 
+<div class="modal fade bs-modal-sm" id="feedback-md" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <h3>Give Feedback</h3>
+            <div class="modal-body">
+                <form class="send-feedback" id="send-feedback" method="post" action="{% url 'register' %}">
+                  {% csrf_token %}
+                    <input class="hidden" type="hidden" name="topic" value="Home : Contact Form Submission" id="subject" />
+                
+                        <!-- Contact Form -->
+                        <!-- Text input-->
+                        <div class="control-group control-group-half left">
+                            <label class="control-label" for="topic">Topic:</label>
+                            <div class="controls">
+                                <input id="topic" name="topic" class="form-control" type="text" placeholder="Bug Report" class="input-large" required="">
+                            </div>
+                        </div>
+                        <!-- E-Mail input-->
+                        <div class="control-group">
+                            <label class="control-label" for="email">E-mail:</label>
+                            <div class="controls">
+                                <input id="feedback-email" name="feedback-email" class="form-control" type="email" placeholder="johndoe@gmail.com" class="input-large" required="">
+                            </div>
+                        </div>
+                        <!-- Message input-->
+                        <div class="control-group">
+                            <label class="control-label" for="message">Message:</label>
+                            <div class="controls">
+                                <textarea name="message" id="message" rows="8" cols="37"></textarea>
+                            </div>
+                        </div>
+                        <!-- Button -->
+                        <div class="control-group">
+                            <label class="control-label" for="submit-feedback"></label>
+                            <div class="controls">
+                                <button id="submit-feedback" name="submit-feedback" class="btn btn-success">Send Message</button>
+                                <div id="feedback-error"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 {% bootstrap_javascript %}
 <script src="{% static 'js/isotope.min.js' %}"></script>

@@ -95,6 +95,52 @@
         });
     }
 
+    // Feedback
+
+    $(document).on('click', '#submit-feedback', function(){
+        event.preventDefault();
+        $("#feedback-error").hide();
+
+        var topic = $('#topic').val();
+        var email = $('#feedback-email').val();
+        var message = $('#message').val();
+
+        if (topic == '' || email == '' || message == '') {
+            $("#feedback-error").html('Please fill in all fields properly.');
+            $("#feedback-error").show();
+            return false
+        }
+
+        if (!validateEmail(email)) {
+            $("#feedback-error").html('Please enter a valid email.');
+            $("#feedback-error").show();
+            return false
+        }
+
+        contact(topic,email,message);
+    });
+
+    function contact(topic,email,message) {
+        $.ajax({
+            url : "/contact/",
+            type : "POST",
+            data : { topic : topic, message: message, email: email },
+
+            success : function(json) {
+                if (json == 'error') {
+                    $("#feedback-error").html('Error occurred. Please try again later.');
+                    $("#feedback-error").show();
+                } else if (json == 'success') {
+                    window.location = document.URL
+                }
+            },
+
+            error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    }
+
     // Login
 
     $(document).on('click', '#submit-signin', function(){

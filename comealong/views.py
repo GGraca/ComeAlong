@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from my_user.models import MyUser
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail, BadHeaderError
 
 class Index(TemplateView):
     template_name = "index.html"
@@ -52,3 +53,17 @@ def register_view(request):
         return HttpResponse("success", status=200)
 
     return HttpResponse("error")
+
+def contact_view(request):
+    subject = request.POST.get('topic', '')
+    message = request.POST.get('message', '')
+    from_email = request.POST.get('email', '')
+
+    if subject and message and from_email:
+            try:
+                send_mail(subject, message, from_email, ['comealongplatform@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('error')
+            return HttpResponse("success", status=200)
+    else:
+        return HttpResponse("error")

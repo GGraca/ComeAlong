@@ -547,13 +547,13 @@ footer .brand {
 
 /* Modal Signup/Signin Options */
 
-#signup-signin-md .modal-backdrop {
+#signup-signin-md .modal-backdrop, #feedback-md .modal-backdrop {
 	opacity: 1;
 	background-color: rgba(44, 62, 80,0.9);
 	height: 100% !important;
 }
 
-#signup-signin-md .modal-dialog {
+#signup-signin-md .modal-dialog, #feedback-md .modal-dialog {
 	margin: 0;
 	padding: 0;
 	position: absolute;
@@ -565,7 +565,7 @@ footer .brand {
     		transform: translate(-50%, 25%);
 }
 
-#signup-signin-md.modal.in .modal-dialog {
+#signup-signin-md.modal.in .modal-dialog, #feedback-md.modal.in .modal-dialog {
     -webkit-transform: translate(-50%, -50%);
 		-ms-transform: translate(-50%, -50%);
     		transform: translate(-50%, -50%);	
@@ -650,7 +650,25 @@ footer .brand {
 	border-color: transparent;
 }
 
-#signin-error, #signup-error {
+#feedback-md h3 {
+	font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+	font-weight: bold;
+	margin-top: 15px;
+	text-align: center;
+}
+
+#feedback-md button {
+	width: 100%;
+}
+
+#feedback-md textarea {
+	resize: none;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+#signin-error, #signup-error, #feedback-error {
 	color: red;
 	margin-top: 10px;
 	display: none;
