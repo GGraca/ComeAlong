@@ -99,7 +99,7 @@
 
     $(document).on('click', '#submit-feedback', function(){
         event.preventDefault();
-        $("#feedback-error").hide();
+        $("#feedback-error, #feedback-success").hide();
 
         var topic = $('#topic').val();
         var email = $('#feedback-email').val();
@@ -131,7 +131,12 @@
                     $("#feedback-error").html('Error occurred. Please try again later.');
                     $("#feedback-error").show();
                 } else if (json == 'success') {
-                    window.location = document.URL
+                    $("#feedback-success").html("Thank you for your feedback. We'll be in touch soon :)");
+                    $("#feedback-success").show();
+                    
+                    setTimeout(function(){ 
+                        $('#feedback-md').modal('hide');
+                    }, 2000);
                 }
             },
 

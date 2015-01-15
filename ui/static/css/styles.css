@@ -687,6 +687,13 @@ footer .brand {
 	text-align: center;
 }
 
+#feedback-success {
+	color: green;
+	margin-top: 10px;
+	display: none;
+	text-align: center;
+}
+
 /* Facebook Button */
 
 #signup-signin .btn-facebook {
