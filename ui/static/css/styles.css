@@ -657,6 +657,15 @@ footer .brand {
 	text-align: center;
 }
 
+#feedback-md hr {
+	margin-bottom: 0;
+	margin-top: 15px;
+}
+
+#feedback-md .modal-body {
+	padding-top: 0;
+}
+
 #feedback-md button {
 	width: 100%;
 }
