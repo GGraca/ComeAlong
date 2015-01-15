@@ -8,7 +8,7 @@
          </a>
          <span class="author">by {{ p.founder.get_full_name }}</span>
          <div class="content">
-            <p>{{ p.short_description|slice:":125" }}</p>
+            <p>{{ p.short_description|truncatewords:25 }}</p>
          </div>
          <div class="bottom-info">
             <ul class="list-inline vancancies">
