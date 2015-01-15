@@ -598,7 +598,7 @@ footer .brand {
 	right: 0;
 }
 
-#signup-signin-md .control-label {
+#signup-signin-md .control-label, #feedback-md .control-label {
 	padding-top: 10px;
 	margin-bottom: 5px;
 }
